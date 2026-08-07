@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, Phone } from 'lucide-react'
 
 const HomePage = () => {
   const [currentImage, setCurrentImage] = useState(0)
+  const [brandScroll, setBrandScroll] = useState(0)
   
   const images = [
     '/images/1.jpg',
@@ -18,6 +19,24 @@ const HomePage = () => {
 
   const prevImage = () => {
     setCurrentImage((prev) => (prev - 1 + images.length) % images.length)
+  }
+
+  const scrollBrands = (direction) => {
+    const container = document.getElementById('brands-container')
+    if (container) {
+      const logoItems = container.querySelectorAll('.flex-shrink-0')
+      if (logoItems.length > 0) {
+        const firstLogo = logoItems[0]
+        const logoWidth = firstLogo.offsetWidth
+        const gap = 48 // gap-12 = 48px
+        const scrollAmount = logoWidth + gap
+        if (direction === 'left') {
+          container.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+        }
+      }
+    }
   }
 
   useEffect(() => {
@@ -90,7 +109,7 @@ const HomePage = () => {
             className="w-full h-auto"
           />
           <div className="absolute inset-0 bg-black/30"></div>
-          <div className="absolute inset-0 flex items-start pt-8">
+          <div className="absolute inset-0 flex items-center">
             <div className="p-5">
               <div className="flex items-center gap-3 mb-4">
                 <Calendar className="w-6 h-6 text-white" />
@@ -114,23 +133,63 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Wide Selection Section */}
+      <section className="py-20 bg-gray-100">
+        <div className="max-w-7xl mx-auto pl-4 sm:pl-6 lg:pl-8 pr-5 flex flex-col lg:flex-row items-center gap-8">
+          <div className="flex-1 flex flex-col sm:flex-row gap-4">
+            <img src="/images/7.jpg" alt="Luxury car collection" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
+            <img src="/images/8.jpg" alt="Luxury car exterior" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
+          </div>
+          <div className="flex-1 text-right">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
+              САМЫЙ ШИРОКИЙ И АКТУАЛЬНЫЙ ВЫБОР ЛУЧШИХ АВТОМОБИЛЕЙ В НАЛИЧИИ В РОССИИ ДЛЯ ПОПОЛНЕНИЯ ВАШЕЙ КОЛЛЕКЦИИ
+            </h2>
+            <Link to="/catalog" className="inline-flex items-center bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-6">
+              Галерея автомобилей
+            </Link>
+            <p className="text-gray-600 max-w-md ml-auto">
+              Не привязаны к конкретному бренду — поможем подобрать наиболее подходящий для вас автомобиль.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Brands Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-16 text-center">
-            Эксклюзивные марки
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {['Mercedes-Benz', 'BMW', 'Porsche', 'Bentley', 'Audi', 'Lamborghini', 'Ferrari', 'Rolls-Royce'].map((brand, index) => (
-              <div key={index} className="text-center group cursor-pointer">
-                <div className="bg-gray-50 rounded-xl p-8 hover:bg-gray-100 transition-colors">
-                  <p className="text-lg font-semibold text-gray-900 group-hover:text-black transition-colors">
-                    {brand}
-                  </p>
-                </div>
+        <div className="flex items-center gap-4 pl-5 pr-5">
+          <div
+            id="brands-container"
+            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
+          >
+            {[
+              { name: 'Mercedes-Benz', logo: '/logo/merc.jpg' },
+              { name: 'BMW', logo: '/logo/bmw.jpg' },
+              { name: 'Porsche', logo: '/logo/porsche.jpg' },
+              { name: 'Bentley', logo: '/logo/bentl.jpg' },
+              { name: 'Audi', logo: '/logo/audi.jpg' },
+              { name: 'Lamborghini', logo: '/logo/lambo.jpg' },
+              { name: 'Ferrari', logo: '/logo/ferr.jpg' },
+              { name: 'Rolls-Royce', logo: '/logo/rr.jpg' },
+              { name: 'Brabus', logo: '/logo/brabs.jpg' }
+            ].map((brand, index) => (
+              <div key={index} className="flex-shrink-0">
+                <img src={brand.logo} alt={brand.name} className="h-24 w-auto object-contain" />
               </div>
             ))}
+          </div>
+          <div className="flex gap-2 flex-shrink-0">
+            <button
+              onClick={() => scrollBrands('left')}
+              className="flex items-center justify-center"
+            >
+              <img src="/logo/vlevo.png" alt="влево" className="w-24 h-16" />
+            </button>
+            <button
+              onClick={() => scrollBrands('right')}
+              className="flex items-center justify-center"
+            >
+              <img src="/logo/vpravo.png" alt="вправо" className="w-24 h-16" />
+            </button>
           </div>
         </div>
       </section>
