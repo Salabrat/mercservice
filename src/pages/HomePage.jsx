@@ -156,10 +156,10 @@ const HomePage = () => {
 
       {/* Featured Brands Section */}
       <section className="py-24 bg-white">
-        <div className="flex items-center gap-4 pl-5 pr-5">
+        <div className="relative pl-5 pr-5">
           <div
             id="brands-container"
-            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
+            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-48"
           >
             {[
               { name: 'Mercedes-Benz', logo: '/logo/merc.jpg' },
@@ -170,14 +170,19 @@ const HomePage = () => {
               { name: 'Lamborghini', logo: '/logo/lambo.jpg' },
               { name: 'Ferrari', logo: '/logo/ferr.jpg' },
               { name: 'Rolls-Royce', logo: '/logo/rr.jpg' },
-              { name: 'Brabus', logo: '/logo/brabs.jpg' }
+              { name: 'Brabus', logo: '/logo/brabs.jpg' },
+              { name: 'Cadillac', logo: '/logo/cadillac.jpg' },
+              { name: 'Land Rover', logo: '/logo/landr.jpg' },
+              { name: 'Lexus', logo: '/logo/lexx.jpg' },
+              { name: 'RAM', logo: '/logo/ram.jpg' },
+              { name: 'Toyota', logo: '/logo/toy.jpg' }
             ].map((brand, index) => (
               <div key={index} className="flex-shrink-0">
                 <img src={brand.logo} alt={brand.name} className="h-24 w-auto object-contain" />
               </div>
             ))}
           </div>
-          <div className="flex gap-2 flex-shrink-0">
+          <div className="absolute right-5 top-1/2 -translate-y-1/2 flex gap-2 bg-white pl-4 pr-4 py-4">
             <button
               onClick={() => scrollBrands('left')}
               className="flex items-center justify-center"
