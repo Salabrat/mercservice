@@ -6,8 +6,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   const login = (username, password) => {
-    if (username === 'admin' && password === 'adminsb') {
-      setUser({ username: 'admin', role: 'admin' })
+    if (username === 'adminsb' && password === 'adminsb') {
+      setUser({ username: 'adminsb', role: 'admin' })
       return true
     }
     return false

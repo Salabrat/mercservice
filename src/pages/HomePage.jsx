@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Calendar, Phone } from 'lucide-react'
 
-const HomePage = () => {
+const HomePage = ({ brands }) => {
   const [currentImage, setCurrentImage] = useState(0)
   const [brandScroll, setBrandScroll] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -183,23 +183,8 @@ const HomePage = () => {
             id="brands-container"
             className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
           >
-            {[
-              { name: 'Mercedes-Benz', logo: '/logo/merc.png' },
-              { name: 'BMW', logo: '/logo/bmw.png' },
-              { name: 'Porsche', logo: '/logo/prsch.png' },
-              { name: 'Bentley', logo: '/logo/bentl.png' },
-              { name: 'Audi', logo: '/logo/audi.png' },
-              { name: 'Lamborghini', logo: '/logo/lmb.png' },
-              { name: 'Ferrari', logo: '/logo/ferr.png' },
-              { name: 'Rolls-Royce', logo: '/logo/rrrr.png' },
-              { name: 'Brabus', logo: '/logo/brb.png' },
-              { name: 'Cadillac', logo: '/logo/cadillc.png' },
-              { name: 'Land Rover', logo: '/logo/lndrv.png' },
-              { name: 'Lexus', logo: '/logo/lexs.png' },
-              { name: 'RAM', logo: '/logo/ram.png' },
-              { name: 'Toyota', logo: '/logo/toyto.png' }
-            ].map((brand, index) => (
-              <div key={index} className="flex-shrink-0">
+            {brands.map((brand, index) => (
+              <div key={brand.id || index} className="flex-shrink-0">
                 <img src={brand.logo} alt={brand.name} className="h-32 w-auto object-contain" />
               </div>
             ))}

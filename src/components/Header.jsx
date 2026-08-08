@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, Phone, LogIn, LogOut, Plus, Youtube, Instagram, Send } from 'lucide-react'
+import { Menu, X, Phone, LogIn, LogOut, Youtube, Instagram, Send } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import LoginModal from './LoginModal'
-import AdminPanel from './AdminPanel'
 
-const Header = ({ onAddCar }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
-  const [isAdminPanelOpen, setIsAdminPanelOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const { user, logout } = useAuth()
 
@@ -28,7 +26,7 @@ const Header = ({ onAddCar }) => {
   }, [])
 
   return (
-    <header className={`bg-white/80 backdrop-blur-md border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+    <header className={`bg-custom-gray/80 backdrop-blur-md border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -63,13 +61,12 @@ const Header = ({ onAddCar }) => {
             {user ? (
               <div className="flex items-center space-x-2">
                 {user.role === 'admin' && (
-                  <button 
-                    onClick={() => setIsAdminPanelOpen(true)}
+                  <Link 
+                    to="/admin"
                     className="flex items-center bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm"
                   >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Добавить авто
-                  </button>
+                    Админ панель
+                  </Link>
                 )}
                 <button 
                   onClick={logout}
@@ -126,13 +123,12 @@ const Header = ({ onAddCar }) => {
             {user ? (
               <>
                 {user.role === 'admin' && (
-                  <button 
-                    onClick={() => setIsAdminPanelOpen(true)}
+                  <Link 
+                    to="/admin"
                     className="flex items-center w-full bg-black text-white px-4 py-2 rounded-lg"
                   >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Добавить авто
-                  </button>
+                    Админ панель
+                  </Link>
                 )}
                 <button 
                   onClick={logout}
@@ -156,11 +152,6 @@ const Header = ({ onAddCar }) => {
       )}
 
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
-      <AdminPanel 
-        isOpen={isAdminPanelOpen} 
-        onClose={() => setIsAdminPanelOpen(false)} 
-        onAddCar={onAddCar}
-      />
     </header>
   )
 }
