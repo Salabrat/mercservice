@@ -10,14 +10,19 @@ import AdminPage from './pages/AdminPage'
 
 function App() {
   const [cars, setCars] = useState([])
-  const [brands, setBrands] = useState([])
+  const [brands, setBrands] = useState(() => {
+    const savedBrands = localStorage.getItem('brands')
+    return savedBrands ? JSON.parse(savedBrands) : []
+  })
 
   const handleAddCar = (newCar) => {
     setCars([...cars, newCar])
   }
 
   const handleAddBrand = (newBrand) => {
-    setBrands([...brands, newBrand])
+    const updatedBrands = [...brands, newBrand]
+    setBrands(updatedBrands)
+    localStorage.setItem('brands', JSON.stringify(updatedBrands))
   }
 
   return (
