@@ -19,11 +19,18 @@ const BrandPage = ({ cars }) => {
   return (
     <div className="min-h-screen bg-custom-gray py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="inline-flex items-center text-gray-700 hover:text-black mb-8">
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Вернуться на главную
-        </Link>
-        
+        <div className="flex items-center gap-4 mb-8">
+          <Link to="/" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Назад
+          </Link>
+          <div className="flex items-center text-gray-600 text-sm">
+            <span className="text-gray-400">Каталог</span>
+            <span className="mx-2 text-gray-400">/</span>
+            <span className="text-gray-900 font-medium">{brandName}</span>
+          </div>
+        </div>
+
         <h1 className="text-4xl font-bold text-gray-900 mb-8">{brandName}</h1>
         
         {brandCars.length === 0 ? (
