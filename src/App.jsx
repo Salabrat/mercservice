@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import Header from './components/Header'
@@ -10,19 +10,33 @@ import AdminPage from './pages/AdminPage'
 
 function App() {
   const [cars, setCars] = useState([])
-  const [brands, setBrands] = useState(() => {
-    const savedBrands = localStorage.getItem('brands')
-    return savedBrands ? JSON.parse(savedBrands) : []
-  })
+  const [brands, setBrands] = useState([])
+
+  // Fetch brands from API on mount
+  useEffect(() => {
+    fetch('http://localhost:3001/api/brands')
+      .then(res => res.json())
+      .then(data => setBrands(data))
+      .catch(err => console.error('Error fetching brands:', err))
+  }, [])
 
   const handleAddCar = (newCar) => {
     setCars([...cars, newCar])
   }
 
   const handleAddBrand = (newBrand) => {
-    const updatedBrands = [...brands, newBrand]
-    setBrands(updatedBrands)
-    localStorage.setItem('brands', JSON.stringify(updatedBrands))
+    fetch('http://localhost:3001/api/brands', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newBrand)
+    })
+      .then(res => res.json())
+      .then(data => {
+        setBrands([...brands, data])
+      })
+      .catch(err => console.error('Error adding brand:', err))
   }
 
   return (
