@@ -24,6 +24,12 @@ export default {
           '&::-webkit-scrollbar': {
             display: 'none',
           },
+          '&::-webkit-scrollbar-track': {
+            display: 'none',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            display: 'none',
+          },
         },
       })
     }

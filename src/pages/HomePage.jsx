@@ -5,6 +5,8 @@ import { ArrowRight, Calendar, Phone } from 'lucide-react'
 const HomePage = () => {
   const [currentImage, setCurrentImage] = useState(0)
   const [brandScroll, setBrandScroll] = useState(0)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
   
   const images = [
     '/images/1.jpg',
@@ -42,6 +44,26 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(nextImage, 5000)
     return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const container = document.getElementById('brands-container')
+    const checkScroll = () => {
+      if (container) {
+        setCanScrollLeft(container.scrollLeft > 0)
+        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+      }
+    }
+    
+    if (container) {
+      checkScroll()
+      container.addEventListener('scroll', checkScroll)
+      window.addEventListener('resize', checkScroll)
+      return () => {
+        container.removeEventListener('scroll', checkScroll)
+        window.removeEventListener('resize', checkScroll)
+      }
+    }
   }, [])
 
   return (
@@ -159,7 +181,7 @@ const HomePage = () => {
         <div className="relative pl-5 pr-5">
           <div
             id="brands-container"
-            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-48"
+            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
           >
             {[
               { name: 'Mercedes-Benz', logo: '/logo/merc.jpg' },
@@ -186,38 +208,116 @@ const HomePage = () => {
             <button
               onClick={() => scrollBrands('left')}
               className="flex items-center justify-center"
+              disabled={!canScrollLeft}
             >
-              <img src="/logo/vlevo.png" alt="влево" className="w-24 h-16" />
+              <img 
+                src="/logo/vlevo.png" 
+                alt="влево" 
+                className="w-24 h-16 transition-opacity" 
+                style={{ opacity: canScrollLeft ? 1 : 0.3 }}
+              />
             </button>
             <button
               onClick={() => scrollBrands('right')}
               className="flex items-center justify-center"
+              disabled={!canScrollRight}
             >
-              <img src="/logo/vpravo.png" alt="вправо" className="w-24 h-16" />
+              <img 
+                src="/logo/vpravo.png" 
+                alt="вправо" 
+                className="w-24 h-16 transition-opacity" 
+                style={{ opacity: canScrollRight ? 1 : 0.3 }}
+              />
             </button>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-16 text-center">
-            Наши услуги
+      <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-gray-200">
+        <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight">
+            ВОЗЬМЕМ ВСЕ ЗАБОТЫ
+            <br />
+            ОБ АВТОМОБИЛЕ НА СЕБЯ
+            <br />
+            ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ
+            <br />
+            ПОСЛЕ
           </h2>
+          <Link 
+            to="/services"
+            className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg w-fit"
+          >
+            Услуги
+          </Link>
+        </div>
+        <div className="md:w-1/2 py-[30px] pr-5">
+          <img 
+            src="/images/9.jpg" 
+            alt="Car dealership with luxury cars" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Аренда</h3>
-              <p className="text-gray-600">Краткосрочная и долгосрочная аренда премиальных автомобилей</p>
-            </div>
-            <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Продажа</h3>
-              <p className="text-gray-600">Покупка автомобилей с доставкой по всему миру</p>
-            </div>
-            <div className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">С водителем</h3>
-              <p className="text-gray-600">Профессиональные водители для вашего комфорта</p>
+      {/* Pre-order Section */}
+      <section className="flex flex-col md:flex-row items-stretch py-[70px] bg-gray-200">
+        <div className="md:w-1/3 p-4 pl-5">
+          <img 
+            src="/images/11.jpg" 
+            alt="Ferrari car" 
+            className="w-full h-auto object-cover rounded-lg"
+          />
+        </div>
+        <div className="md:w-2/3 flex flex-col md:flex-row items-stretch gap-5">
+          <div className="md:w-1/2 p-4 pl-5">
+            <img 
+              src="/images/10.jpg" 
+              alt="Car wheel" 
+              className="w-full max-h-[400px] object-cover rounded-lg"
+            />
+          </div>
+          <div className="md:w-1/2 flex flex-col justify-center text-right pr-5">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 mb-8 leading-tight">
+              НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ
+              <br />
+              ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ
+              <br />
+              РЕДКИХ ВИНТАЖНЫХ ЛОТОВ
+              <br />
+              ДО НОВЕЙШИХ МОДЕЛЕЙ В
+              <br />
+              ОСОБЕННОЙ КОМПЛЕКТАЦИИ
+            </h2>
+            <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg w-fit ml-auto">
+              Предзаказ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* GREATS Section */}
+      <section className="relative py-20 px-5">
+        <div className="relative">
+          <img 
+            src="/images/12.jpg" 
+            alt="GREATS" 
+            className="w-full h-auto object-cover rounded-lg"
+          />
+          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 flex items-center justify-end p-10">
+            <div className="max-w-md text-left">
+              <h2 className="text-lg md:text-xl lg:text-2xl font-light text-white mb-6 leading-tight">
+                GREATS — это больше, чем продажа машин,
+                мы фанаты автомобилей и всего, что с ними
+                связано. Поможем не просто подобрать самое
+                лучшее на рынке, но и подарить вам новые
+                уникальные эмоции.
+              </h2>
+              <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
+                GREATS blog
+              </button>
             </div>
           </div>
         </div>
