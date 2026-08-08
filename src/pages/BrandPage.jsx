@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 
 const BrandPage = ({ cars }) => {
   const { brand } = useParams()
   const brandName = brand.charAt(0).toUpperCase() + brand.slice(1)
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
   // Filter cars by brand (case-insensitive)
   const brandCars = cars.filter(car => 
