@@ -48,7 +48,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage brands={brands} />} />
             <Route path="/catalog" element={<CatalogPage onAddCar={handleAddCar} />} />
-            <Route path="/catalog/:brand" element={<BrandPage cars={cars} />} />
+            <Route path="/catalog/:brand" element={<BrandPage cars={cars} brands={brands} />} />
             <Route path="/car/:id" element={<CarDetailPage />} />
             <Route path="/admin" element={<AdminPage onAddCar={handleAddCar} onAddBrand={handleAddBrand} />} />
           </Routes>
