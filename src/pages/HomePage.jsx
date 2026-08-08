@@ -67,7 +67,7 @@ const HomePage = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-custom-gray">
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center relative pl-5 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -83,7 +83,7 @@ const HomePage = () => {
                 alt={`Car ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-gray-900/40"></div>
             </div>
           ))}
         </div>
@@ -130,7 +130,7 @@ const HomePage = () => {
             alt="Collaboration" 
             className="w-full h-auto"
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-gray-900/40"></div>
           <div className="absolute inset-0 flex items-center">
             <div className="p-5">
               <div className="flex items-center gap-3 mb-4">
@@ -156,7 +156,7 @@ const HomePage = () => {
       </section>
 
       {/* Wide Selection Section */}
-      <section className="py-20 bg-gray-100">
+      <section className="py-20 bg-custom-gray">
         <div className="max-w-7xl mx-auto pl-4 sm:pl-6 lg:pl-8 pr-5 flex flex-col lg:flex-row items-center gap-8">
           <div className="flex-1 flex flex-col sm:flex-row gap-4">
             <img src="/images/7.jpg" alt="Luxury car collection" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
@@ -177,34 +177,34 @@ const HomePage = () => {
       </section>
 
       {/* Featured Brands Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-custom-gray">
         <div className="relative pl-5 pr-5">
           <div
             id="brands-container"
             className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
           >
             {[
-              { name: 'Mercedes-Benz', logo: '/logo/merc.jpg' },
-              { name: 'BMW', logo: '/logo/bmw.jpg' },
-              { name: 'Porsche', logo: '/logo/porsche.jpg' },
-              { name: 'Bentley', logo: '/logo/bentl.jpg' },
-              { name: 'Audi', logo: '/logo/audi.jpg' },
-              { name: 'Lamborghini', logo: '/logo/lambo.jpg' },
-              { name: 'Ferrari', logo: '/logo/ferr.jpg' },
-              { name: 'Rolls-Royce', logo: '/logo/rr.jpg' },
-              { name: 'Brabus', logo: '/logo/brabs.jpg' },
-              { name: 'Cadillac', logo: '/logo/cadillac.jpg' },
-              { name: 'Land Rover', logo: '/logo/landr.jpg' },
-              { name: 'Lexus', logo: '/logo/lexx.jpg' },
-              { name: 'RAM', logo: '/logo/ram.jpg' },
-              { name: 'Toyota', logo: '/logo/toy.jpg' }
+              { name: 'Mercedes-Benz', logo: '/logo/merc.png' },
+              { name: 'BMW', logo: '/logo/bmw.png' },
+              { name: 'Porsche', logo: '/logo/prsch.png' },
+              { name: 'Bentley', logo: '/logo/bentl.png' },
+              { name: 'Audi', logo: '/logo/audi.png' },
+              { name: 'Lamborghini', logo: '/logo/lmb.png' },
+              { name: 'Ferrari', logo: '/logo/ferr.png' },
+              { name: 'Rolls-Royce', logo: '/logo/rrrr.png' },
+              { name: 'Brabus', logo: '/logo/brb.png' },
+              { name: 'Cadillac', logo: '/logo/cadillc.png' },
+              { name: 'Land Rover', logo: '/logo/lndrv.png' },
+              { name: 'Lexus', logo: '/logo/lexs.png' },
+              { name: 'RAM', logo: '/logo/ram.png' },
+              { name: 'Toyota', logo: '/logo/toyto.png' }
             ].map((brand, index) => (
               <div key={index} className="flex-shrink-0">
-                <img src={brand.logo} alt={brand.name} className="h-24 w-auto object-contain" />
+                <img src={brand.logo} alt={brand.name} className="h-32 w-auto object-contain" />
               </div>
             ))}
           </div>
-          <div className="absolute right-5 top-1/2 -translate-y-1/2 flex gap-2 bg-white pl-4 pr-4 py-4">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10 w-72">
             <button
               onClick={() => scrollBrands('left')}
               className="flex items-center justify-center"
@@ -234,7 +234,7 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-gray-200">
+      <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-custom-gray">
         <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight">
             ВОЗЬМЕМ ВСЕ ЗАБОТЫ
@@ -262,7 +262,7 @@ const HomePage = () => {
       </section>
 
       {/* Pre-order Section */}
-      <section className="flex flex-col md:flex-row items-stretch py-[70px] bg-gray-200">
+      <section className="flex flex-col md:flex-row items-stretch py-[70px] bg-custom-gray">
         <div className="md:w-1/3 p-4 pl-5">
           <img 
             src="/images/11.jpg" 
@@ -305,7 +305,7 @@ const HomePage = () => {
             alt="GREATS" 
             className="w-full h-auto object-cover rounded-lg"
           />
-          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0 bg-gray-900/40"></div>
           <div className="absolute inset-0 flex items-center justify-end p-10">
             <div className="max-w-md text-left">
               <h2 className="text-lg md:text-xl lg:text-2xl font-light text-white mb-6 leading-tight">
@@ -324,7 +324,7 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-black text-white">
+      <section className="py-24 bg-gray-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
             Готовы выбрать автомобиль мечты?
