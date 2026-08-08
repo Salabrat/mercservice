@@ -76,15 +76,15 @@ const BrandPage = ({ cars, brands }) => {
         <div className="relative pl-5 pr-5 mb-8">
           <div
             id="brand-page-brands-container"
-            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
+            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-20"
           >
             {brands.map((brand, index) => (
               <Link key={brand.id || index} to={`/catalog/${brand.name.toLowerCase()}`} className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
-                <img src={brand.logo} alt={brand.name} className="h-32 w-auto object-contain" />
+                <img src={brand.logo} alt={brand.name} className="h-24 w-auto object-contain" />
               </Link>
             ))}
           </div>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10 w-72">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10 w-20">
             <button
               onClick={() => scrollBrands('left')}
               className="flex items-center justify-center"
