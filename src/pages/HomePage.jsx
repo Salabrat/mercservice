@@ -64,7 +64,7 @@ const HomePage = ({ brands }) => {
         window.removeEventListener('resize', checkScroll)
       }
     }
-  }, [])
+  }, [brands])
 
   return (
     <div className="min-h-screen bg-custom-gray">
