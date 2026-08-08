@@ -80,11 +80,11 @@ const BrandPage = ({ cars, brands }) => {
           >
             {brands.map((brand, index) => (
               <Link key={brand.id || index} to={`/catalog/${brand.name.toLowerCase()}`} className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
-                <img src={brand.logo} alt={brand.name} className="h-24 w-auto object-contain" />
+                <img src={brand.logo} alt={brand.name} className="h-28 w-auto object-contain" />
               </Link>
             ))}
           </div>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10 w-20">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10">
             <button
               onClick={() => scrollBrands('left')}
               className="flex items-center justify-center"
@@ -112,7 +112,7 @@ const BrandPage = ({ cars, brands }) => {
           </div>
         </div>
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8">Модельный ряд {brandName} в наличии</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 pl-5">Модельный ряд {brandName} в наличии</h1>
         
         {brandCars.length === 0 ? (
           <div className="bg-white rounded-xl p-12 text-center">
