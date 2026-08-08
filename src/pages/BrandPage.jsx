@@ -76,7 +76,7 @@ const BrandPage = ({ cars, brands }) => {
         <div className="relative pl-5 pr-5 mb-8">
           <div
             id="brand-page-brands-container"
-            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-20"
+            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
           >
             {brands.map((brand, index) => (
               <Link key={brand.id || index} to={`/catalog/${brand.name.toLowerCase()}`} className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
