@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
 import CarDetailPage from './pages/CarDetailPage'
 import AdminPage from './pages/AdminPage'
+import BrandPage from './pages/BrandPage'
 
 function App() {
   const [cars, setCars] = useState([])
@@ -47,6 +48,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage brands={brands} />} />
             <Route path="/catalog" element={<CatalogPage onAddCar={handleAddCar} />} />
+            <Route path="/catalog/:brand" element={<BrandPage cars={cars} />} />
             <Route path="/car/:id" element={<CarDetailPage />} />
             <Route path="/admin" element={<AdminPage onAddCar={handleAddCar} onAddBrand={handleAddBrand} />} />
           </Routes>

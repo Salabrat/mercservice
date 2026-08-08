@@ -184,9 +184,9 @@ const HomePage = ({ brands }) => {
             className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
           >
             {brands.map((brand, index) => (
-              <div key={brand.id || index} className="flex-shrink-0">
+              <Link key={brand.id || index} to={`/catalog/${brand.name.toLowerCase()}`} className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
                 <img src={brand.logo} alt={brand.name} className="h-32 w-auto object-contain" />
-              </div>
+              </Link>
             ))}
           </div>
           <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10 w-72">
@@ -219,18 +219,12 @@ const HomePage = ({ brands }) => {
       </section>
 
       {/* Services Section */}
-      <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-custom-gray">
-        <div className="md:w-1/2 p-10 md:p-16 flex flex-col justify-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight">
-            ВОЗЬМЕМ ВСЕ ЗАБОТЫ
-            <br />
-            ОБ АВТОМОБИЛЕ НА СЕБЯ
-            <br />
-            ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ
-            <br />
-            ПОСЛЕ
+      <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-custom-gray gap-5">
+        <div className="md:w-1/2 flex flex-col justify-center pl-5">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-relaxed">
+            ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ
           </h2>
-          <Link 
+          <Link
             to="/services"
             className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg w-fit"
           >
@@ -264,16 +258,8 @@ const HomePage = ({ brands }) => {
             />
           </div>
           <div className="md:w-1/2 flex flex-col justify-center text-right pr-5">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 mb-8 leading-tight">
-              НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ
-              <br />
-              ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ
-              <br />
-              РЕДКИХ ВИНТАЖНЫХ ЛОТОВ
-              <br />
-              ДО НОВЕЙШИХ МОДЕЛЕЙ В
-              <br />
-              ОСОБЕННОЙ КОМПЛЕКТАЦИИ
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 mb-8 leading-relaxed">
+              НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ
             </h2>
             <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg w-fit ml-auto">
               Предзаказ
