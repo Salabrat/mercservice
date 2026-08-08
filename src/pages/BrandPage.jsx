@@ -59,8 +59,8 @@ const BrandPage = ({ cars, brands }) => {
 
   return (
     <div className="min-h-screen bg-custom-gray py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4 mb-8">
+      <div>
+        <div className="flex items-center gap-4 mb-8 pl-5">
           <Link to="/" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
             <ArrowLeft className="w-5 h-5 mr-2" />
             Назад
