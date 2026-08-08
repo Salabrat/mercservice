@@ -112,7 +112,7 @@ const BrandPage = ({ cars, brands }) => {
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">{brandName}</h1>
+        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-8">Модельный ряд {brandName} в наличии</h1>
         
         {brandCars.length === 0 ? (
           <div className="bg-white rounded-xl p-12 text-center">
