@@ -19,7 +19,7 @@ const BrandPage = ({ cars, brands }) => {
     brand: '',
     model: '',
     availability: '',
-    fuelType: 'all'
+    engine: 'all'
   })
 
   const scrollBrands = (direction) => {
@@ -89,7 +89,7 @@ const BrandPage = ({ cars, brands }) => {
     if (filters.brand && car.brand !== filters.brand) return false
     if (filters.model && car.model !== filters.model) return false
     if (filters.availability && car.availability !== filters.availability) return false
-    if (filters.fuelType !== 'all' && car.fuelType !== filters.fuelType) return false
+    if (filters.engine !== 'all' && car.engine !== filters.engine) return false
     return true
   })
 
@@ -112,8 +112,13 @@ const BrandPage = ({ cars, brands }) => {
       brand: '',
       model: '',
       availability: '',
-      fuelType: 'all'
+      engine: 'all'
     })
+  }
+
+  const applyFilters = () => {
+    console.log('Applied filters:', filters)
+    setFilterOpen(false)
   }
 
   return (
@@ -265,7 +270,7 @@ const BrandPage = ({ cars, brands }) => {
                       disabled={!filters.brand}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white disabled:bg-gray-100"
                     >
-                      <option value="">Все модели</option>
+                      <option value="">Выбрать</option>
                       {models.length > 0 ? (
                         models.map(model => (
                           <option key={model} value={model}>
@@ -283,112 +288,72 @@ const BrandPage = ({ cars, brands }) => {
                 {/* Availability Filter */}
                 <div className="mb-6">
                   <label className="block text-sm font-medium mb-2">Наличие</label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="availability"
-                        value=""
-                        checked={filters.availability === ''}
-                        onChange={(e) => handleFilterChange('availability', e.target.value)}
-                        className="mr-2"
-                      />
-                      Все
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="availability"
-                        value="in-stock"
-                        checked={filters.availability === 'in-stock'}
-                        onChange={(e) => handleFilterChange('availability', e.target.value)}
-                        className="mr-2"
-                      />
-                      В наличии
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="availability"
-                        value="in-transit"
-                        checked={filters.availability === 'in-transit'}
-                        onChange={(e) => handleFilterChange('availability', e.target.value)}
-                        className="mr-2"
-                      />
-                      В пути
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="availability"
-                        value="sold"
-                        checked={filters.availability === 'sold'}
-                        onChange={(e) => handleFilterChange('availability', e.target.value)}
-                        className="mr-2"
-                      />
-                      Продан
-                    </label>
+                  <div className="relative">
+                    <select
+                      value={filters.availability}
+                      onChange={(e) => handleFilterChange('availability', e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white"
+                    >
+                      <option value="">Выбрать</option>
+                      <option value="in-stock">В наличии</option>
+                      <option value="pre-order">Под заказ</option>
+                      <option value="expected">Ожидается</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" />
                   </div>
                 </div>
 
-                {/* Fuel Type Filter */}
+                {/* Engine Filter */}
                 <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2">Тип топлива</label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="fuelType"
-                        value="all"
-                        checked={filters.fuelType === 'all'}
-                        onChange={(e) => handleFilterChange('fuelType', e.target.value)}
-                        className="mr-2"
-                      />
-                      Все
+                  <label className="block text-sm font-medium mb-2">Двигатель</label>
+                  <div className="space-y-3">
+                    <label className="flex items-center cursor-pointer">
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="engine"
+                          value="all"
+                          checked={filters.engine === 'all'}
+                          onChange={(e) => handleFilterChange('engine', e.target.value)}
+                          className="sr-only"
+                        />
+                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${filters.engine === 'all' ? 'border-black bg-black' : 'border-gray-300'}`}>
+                          {filters.engine === 'all' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        </div>
+                      </div>
+                      <span className="ml-3 text-sm">Все</span>
                     </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="fuelType"
-                        value="gasoline"
-                        checked={filters.fuelType === 'gasoline'}
-                        onChange={(e) => handleFilterChange('fuelType', e.target.value)}
-                        className="mr-2"
-                      />
-                      Бензин
+                    <label className="flex items-center cursor-pointer">
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="engine"
+                          value="gasoline"
+                          checked={filters.engine === 'gasoline'}
+                          onChange={(e) => handleFilterChange('engine', e.target.value)}
+                          className="sr-only"
+                        />
+                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${filters.engine === 'gasoline' ? 'border-black bg-black' : 'border-gray-300'}`}>
+                          {filters.engine === 'gasoline' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        </div>
+                      </div>
+                      <span className="ml-3 text-sm">Бензин</span>
                     </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="fuelType"
-                        value="diesel"
-                        checked={filters.fuelType === 'diesel'}
-                        onChange={(e) => handleFilterChange('fuelType', e.target.value)}
-                        className="mr-2"
-                      />
-                      Дизель
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="fuelType"
-                        value="hybrid"
-                        checked={filters.fuelType === 'hybrid'}
-                        onChange={(e) => handleFilterChange('fuelType', e.target.value)}
-                        className="mr-2"
-                      />
-                      Гибрид
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="fuelType"
-                        value="electric"
-                        checked={filters.fuelType === 'electric'}
-                        onChange={(e) => handleFilterChange('fuelType', e.target.value)}
-                        className="mr-2"
-                      />
-                      Электро
+                    <label className="flex items-center cursor-pointer">
+                      <div className="relative">
+                        <input
+                          type="radio"
+                          name="engine"
+                          value="hybrid"
+                          checked={filters.engine === 'hybrid'}
+                          onChange={(e) => handleFilterChange('engine', e.target.value)}
+                          className="sr-only"
+                        />
+                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${filters.engine === 'hybrid' ? 'border-black bg-black' : 'border-gray-300'}`}>
+                          {filters.engine === 'hybrid' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        </div>
+                      </div>
+                      <span className="ml-3 text-sm">Гибрид</span>
                     </label>
                   </div>
                 </div>
@@ -396,7 +361,7 @@ const BrandPage = ({ cars, brands }) => {
                 {/* Action Buttons */}
                 <div className="flex gap-4">
                   <button
-                    onClick={() => setFilterOpen(false)}
+                    onClick={applyFilters}
                     className="flex-1 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
                   >
                     Применить
