@@ -27,6 +27,10 @@ const BrandPage = ({ cars, brands }) => {
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false)
   const [availabilityDropdownOpen, setAvailabilityDropdownOpen] = useState(false)
   const [pulseAnimation, setPulseAnimation] = useState(false)
+  const [shakeAnimation, setShakeAnimation] = useState(false)
+  const [isPanelOpen, setIsPanelOpen] = useState(false)
+  const [ripplePosition, setRipplePosition] = useState({ x: 0, y: 0 })
+  const [showRipple, setShowRipple] = useState(false)
 
   const scrollBrands = (direction) => {
     const container = document.getElementById('brand-page-brands-container')
@@ -113,13 +117,28 @@ const BrandPage = ({ cars, brands }) => {
     setFilters(prev => ({ ...prev, [key]: value }))
   }
 
-  const resetFilters = () => {
-    setFilters({
-      brand: '',
-      model: '',
-      availability: '',
-      engine: 'all'
+  const handleRadioClick = (e, value) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setRipplePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
     })
+    setShowRipple(true)
+    setTimeout(() => setShowRipple(false), 600)
+    handleFilterChange('engine', value)
+  }
+
+  const resetFilters = () => {
+    setShakeAnimation(true)
+    setTimeout(() => setShakeAnimation(false), 300)
+    setTimeout(() => {
+      setFilters({
+        brand: '',
+        model: '',
+        availability: '',
+        engine: 'all'
+      })
+    }, 150)
   }
 
   const applyFilters = () => {
@@ -128,6 +147,15 @@ const BrandPage = ({ cars, brands }) => {
     setTimeout(() => setPulseAnimation(false), 300)
     setTimeout(() => setFilterOpen(false), 150)
   }
+
+  // Reset panel open state when filter panel closes
+  useEffect(() => {
+    if (filterOpen) {
+      setIsPanelOpen(true)
+    } else {
+      setIsPanelOpen(false)
+    }
+  }, [filterOpen])
 
   return (
     <div className="min-h-screen bg-custom-gray py-20">
@@ -239,9 +267,9 @@ const BrandPage = ({ cars, brands }) => {
         {filterOpen && (
           <div className="fixed inset-0 z-50">
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
-            <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right ${pulseAnimation ? 'animate-pulse' : ''}`}>
+            <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right ${pulseAnimation ? 'animate-pulse' : ''} ${shakeAnimation ? 'animate-shake' : ''}`}>
               <div className="p-6">
-                <div className="flex justify-between items-center mb-6">
+                <div className={`flex justify-between items-center mb-6 ${isPanelOpen ? 'animate-fade-in-down' : ''}`}>
                   <h2 className="text-xl font-bold">Фильтры</h2>
                   <button onClick={() => setFilterOpen(false)}>
                     <X className="w-6 h-6" />
@@ -249,7 +277,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Brand Filter */}
-                <div className="mb-6">
+                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.1s' }}>
                   <label className="block text-sm font-medium mb-2">Марка</label>
                   <div className="relative">
                     <select
@@ -269,7 +297,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Model Filter */}
-                <div className="mb-6">
+                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.2s' }}>
                   <label className="block text-sm font-medium mb-2">Модель</label>
                   <div className="relative">
                     <select
@@ -294,7 +322,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Availability Filter */}
-                <div className="mb-6">
+                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.3s' }}>
                   <label className="block text-sm font-medium mb-2">Наличие</label>
                   <div className="relative">
                     <select
@@ -312,62 +340,98 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Engine Filter */}
-                <div className="mb-6">
+                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.4s' }}>
                   <label className="block text-sm font-medium mb-2">Двигатель</label>
                   <div className="space-y-3">
-                    <label className="flex items-center cursor-pointer group">
+                    <label className="flex items-center cursor-pointer group relative overflow-hidden" onClick={(e) => handleRadioClick(e, 'all')}>
+                      {showRipple && filters.engine === 'all' && (
+                        <div
+                          className="absolute rounded-full bg-black/20 animate-ripple pointer-events-none"
+                          style={{
+                            left: ripplePosition.x,
+                            top: ripplePosition.y,
+                            width: '20px',
+                            height: '20px',
+                            transform: 'translate(-50%, -50%)'
+                          }}
+                        />
+                      )}
                       <div className="relative">
                         <input
                           type="radio"
                           name="engine"
                           value="all"
                           checked={filters.engine === 'all'}
-                          onChange={(e) => handleFilterChange('engine', e.target.value)}
+                          onChange={() => {}}
                           className="sr-only"
                         />
                         <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'all' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
                           <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'all' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                         </div>
                       </div>
-                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700">Все</span>
+                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700 relative z-10">Все</span>
                     </label>
-                    <label className="flex items-center cursor-pointer group">
+                    <label className="flex items-center cursor-pointer group relative overflow-hidden" onClick={(e) => handleRadioClick(e, 'gasoline')}>
+                      {showRipple && filters.engine === 'gasoline' && (
+                        <div
+                          className="absolute rounded-full bg-black/20 animate-ripple pointer-events-none"
+                          style={{
+                            left: ripplePosition.x,
+                            top: ripplePosition.y,
+                            width: '20px',
+                            height: '20px',
+                            transform: 'translate(-50%, -50%)'
+                          }}
+                        />
+                      )}
                       <div className="relative">
                         <input
                           type="radio"
                           name="engine"
                           value="gasoline"
                           checked={filters.engine === 'gasoline'}
-                          onChange={(e) => handleFilterChange('engine', e.target.value)}
+                          onChange={() => {}}
                           className="sr-only"
                         />
                         <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'gasoline' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
                           <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'gasoline' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                         </div>
                       </div>
-                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700">Бензин</span>
+                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700 relative z-10">Бензин</span>
                     </label>
-                    <label className="flex items-center cursor-pointer group">
+                    <label className="flex items-center cursor-pointer group relative overflow-hidden" onClick={(e) => handleRadioClick(e, 'hybrid')}>
+                      {showRipple && filters.engine === 'hybrid' && (
+                        <div
+                          className="absolute rounded-full bg-black/20 animate-ripple pointer-events-none"
+                          style={{
+                            left: ripplePosition.x,
+                            top: ripplePosition.y,
+                            width: '20px',
+                            height: '20px',
+                            transform: 'translate(-50%, -50%)'
+                          }}
+                        />
+                      )}
                       <div className="relative">
                         <input
                           type="radio"
                           name="engine"
                           value="hybrid"
                           checked={filters.engine === 'hybrid'}
-                          onChange={(e) => handleFilterChange('engine', e.target.value)}
+                          onChange={() => {}}
                           className="sr-only"
                         />
                         <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'hybrid' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
                           <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'hybrid' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                         </div>
                       </div>
-                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700">Гибрид</span>
+                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700 relative z-10">Гибрид</span>
                     </label>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4">
+                <div className={`flex gap-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.5s' }}>
                   <button
                     onClick={applyFilters}
                     className="flex-1 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200"
