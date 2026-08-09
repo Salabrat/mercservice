@@ -284,7 +284,7 @@ const BrandPage = ({ cars, brands }) => {
                 {/* Brand Filter */}
                 <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.1s' }}>
                   <label className="block text-sm font-medium mb-2">Марка</label>
-                  <div className="relative">
+                  <div>
                     <button
                       onClick={() => setCustomBrandOpen(!customBrandOpen)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none flex justify-between items-center"
@@ -292,8 +292,10 @@ const BrandPage = ({ cars, brands }) => {
                       <span>{filters.brand || 'Все марки'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customBrandOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    {customBrandOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${customBrandOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
+                    >
+                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg">
                         <div
                           onClick={() => { handleFilterChange('brand', ''); setCustomBrandOpen(false); }}
                           className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
@@ -310,14 +312,14 @@ const BrandPage = ({ cars, brands }) => {
                           </div>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
 
                 {/* Model Filter */}
                 <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.2s' }}>
                   <label className="block text-sm font-medium mb-2">Модель</label>
-                  <div className="relative">
+                  <div>
                     <button
                       onClick={() => filters.brand && setCustomModelOpen(!customModelOpen)}
                       disabled={!filters.brand}
@@ -326,8 +328,10 @@ const BrandPage = ({ cars, brands }) => {
                       <span>{filters.model || 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customModelOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    {customModelOpen && filters.brand && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${customModelOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
+                    >
+                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg">
                         <div
                           onClick={() => { handleFilterChange('model', ''); setCustomModelOpen(false); }}
                           className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
@@ -350,14 +354,14 @@ const BrandPage = ({ cars, brands }) => {
                           </div>
                         )}
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
 
                 {/* Availability Filter */}
                 <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.3s' }}>
                   <label className="block text-sm font-medium mb-2">Наличие</label>
-                  <div className="relative">
+                  <div>
                     <button
                       onClick={() => setCustomAvailabilityOpen(!customAvailabilityOpen)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none flex justify-between items-center"
@@ -365,8 +369,10 @@ const BrandPage = ({ cars, brands }) => {
                       <span>{filters.availability === 'in-stock' ? 'В наличии' : filters.availability === 'pre-order' ? 'Под заказ' : filters.availability === 'expected' ? 'Ожидается' : 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customAvailabilityOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    {customAvailabilityOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${customAvailabilityOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
+                    >
+                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg">
                         <div
                           onClick={() => { handleFilterChange('availability', ''); setCustomAvailabilityOpen(false); }}
                           className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
@@ -392,7 +398,7 @@ const BrandPage = ({ cars, brands }) => {
                           Ожидается
                         </div>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
 
