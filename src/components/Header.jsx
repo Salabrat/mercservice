@@ -73,7 +73,7 @@ const Header = () => {
           <div className="flex flex-col flex-1">
             {/* Logo at top */}
             <div className="pt-12 pb-8 flex justify-center">
-              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-16 object-contain" />
+              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
             </div>
 
             {/* Navigation Items */}
@@ -154,7 +154,7 @@ const Header = () => {
           </div>
 
           {/* Right side - Image */}
-          <div className="hidden md:flex flex-1 items-center justify-center p-8">
+          <div className="hidden md:flex flex-1 items-center justify-center">
             <img src="/images/13.jpg" alt="Menu Image" className="max-w-full max-h-full object-contain" />
           </div>
         </div>
