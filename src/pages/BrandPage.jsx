@@ -226,7 +226,7 @@ const BrandPage = ({ cars, brands }) => {
         {filterOpen && (
           <div className="fixed inset-0 z-50">
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
-            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto transition-transform duration-300 ease-in-out transform translate-x-0 animate-slide-in-right">
+            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold">Фильтры</h2>
