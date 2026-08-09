@@ -34,29 +34,31 @@ const Header = () => {
   }, [isMenuOpen])
 
   return (
-    <header className={`bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center"></div>
+    <>
+      <header className={`bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center"></div>
 
-          <div className="flex items-center justify-center flex-1">
-            <Link to="/" className="text-2xl font-bold text-black tracking-tight">MAINLOGO</Link>
-          </div>
+            <div className="flex items-center justify-center flex-1">
+              <Link to="/" className="text-2xl font-bold text-black tracking-tight">MAINLOGO</Link>
+            </div>
 
-          <div className="flex items-center">
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <div className="flex items-center">
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Hamburger Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[#2C2C2C] z-[100] flex flex-col items-center justify-center">
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col items-center justify-center">
           {/* Close Button */}
           <button 
             onClick={() => setIsMenuOpen(false)}
@@ -140,7 +142,7 @@ const Header = () => {
           </div>
         </div>
       )}
-    </header>
+    </>
   )
 }
 
