@@ -184,7 +184,7 @@ const BrandPage = ({ cars, brands }) => {
               <ChevronDown className="w-4 h-4 ml-2" />
             </button>
             {sortOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg z-50 min-w-[200px] transition-all duration-200 ease-in-out origin-top transform scale-100 opacity-100">
+              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg z-50 min-w-[200px] animate-fade-in">
                 <button
                   onClick={() => handleSortChange('default')}
                   className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg transition-colors"
@@ -226,7 +226,7 @@ const BrandPage = ({ cars, brands }) => {
         {filterOpen && (
           <div className="fixed inset-0 z-50">
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
-            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto transition-transform duration-300 ease-in-out transform translate-x-0">
+            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto transition-transform duration-300 ease-in-out transform translate-x-0 animate-slide-in-right">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold">Фильтры</h2>
