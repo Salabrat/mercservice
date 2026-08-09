@@ -296,7 +296,7 @@ const BrandPage = ({ cars, brands }) => {
                   <div 
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${customBrandOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                   >
-                    <div className="py-2">
+                    <div className="py-2 max-h-80 overflow-y-auto">
                       {brands.map((brand) => (
                         <div
                           key={brand.id || brand.name}
