@@ -16,8 +16,9 @@ const BrandPage = ({ cars, brands }) => {
   // Filter state
   const [filterOpen, setFilterOpen] = useState(false)
   const [filters, setFilters] = useState({
-    brand: '',
+    brand: 'Ferrari',
     model: '',
+    modification: '',
     availability: '',
     engine: 'all'
   })
@@ -35,6 +36,7 @@ const BrandPage = ({ cars, brands }) => {
   // Custom dropdown states
   const [customBrandOpen, setCustomBrandOpen] = useState(false)
   const [customModelOpen, setCustomModelOpen] = useState(false)
+  const [customModificationOpen, setCustomModificationOpen] = useState(false)
   const [customAvailabilityOpen, setCustomAvailabilityOpen] = useState(false)
 
   const scrollBrands = (direction) => {
@@ -103,6 +105,7 @@ const BrandPage = ({ cars, brands }) => {
   const filteredCars = sortedCars.filter(car => {
     if (filters.brand && car.brand !== filters.brand) return false
     if (filters.model && car.model !== filters.model) return false
+    if (filters.modification && car.modification !== filters.modification) return false
     if (filters.availability && car.availability !== filters.availability) return false
     if (filters.engine !== 'all' && car.engine !== filters.engine) return false
     return true
@@ -138,8 +141,9 @@ const BrandPage = ({ cars, brands }) => {
     setTimeout(() => setShakeAnimation(false), 300)
     setTimeout(() => {
       setFilters({
-        brand: '',
+        brand: 'Ferrari',
         model: '',
+        modification: '',
         availability: '',
         engine: 'all'
       })
@@ -274,129 +278,149 @@ const BrandPage = ({ cars, brands }) => {
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
             <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right ${pulseAnimation ? 'animate-pulse' : ''} ${shakeAnimation ? 'animate-shake' : ''}`}>
               <div className="p-6">
-                <div className={`flex justify-between items-center mb-6 ${isPanelOpen ? 'animate-fade-in-down' : ''}`}>
-                  <h2 className="text-xl font-bold">Фильтры</h2>
-                  <button onClick={() => setFilterOpen(false)}>
+                <div className={`flex justify-between items-center mb-5 ${isPanelOpen ? 'animate-fade-in-down' : ''}`}>
+                  <h2 className="text-xl font-bold text-gray-900">Настроить фильтры</h2>
+                  <button onClick={() => setFilterOpen(false)} className="text-gray-500 hover:text-gray-700">
                     <X className="w-6 h-6" />
                   </button>
                 </div>
 
                 {/* Brand Filter */}
-                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.1s' }}>
-                  <label className="block text-sm font-medium mb-2">Марка</label>
-                  <div>
+                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.1s' }}>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                    <span className="font-semibold text-gray-900 text-sm">Марка</span>
                     <button
                       onClick={() => setCustomBrandOpen(!customBrandOpen)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none flex justify-between items-center"
+                      className="flex items-center gap-2 text-gray-900 text-sm"
                     >
-                      <span>{filters.brand || 'Все марки'}</span>
+                      <span className={filters.brand ? '' : 'text-gray-400'}>{filters.brand || 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customBrandOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    <div 
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${customBrandOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
-                    >
-                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg">
+                  </div>
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${customBrandOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="py-2">
+                      {brands.map((brand) => (
                         <div
-                          onClick={() => { handleFilterChange('brand', ''); setCustomBrandOpen(false); }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
+                          key={brand.id || brand.name}
+                          onClick={() => { handleFilterChange('brand', brand.name); setCustomBrandOpen(false); }}
+                          className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
                         >
-                          Все марки
+                          {brand.name}
                         </div>
-                        {brands.map((brand) => (
-                          <div
-                            key={brand.id || brand.name}
-                            onClick={() => { handleFilterChange('brand', brand.name); setCustomBrandOpen(false); }}
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                          >
-                            {brand.name}
-                          </div>
-                        ))}
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
 
                 {/* Model Filter */}
-                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.2s' }}>
-                  <label className="block text-sm font-medium mb-2">Модель</label>
-                  <div>
+                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.2s' }}>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                    <span className="font-semibold text-gray-900 text-sm">Модель</span>
                     <button
                       onClick={() => filters.brand && setCustomModelOpen(!customModelOpen)}
                       disabled={!filters.brand}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none flex justify-between items-center disabled:bg-gray-100 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 text-gray-900 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span>{filters.model || 'Выбрать'}</span>
+                      <span className={filters.model ? '' : 'text-gray-400'}>{filters.model || 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customModelOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    <div 
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${customModelOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
-                    >
-                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg">
-                        <div
-                          onClick={() => { handleFilterChange('model', ''); setCustomModelOpen(false); }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                        >
-                          Выбрать
-                        </div>
-                        {models.length > 0 ? (
-                          models.map((model) => (
-                            <div
-                              key={model}
-                              onClick={() => { handleFilterChange('model', model); setCustomModelOpen(false); }}
-                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                            >
-                              {model}
-                            </div>
-                          ))
-                        ) : (
-                          <div className="px-4 py-2 text-gray-400 cursor-not-allowed">
-                            Нет доступных моделей
+                  </div>
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${customModelOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="py-2">
+                      {models.length > 0 ? (
+                        models.map((model) => (
+                          <div
+                            key={model}
+                            onClick={() => { handleFilterChange('model', model); setCustomModelOpen(false); }}
+                            className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                          >
+                            {model}
                           </div>
-                        )}
+                        ))
+                      ) : (
+                        <div className="px-4 py-2 text-gray-400 text-sm">
+                          Нет доступных моделей
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Modification Filter */}
+                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.25s' }}>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                    <span className="font-semibold text-gray-900 text-sm">Модификация</span>
+                    <button
+                      onClick={() => setCustomModificationOpen(!customModificationOpen)}
+                      className="flex items-center gap-2 text-gray-900 text-sm"
+                    >
+                      <span className={filters.modification ? '' : 'text-gray-400'}>{filters.modification || 'Выбрать'}</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customModificationOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${customModificationOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="py-2">
+                      <div
+                        onClick={() => { handleFilterChange('modification', 'Base'); setCustomModificationOpen(false); }}
+                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                      >
+                        Base
+                      </div>
+                      <div
+                        onClick={() => { handleFilterChange('modification', 'Sport'); setCustomModificationOpen(false); }}
+                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                      >
+                        Sport
+                      </div>
+                      <div
+                        onClick={() => { handleFilterChange('modification', 'Luxury'); setCustomModificationOpen(false); }}
+                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                      >
+                        Luxury
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Availability Filter */}
-                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.3s' }}>
-                  <label className="block text-sm font-medium mb-2">Наличие</label>
-                  <div>
+                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.3s' }}>
+                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                    <span className="font-semibold text-gray-900 text-sm">Наличие</span>
                     <button
                       onClick={() => setCustomAvailabilityOpen(!customAvailabilityOpen)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none flex justify-between items-center"
+                      className="flex items-center gap-2 text-gray-900 text-sm"
                     >
-                      <span>{filters.availability === 'in-stock' ? 'В наличии' : filters.availability === 'pre-order' ? 'Под заказ' : filters.availability === 'expected' ? 'Ожидается' : 'Выбрать'}</span>
+                      <span className={filters.availability ? '' : 'text-gray-400'}>{filters.availability === 'in-stock' ? 'В наличии' : filters.availability === 'pre-order' ? 'Под заказ' : filters.availability === 'expected' ? 'Ожидается' : 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customAvailabilityOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    <div 
-                      className={`overflow-hidden transition-all duration-300 ease-in-out ${customAvailabilityOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
-                    >
-                      <div className="bg-white border border-gray-300 rounded-lg shadow-lg">
-                        <div
-                          onClick={() => { handleFilterChange('availability', ''); setCustomAvailabilityOpen(false); }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                        >
-                          Выбрать
-                        </div>
-                        <div
-                          onClick={() => { handleFilterChange('availability', 'in-stock'); setCustomAvailabilityOpen(false); }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                        >
-                          В наличии
-                        </div>
-                        <div
-                          onClick={() => { handleFilterChange('availability', 'pre-order'); setCustomAvailabilityOpen(false); }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                        >
-                          Под заказ
-                        </div>
-                        <div
-                          onClick={() => { handleFilterChange('availability', 'expected'); setCustomAvailabilityOpen(false); }}
-                          className="px-4 py-2 hover:bg-gray-100 cursor-pointer transition-colors duration-200"
-                        >
-                          Ожидается
-                        </div>
+                  </div>
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${customAvailabilityOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="py-2">
+                      <div
+                        onClick={() => { handleFilterChange('availability', 'in-stock'); setCustomAvailabilityOpen(false); }}
+                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                      >
+                        В наличии
+                      </div>
+                      <div
+                        onClick={() => { handleFilterChange('availability', 'pre-order'); setCustomAvailabilityOpen(false); }}
+                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                      >
+                        Под заказ
+                      </div>
+                      <div
+                        onClick={() => { handleFilterChange('availability', 'expected'); setCustomAvailabilityOpen(false); }}
+                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
+                      >
+                        Ожидается
                       </div>
                     </div>
                   </div>
@@ -404,106 +428,42 @@ const BrandPage = ({ cars, brands }) => {
 
                 {/* Engine Filter */}
                 <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.4s' }}>
-                  <label className="block text-sm font-medium mb-2">Двигатель</label>
-                  <div className="space-y-3">
-                    <label className="flex items-center cursor-pointer group relative overflow-hidden" onClick={(e) => handleRadioClick(e, 'all')}>
-                      {showRipple && filters.engine === 'all' && (
-                        <div
-                          className="absolute rounded-full bg-black/20 animate-ripple pointer-events-none"
-                          style={{
-                            left: ripplePosition.x,
-                            top: ripplePosition.y,
-                            width: '20px',
-                            height: '20px',
-                            transform: 'translate(-50%, -50%)'
-                          }}
-                        />
-                      )}
-                      <div className="relative">
-                        <input
-                          type="radio"
-                          name="engine"
-                          value="all"
-                          checked={filters.engine === 'all'}
-                          onChange={() => {}}
-                          className="sr-only"
-                        />
-                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'all' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
-                          <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'all' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
-                        </div>
-                      </div>
-                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700 relative z-10">Все</span>
-                    </label>
-                    <label className="flex items-center cursor-pointer group relative overflow-hidden" onClick={(e) => handleRadioClick(e, 'gasoline')}>
-                      {showRipple && filters.engine === 'gasoline' && (
-                        <div
-                          className="absolute rounded-full bg-black/20 animate-ripple pointer-events-none"
-                          style={{
-                            left: ripplePosition.x,
-                            top: ripplePosition.y,
-                            width: '20px',
-                            height: '20px',
-                            transform: 'translate(-50%, -50%)'
-                          }}
-                        />
-                      )}
-                      <div className="relative">
-                        <input
-                          type="radio"
-                          name="engine"
-                          value="gasoline"
-                          checked={filters.engine === 'gasoline'}
-                          onChange={() => {}}
-                          className="sr-only"
-                        />
-                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'gasoline' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
-                          <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'gasoline' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
-                        </div>
-                      </div>
-                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700 relative z-10">Бензин</span>
-                    </label>
-                    <label className="flex items-center cursor-pointer group relative overflow-hidden" onClick={(e) => handleRadioClick(e, 'hybrid')}>
-                      {showRipple && filters.engine === 'hybrid' && (
-                        <div
-                          className="absolute rounded-full bg-black/20 animate-ripple pointer-events-none"
-                          style={{
-                            left: ripplePosition.x,
-                            top: ripplePosition.y,
-                            width: '20px',
-                            height: '20px',
-                            transform: 'translate(-50%, -50%)'
-                          }}
-                        />
-                      )}
-                      <div className="relative">
-                        <input
-                          type="radio"
-                          name="engine"
-                          value="hybrid"
-                          checked={filters.engine === 'hybrid'}
-                          onChange={() => {}}
-                          className="sr-only"
-                        />
-                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'hybrid' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
-                          <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'hybrid' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
-                        </div>
-                      </div>
-                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700 relative z-10">Гибрид</span>
-                    </label>
+                  <div className="py-3 border-b border-gray-200">
+                    <span className="font-semibold text-gray-900 text-sm block mb-3">Двигатель</span>
+                    <div className="flex gap-6">
+                      <button
+                        onClick={() => handleFilterChange('engine', 'all')}
+                        className={`text-sm ${filters.engine === 'all' ? 'font-bold text-gray-900' : 'text-gray-400'}`}
+                      >
+                        Все
+                      </button>
+                      <button
+                        onClick={() => handleFilterChange('engine', 'gasoline')}
+                        className={`text-sm ${filters.engine === 'gasoline' ? 'font-bold text-gray-900' : 'text-gray-400'}`}
+                      >
+                        Бензин
+                      </button>
+                      <button
+                        onClick={() => handleFilterChange('engine', 'hybrid')}
+                        className={`text-sm ${filters.engine === 'hybrid' ? 'font-bold text-gray-900' : 'text-gray-400'}`}
+                      >
+                        Гибрид
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className={`flex gap-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.5s' }}>
+                <div className={`flex gap-4 mt-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.5s' }}>
                   <button
                     onClick={applyFilters}
-                    className="flex-1 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200"
+                    className="flex-1 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                   >
                     Применить
                   </button>
                   <button
                     onClick={resetFilters}
-                    className="flex-1 border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-200"
+                    className="flex-1 text-gray-600 px-4 py-3 hover:text-gray-900 transition-colors font-medium"
                   >
                     Сбросить
                   </button>
