@@ -100,6 +100,16 @@ export default {
             transform: 'translateX(5px)',
           },
         },
+        'slide-up': {
+          '0%': {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'translateY(-100%)',
+            opacity: '0',
+          },
+        },
       },
       animation: {
         'slide-in-right': 'slide-in-right 0.3s ease-out',
@@ -111,6 +121,7 @@ export default {
         'fade-in-down': 'fade-in-down 0.3s ease-out forwards',
         'slide-down': 'slide-down 0.25s ease-out forwards',
         'shake': 'shake 0.3s ease-in-out',
+        'slide-up': 'slide-up 0.3s ease-in-out forwards',
       },
     },
   },
