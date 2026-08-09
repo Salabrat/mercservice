@@ -58,17 +58,22 @@ const Header = () => {
 
       {/* Hamburger Menu */}
       {isMenuOpen && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col items-center justify-center">
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col">
           {/* Close Button */}
           <button 
             onClick={() => setIsMenuOpen(false)}
-            className="fixed top-6 right-6 p-2 text-white hover:text-gray-300 transition-colors z-50"
+            className="absolute top-6 right-6 p-2 text-white hover:text-gray-300 transition-colors z-50"
           >
             <X className="w-8 h-8" />
           </button>
 
+          {/* Logo at top */}
+          <div className="pt-12 pb-8 flex justify-center">
+            <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-16 object-contain" />
+          </div>
+
           {/* Navigation Items */}
-          <nav className="flex flex-col items-center space-y-8">
+          <nav className="flex flex-col items-center space-y-8 flex-1">
             <Link 
               to="/" 
               className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
@@ -114,7 +119,7 @@ const Header = () => {
           </nav>
 
           {/* Social Media and Phone */}
-          <div className="absolute bottom-12 flex flex-col items-center space-y-6">
+          <div className="pb-12 flex flex-col items-center space-y-6">
             <div className="flex items-center space-x-8">
               <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
                 <Youtube className="w-6 h-6 mr-2" />
