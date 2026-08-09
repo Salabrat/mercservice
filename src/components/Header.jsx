@@ -75,53 +75,63 @@ const Header = () => {
           </div>
 
           {/* Navigation Items */}
-          <nav className="flex flex-col items-center space-y-8 flex-1">
+          <nav className="flex flex-col items-start space-y-5 flex-1 pl-8">
             <Link 
               to="/" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
+              className="text-xl font-medium text-white hover:text-gray-300 transition-colors flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
+              <span className="mr-3 text-white">◆</span>
               ГЛАВНАЯ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
+              className="text-xl font-medium text-white hover:text-gray-300 transition-colors flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
+              <span className="mr-3 text-white">◆</span>
               КАТАЛОГ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
+              className="text-xl font-medium text-white hover:text-gray-300 transition-colors flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
+              <span className="mr-3 text-white">◆</span>
               УСЛУГИ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
+              className="text-xl font-medium text-white hover:text-gray-300 transition-colors flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
+              <span className="mr-3 text-white">◆</span>
               О НАС
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
+              className="text-xl font-medium text-white hover:text-gray-300 transition-colors flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
+              <span className="mr-3 text-white">◆</span>
               БЛОГ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
+              className="text-xl font-medium text-white hover:text-gray-300 transition-colors flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
+              <span className="mr-3 text-white">◆</span>
               КОНТАКТЫ
             </Link>
           </nav>
 
           {/* Social Media and Phone */}
           <div className="pb-12 flex flex-col items-center space-y-6">
+            <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
+              <Phone className="w-5 h-5 mr-3" />
+              +7 499 681 78 74
+            </a>
             <div className="flex items-center space-x-8">
               <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
                 <Youtube className="w-6 h-6 mr-2" />
@@ -136,10 +146,14 @@ const Header = () => {
                 <span className="text-sm">Telegram</span>
               </a>
             </div>
-            <a href="tel:+79266490693" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
-              <Phone className="w-5 h-5 mr-3" />
-              +7 926 649 06 93
-            </a>
+            
+            {/* SALIKS X BRABUS Block */}
+            <div className="flex flex-col items-center space-y-3 mt-4 pt-6 border-t border-gray-700">
+              <span className="text-white text-sm font-medium">SALIKS X BRABUS</span>
+              <button className="px-6 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-900 transition-colors">
+                Смотреть
+              </button>
+            </div>
           </div>
         </div>
       )}
