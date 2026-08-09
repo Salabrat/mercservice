@@ -21,6 +21,12 @@ const BrandPage = ({ cars, brands }) => {
     availability: '',
     engine: 'all'
   })
+  
+  // Dropdown open states
+  const [brandDropdownOpen, setBrandDropdownOpen] = useState(false)
+  const [modelDropdownOpen, setModelDropdownOpen] = useState(false)
+  const [availabilityDropdownOpen, setAvailabilityDropdownOpen] = useState(false)
+  const [pulseAnimation, setPulseAnimation] = useState(false)
 
   const scrollBrands = (direction) => {
     const container = document.getElementById('brand-page-brands-container')
@@ -118,7 +124,9 @@ const BrandPage = ({ cars, brands }) => {
 
   const applyFilters = () => {
     console.log('Applied filters:', filters)
-    setFilterOpen(false)
+    setPulseAnimation(true)
+    setTimeout(() => setPulseAnimation(false), 300)
+    setTimeout(() => setFilterOpen(false), 150)
   }
 
   return (
@@ -189,28 +197,28 @@ const BrandPage = ({ cars, brands }) => {
               <ChevronDown className="w-4 h-4 ml-2" />
             </button>
             {sortOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg z-50 min-w-[200px] animate-fade-in">
+              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg z-50 min-w-[200px] animate-dropdown-open">
                 <button
                   onClick={() => handleSortChange('default')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg transition-colors"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:scale-102 first:rounded-t-lg transition-all duration-200"
                 >
                   По умолчанию
                 </button>
                 <button
                   onClick={() => handleSortChange('newest')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:scale-102 transition-all duration-200"
                 >
                   Сначала новинки
                 </button>
                 <button
                   onClick={() => handleSortChange('priceDesc')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:scale-102 transition-all duration-200"
                 >
                   По уменьшению цен
                 </button>
                 <button
                   onClick={() => handleSortChange('priceAsc')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 last:rounded-b-lg transition-colors"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 hover:scale-102 last:rounded-b-lg transition-all duration-200"
                 >
                   По возрастанию цен
                 </button>
@@ -231,7 +239,7 @@ const BrandPage = ({ cars, brands }) => {
         {filterOpen && (
           <div className="fixed inset-0 z-50">
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
-            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right">
+            <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right ${pulseAnimation ? 'animate-pulse' : ''}`}>
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold">Фильтры</h2>
@@ -247,7 +255,7 @@ const BrandPage = ({ cars, brands }) => {
                     <select
                       value={filters.brand}
                       onChange={(e) => handleFilterChange('brand', e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none"
                     >
                       <option value="">Все марки</option>
                       {brands.map(brand => (
@@ -256,7 +264,7 @@ const BrandPage = ({ cars, brands }) => {
                         </option>
                       ))}
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" />
+                    <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none transition-transform duration-300 ${brandDropdownOpen ? 'rotate-180' : ''}`} />
                   </div>
                 </div>
 
@@ -268,7 +276,7 @@ const BrandPage = ({ cars, brands }) => {
                       value={filters.model}
                       onChange={(e) => handleFilterChange('model', e.target.value)}
                       disabled={!filters.brand}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white disabled:bg-gray-100"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                     >
                       <option value="">Выбрать</option>
                       {models.length > 0 ? (
@@ -281,7 +289,7 @@ const BrandPage = ({ cars, brands }) => {
                         <option value="" disabled>Нет доступных моделей</option>
                       )}
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" />
+                    <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none transition-transform duration-300 ${modelDropdownOpen ? 'rotate-180' : ''}`} />
                   </div>
                 </div>
 
@@ -292,14 +300,14 @@ const BrandPage = ({ cars, brands }) => {
                     <select
                       value={filters.availability}
                       onChange={(e) => handleFilterChange('availability', e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white transition-all duration-200 hover:border-gray-400 focus:border-black focus:outline-none"
                     >
                       <option value="">Выбрать</option>
                       <option value="in-stock">В наличии</option>
                       <option value="pre-order">Под заказ</option>
                       <option value="expected">Ожидается</option>
                     </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" />
+                    <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none transition-transform duration-300 ${availabilityDropdownOpen ? 'rotate-180' : ''}`} />
                   </div>
                 </div>
 
@@ -307,7 +315,7 @@ const BrandPage = ({ cars, brands }) => {
                 <div className="mb-6">
                   <label className="block text-sm font-medium mb-2">Двигатель</label>
                   <div className="space-y-3">
-                    <label className="flex items-center cursor-pointer">
+                    <label className="flex items-center cursor-pointer group">
                       <div className="relative">
                         <input
                           type="radio"
@@ -317,13 +325,13 @@ const BrandPage = ({ cars, brands }) => {
                           onChange={(e) => handleFilterChange('engine', e.target.value)}
                           className="sr-only"
                         />
-                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${filters.engine === 'all' ? 'border-black bg-black' : 'border-gray-300'}`}>
-                          {filters.engine === 'all' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'all' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
+                          <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'all' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                         </div>
                       </div>
-                      <span className="ml-3 text-sm">Все</span>
+                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700">Все</span>
                     </label>
-                    <label className="flex items-center cursor-pointer">
+                    <label className="flex items-center cursor-pointer group">
                       <div className="relative">
                         <input
                           type="radio"
@@ -333,13 +341,13 @@ const BrandPage = ({ cars, brands }) => {
                           onChange={(e) => handleFilterChange('engine', e.target.value)}
                           className="sr-only"
                         />
-                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${filters.engine === 'gasoline' ? 'border-black bg-black' : 'border-gray-300'}`}>
-                          {filters.engine === 'gasoline' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'gasoline' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
+                          <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'gasoline' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                         </div>
                       </div>
-                      <span className="ml-3 text-sm">Бензин</span>
+                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700">Бензин</span>
                     </label>
-                    <label className="flex items-center cursor-pointer">
+                    <label className="flex items-center cursor-pointer group">
                       <div className="relative">
                         <input
                           type="radio"
@@ -349,11 +357,11 @@ const BrandPage = ({ cars, brands }) => {
                           onChange={(e) => handleFilterChange('engine', e.target.value)}
                           className="sr-only"
                         />
-                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center ${filters.engine === 'hybrid' ? 'border-black bg-black' : 'border-gray-300'}`}>
-                          {filters.engine === 'hybrid' && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${filters.engine === 'hybrid' ? 'border-black bg-black' : 'border-gray-300 group-hover:border-gray-400'}`}>
+                          <div className={`w-2.5 h-2.5 bg-white rounded-full transition-all duration-300 ${filters.engine === 'hybrid' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                         </div>
                       </div>
-                      <span className="ml-3 text-sm">Гибрид</span>
+                      <span className="ml-3 text-sm transition-colors duration-200 group-hover:text-gray-700">Гибрид</span>
                     </label>
                   </div>
                 </div>
@@ -362,13 +370,13 @@ const BrandPage = ({ cars, brands }) => {
                 <div className="flex gap-4">
                   <button
                     onClick={applyFilters}
-                    className="flex-1 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+                    className="flex-1 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 transition-all duration-200"
                   >
                     Применить
                   </button>
                   <button
                     onClick={resetFilters}
-                    className="flex-1 border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="flex-1 border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-200"
                   >
                     Сбросить
                   </button>

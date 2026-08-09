@@ -35,10 +35,41 @@ export default {
             transform: 'scale(1)',
           },
         },
+        'dropdown-open': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-5px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        'pulse': {
+          '0%, 100%': {
+            opacity: '1',
+          },
+          '50%': {
+            opacity: '0.8',
+          },
+        },
+        'ripple': {
+          '0%': {
+            transform: 'scale(0)',
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'scale(4)',
+            opacity: '0',
+          },
+        },
       },
       animation: {
         'slide-in-right': 'slide-in-right 0.3s ease-out',
         'fade-in': 'fade-in 0.2s ease-out',
+        'dropdown-open': 'dropdown-open 0.3s ease-out',
+        'pulse': 'pulse 0.3s ease-in-out',
+        'ripple': 'ripple 0.6s ease-out',
       },
     },
   },
