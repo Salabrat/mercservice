@@ -184,28 +184,28 @@ const BrandPage = ({ cars, brands }) => {
               <ChevronDown className="w-4 h-4 ml-2" />
             </button>
             {sortOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg z-50 min-w-[200px]">
+              <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg z-50 min-w-[200px] transition-all duration-200 ease-in-out origin-top transform scale-100 opacity-100">
                 <button
                   onClick={() => handleSortChange('default')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg transition-colors"
                 >
                   По умолчанию
                 </button>
                 <button
                   onClick={() => handleSortChange('newest')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
                 >
                   Сначала новинки
                 </button>
                 <button
                   onClick={() => handleSortChange('priceDesc')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
                 >
                   По уменьшению цен
                 </button>
                 <button
                   onClick={() => handleSortChange('priceAsc')}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 last:rounded-b-lg"
+                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 last:rounded-b-lg transition-colors"
                 >
                   По возрастанию цен
                 </button>
@@ -225,8 +225,8 @@ const BrandPage = ({ cars, brands }) => {
         {/* Filter Panel */}
         {filterOpen && (
           <div className="fixed inset-0 z-50">
-            <div className="absolute inset-0 bg-black/50" onClick={() => setFilterOpen(false)} />
-            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto">
+            <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
+            <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto transition-transform duration-300 ease-in-out transform translate-x-0">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-xl font-bold">Фильтры</h2>
