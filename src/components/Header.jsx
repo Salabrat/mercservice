@@ -56,7 +56,7 @@ const Header = () => {
 
       {/* Hamburger Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-[#2C2C2C] z-50 flex flex-col items-center justify-center animate-fade-in">
+        <div className="fixed inset-0 bg-[#2C2C2C] z-[100] flex flex-col items-center justify-center">
           {/* Close Button */}
           <button 
             onClick={() => setIsMenuOpen(false)}
