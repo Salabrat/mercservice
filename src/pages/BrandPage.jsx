@@ -16,9 +16,8 @@ const BrandPage = ({ cars, brands }) => {
   // Filter state
   const [filterOpen, setFilterOpen] = useState(false)
   const [filters, setFilters] = useState({
-    brand: 'Ferrari',
+    brand: '',
     model: '',
-    modification: '',
     availability: '',
     engine: 'all'
   })
@@ -36,7 +35,6 @@ const BrandPage = ({ cars, brands }) => {
   // Custom dropdown states
   const [customBrandOpen, setCustomBrandOpen] = useState(false)
   const [customModelOpen, setCustomModelOpen] = useState(false)
-  const [customModificationOpen, setCustomModificationOpen] = useState(false)
   const [customAvailabilityOpen, setCustomAvailabilityOpen] = useState(false)
 
   const scrollBrands = (direction) => {
@@ -105,7 +103,6 @@ const BrandPage = ({ cars, brands }) => {
   const filteredCars = sortedCars.filter(car => {
     if (filters.brand && car.brand !== filters.brand) return false
     if (filters.model && car.model !== filters.model) return false
-    if (filters.modification && car.modification !== filters.modification) return false
     if (filters.availability && car.availability !== filters.availability) return false
     if (filters.engine !== 'all' && car.engine !== filters.engine) return false
     return true
@@ -141,9 +138,8 @@ const BrandPage = ({ cars, brands }) => {
     setTimeout(() => setShakeAnimation(false), 300)
     setTimeout(() => {
       setFilters({
-        brand: 'Ferrari',
+        brand: '',
         model: '',
-        modification: '',
         availability: '',
         engine: 'all'
       })
@@ -346,44 +342,6 @@ const BrandPage = ({ cars, brands }) => {
                           Нет доступных моделей
                         </div>
                       )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Modification Filter */}
-                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.25s' }}>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                    <span className="font-semibold text-gray-900 text-sm">Модификация</span>
-                    <button
-                      onClick={() => setCustomModificationOpen(!customModificationOpen)}
-                      className="flex items-center gap-2 text-gray-900 text-sm"
-                    >
-                      <span className={filters.modification ? '' : 'text-gray-400'}>{filters.modification || 'Выбрать'}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customModificationOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${customModificationOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-                  >
-                    <div className="py-2">
-                      <div
-                        onClick={() => { handleFilterChange('modification', 'Base'); setCustomModificationOpen(false); }}
-                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
-                      >
-                        Base
-                      </div>
-                      <div
-                        onClick={() => { handleFilterChange('modification', 'Sport'); setCustomModificationOpen(false); }}
-                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
-                      >
-                        Sport
-                      </div>
-                      <div
-                        onClick={() => { handleFilterChange('modification', 'Luxury'); setCustomModificationOpen(false); }}
-                        className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
-                      >
-                        Luxury
-                      </div>
                     </div>
                   </div>
                 </div>
