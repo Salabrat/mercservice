@@ -71,49 +71,43 @@ const Header = () => {
           <nav className="flex flex-col items-center space-y-8">
             <Link 
               to="/" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center animate-fade-in-up"
+              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
-              style={{ animationDelay: '0s' }}
             >
               ГЛАВНАЯ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center animate-fade-in-up"
+              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
-              style={{ animationDelay: '0.05s' }}
             >
               КАТАЛОГ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center animate-fade-in-up"
+              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
-              style={{ animationDelay: '0.1s' }}
             >
               УСЛУГИ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center animate-fade-in-up"
+              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
-              style={{ animationDelay: '0.15s' }}
             >
               О НАС
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center animate-fade-in-up"
+              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
-              style={{ animationDelay: '0.2s' }}
             >
               БЛОГ
             </Link>
             <Link 
               to="/catalog" 
-              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center animate-fade-in-up"
+              className="text-3xl font-bold text-white hover:text-gray-300 transition-colors text-center"
               onClick={() => setIsMenuOpen(false)}
-              style={{ animationDelay: '0.25s' }}
             >
               КОНТАКТЫ
             </Link>
