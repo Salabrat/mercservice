@@ -283,7 +283,7 @@ const BrandPage = ({ cars, brands }) => {
 
                 {/* Brand Filter */}
                 <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.1s' }}>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <div className="flex justify-between items-center py-3 border-b-2 border-gray-200">
                     <span className="font-semibold text-gray-900 text-sm">Марка</span>
                     <button
                       onClick={() => setCustomBrandOpen(!customBrandOpen)}
@@ -312,7 +312,7 @@ const BrandPage = ({ cars, brands }) => {
 
                 {/* Model Filter */}
                 <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.2s' }}>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <div className="flex justify-between items-center py-3 border-b-2 border-gray-200">
                     <span className="font-semibold text-gray-900 text-sm">Модель</span>
                     <button
                       onClick={() => filters.brand && setCustomModelOpen(!customModelOpen)}
@@ -348,7 +348,7 @@ const BrandPage = ({ cars, brands }) => {
 
                 {/* Availability Filter */}
                 <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.3s' }}>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                  <div className="flex justify-between items-center py-3 border-b-2 border-gray-200">
                     <span className="font-semibold text-gray-900 text-sm">Наличие</span>
                     <button
                       onClick={() => setCustomAvailabilityOpen(!customAvailabilityOpen)}
@@ -386,7 +386,7 @@ const BrandPage = ({ cars, brands }) => {
 
                 {/* Engine Filter */}
                 <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.4s' }}>
-                  <div className="py-3 border-b border-gray-200">
+                  <div className="py-3 border-b-2 border-gray-200">
                     <span className="font-semibold text-gray-900 text-sm block mb-3">Двигатель</span>
                     <div className="flex gap-6">
                       <button
