@@ -107,7 +107,7 @@ const Header = () => {
           className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col"
           style={{
             transform: 'translateY(-100%)',
-            animation: 'slideDown 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards'
+            animation: 'slideDown 0.6s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards'
           }}
         >
           {/* Close Button */}
