@@ -125,11 +125,7 @@ const Header = () => {
               </nav>
 
               {/* Social Media and Phone */}
-              <div className="pb-12 flex flex-col items-center space-y-6">
-                <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
-                  <Phone className="w-5 h-5 mr-3" />
-                  +7 499 681 78 74
-                </a>
+              <div className="pb-12 flex flex-col items-start space-y-6 pl-8">
                 <div className="flex items-center space-x-8">
                   <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
                     <Youtube className="w-6 h-6 mr-2" />
@@ -144,6 +140,10 @@ const Header = () => {
                     <span className="text-sm">Telegram</span>
                   </a>
                 </div>
+                <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
+                  <Phone className="w-5 h-5 mr-3" />
+                  +7 499 681 78 74
+                </a>
               </div>
             </div>
 
