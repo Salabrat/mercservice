@@ -123,7 +123,7 @@ const HomePage = ({ brands }) => {
       </section>
 
       {/* Collaboration Banner */}
-      <section className="relative mt-20 px-5">
+      <section className="relative mt-20 px-5 py-5">
         <div className="relative">
           <img 
             src="/images/6.jpg" 
