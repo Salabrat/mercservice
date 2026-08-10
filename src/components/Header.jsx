@@ -53,7 +53,7 @@ const Header = () => {
           {isMenuOpen ? <X className="w-12 h-12" /> : (
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 44 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="w-12 h-12">
               <line x1="4" x2="23" y1="6" y2="6" strokeWidth="2.5" />
-              <line x1="4" x2="45" y1="12" y2="12" strokeWidth="1.5" />
+              <line x1="4" x2="40" y1="12" y2="12" strokeWidth="1.8" />
               <line x1="4" x2="23" y1="18" y2="18" strokeWidth="2.5" />
             </svg>
           )}
