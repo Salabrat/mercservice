@@ -77,9 +77,14 @@ const Header = () => {
           {/* Content area */}
           <div className="flex flex-1">
             {/* Left side - Navigation */}
-            <div className="flex flex-col flex-1">
+            <div className="flex flex-col flex-1 pl-8">
+              {/* White divider line - top */}
+              <div className="pr-[50px] mb-6">
+                <div className="h-[3px] bg-white"></div>
+              </div>
+
               {/* Navigation Items */}
-              <div className="flex flex-col items-start space-y-5 flex-1 pl-8 mb-[5px]">
+              <div className="flex flex-col items-start space-y-5 mb-6">
                 <Link
                   to="/"
                   className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
@@ -124,38 +129,37 @@ const Header = () => {
                 </Link>
               </div>
 
-              {/* White divider line */}
-              <div className="pl-8 pr-[50px]">
+              {/* White divider line - middle */}
+              <div className="pr-[50px] mb-6">
                 <div className="h-[3px] bg-white"></div>
               </div>
 
-              {/* Social Media and Phone */}
-              <div className="pb-12 flex flex-col items-start space-y-6 pl-8">
-                <div className="flex items-center space-x-8">
-                  <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
-                    <Youtube className="w-6 h-6 mr-2" />
-                    <span className="text-sm">YouTube</span>
-                  </a>
-                  <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
-                    <Instagram className="w-6 h-6 mr-2" />
-                    <span className="text-sm">Instagram</span>
-                  </a>
-                  <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
-                    <Send className="w-6 h-6 mr-2" />
-                    <span className="text-sm">Telegram</span>
-                  </a>
-                </div>
-
-                {/* White divider line */}
-                <div className="pr-[50px] w-full">
-                  <div className="h-[3px] bg-white"></div>
-                </div>
-
-                <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
-                  <Phone className="w-5 h-5 mr-3" />
-                  +7 499 681 78 74
+              {/* Social Media */}
+              <div className="flex items-center space-x-8 mb-6">
+                <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
+                  <Youtube className="w-6 h-6 mr-2" />
+                  <span className="text-sm">YouTube</span>
+                </a>
+                <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
+                  <Instagram className="w-6 h-6 mr-2" />
+                  <span className="text-sm">Instagram</span>
+                </a>
+                <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
+                  <Send className="w-6 h-6 mr-2" />
+                  <span className="text-sm">Telegram</span>
                 </a>
               </div>
+
+              {/* White divider line - bottom */}
+              <div className="pr-[50px] mb-6">
+                <div className="h-[3px] bg-white"></div>
+              </div>
+
+              {/* Phone */}
+              <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
+                <Phone className="w-5 h-5 mr-3" />
+                +7 499 681 78 74
+              </a>
             </div>
 
             {/* Right side - Image and SALIKS block */}
