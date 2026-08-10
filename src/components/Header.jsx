@@ -39,11 +39,9 @@ const Header = () => {
         @keyframes slideDown {
           0% {
             transform: translateY(-100%);
-            opacity: 0;
           }
           100% {
             transform: translateY(0);
-            opacity: 1;
           }
         }
       `}</style>
@@ -107,9 +105,8 @@ const Header = () => {
         <div
           className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col"
           style={{
-            opacity: 0,
             transform: 'translateY(-100%)',
-            animation: 'slideDown 1s ease-out 0.2s forwards'
+            animation: 'slideDown 1s ease-out 0.1s forwards'
           }}
         >
           {/* Close Button */}
