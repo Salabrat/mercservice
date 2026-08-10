@@ -156,6 +156,7 @@ const Header = () => {
                   +7 499 681 78 74
                 </a>
               </div>
+            </div>
 
             {/* Right side - Image and SALIKS block */}
             <div className="hidden md:flex flex-col w-1/2 mr-5">
