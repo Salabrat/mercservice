@@ -105,7 +105,7 @@ const Header = () => {
         <div
           className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col"
           style={{
-            animation: 'slideDown 1s ease-out forwards'
+            animation: 'slideDown 1s ease-out 0.2s forwards'
           }}
         >
           {/* Close Button */}
