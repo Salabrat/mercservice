@@ -50,7 +50,7 @@ const Header = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="absolute left-6 top-1/2 -translate-y-1/2 p-2 transition-colors z-50"
         >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
       </header>
 
@@ -62,7 +62,7 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
             className="absolute left-6 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-50"
           >
-            <X className="w-6 h-6" />
+            <X className="w-8 h-8" />
           </button>
 
           {/* Logo at top - centered across full menu */}
