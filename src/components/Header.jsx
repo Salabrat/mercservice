@@ -38,14 +38,6 @@ const Header = () => {
       <header className={`bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center"></div>
-
-            <div className="flex items-center justify-center flex-1">
-              <Link to="/" className="flex items-center">
-                <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
-              </Link>
-            </div>
-
             <div className="flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -54,6 +46,14 @@ const Header = () => {
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
+
+            <div className="flex items-center justify-center flex-1">
+              <Link to="/" className="flex items-center">
+                <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
+              </Link>
+            </div>
+
+            <div className="flex items-center"></div>
           </div>
         </div>
       </header>
@@ -64,7 +64,7 @@ const Header = () => {
           {/* Close Button */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute top-6 right-6 p-2 text-white hover:text-gray-300 transition-colors z-50"
+            className="absolute top-6 left-6 p-2 text-white hover:text-gray-300 transition-colors z-50"
           >
             <X className="w-8 h-8" />
           </button>
