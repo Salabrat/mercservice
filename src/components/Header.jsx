@@ -70,7 +70,7 @@ const Header = () => {
           </button>
 
           {/* Logo at top - centered across full menu */}
-          <div className="flex justify-center pt-12 pb-8 px-8 max-w-[calc(100%-60px)] mx-auto">
+          <div className="flex justify-center pt-12 pb-8 px-8 max-w-[calc(100%-80px)] mx-auto">
             <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
           </div>
 
