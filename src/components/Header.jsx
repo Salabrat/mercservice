@@ -72,48 +72,50 @@ const Header = () => {
           {/* Left side - Navigation */}
           <div className="flex flex-col flex-1">
             {/* Logo at top */}
-            <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain mx-auto mt-12 mb-8" />
+            <div className="flex justify-center pt-12 pb-8">
+              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
+            </div>
 
             {/* Navigation Items */}
             <nav className="flex flex-col items-start space-y-5 flex-1 pl-8">
               <Link
                 to="/"
-                className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 ГЛАВНАЯ
               </Link>
               <Link
                 to="/catalog"
-                className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 КАТАЛОГ
               </Link>
               <Link
                 to="/catalog"
-                className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 УСЛУГИ
               </Link>
               <Link
                 to="/catalog"
-                className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 О НАС
               </Link>
               <Link
                 to="/catalog"
-                className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 БЛОГ
               </Link>
               <Link
                 to="/catalog"
-                className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
+                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 КОНТАКТЫ
