@@ -166,7 +166,7 @@ const Header = () => {
             <div className="hidden md:flex flex-col w-1/2 mr-5">
               <img src="/images/13.jpg" alt="Menu Image" className="w-full h-auto object-contain mb-[30px]" />
               {/* SALIKS X BRABUS Block */}
-              <div className="flex flex-col items-start space-y-3 pl-5">
+              <div className="flex flex-col items-start space-y-[30px] pl-5">
                 <span className="text-white text-lg font-medium">SALIKS X BRABUS</span>
                 <button className="px-6 py-2 border border-white text-white text-lg font-medium hover:bg-white hover:text-gray-900 transition-colors">
                   Смотреть
