@@ -65,7 +65,7 @@ const Header = () => {
             />
             <line
               x1="4"
-              x2="40"
+              x2="35"
               y1="12"
               y2="12"
               strokeWidth="1.8"
