@@ -124,6 +124,11 @@ const Header = () => {
                 </Link>
               </nav>
 
+              {/* White divider line */}
+              <div className="pl-8 pr-[50px]">
+                <div className="h-[3px] bg-white"></div>
+              </div>
+
               {/* Social Media and Phone */}
               <div className="pb-12 flex flex-col items-start space-y-6 pl-8">
                 <div className="flex items-center space-x-8">
@@ -140,12 +145,17 @@ const Header = () => {
                     <span className="text-sm">Telegram</span>
                   </a>
                 </div>
+
+                {/* White divider line */}
+                <div className="pr-[50px] w-full">
+                  <div className="h-[3px] bg-white"></div>
+                </div>
+
                 <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
                   <Phone className="w-5 h-5 mr-3" />
                   +7 499 681 78 74
                 </a>
               </div>
-            </div>
 
             {/* Right side - Image and SALIKS block */}
             <div className="hidden md:flex flex-col w-1/2 mr-5">
