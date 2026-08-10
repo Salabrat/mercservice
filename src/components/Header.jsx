@@ -47,9 +47,9 @@ const Header = () => {
             </div>
 
             <div className="flex items-center">
-              <button 
+              <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 transition-colors"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
