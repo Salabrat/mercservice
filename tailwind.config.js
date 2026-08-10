@@ -89,6 +89,14 @@ export default {
             transform: 'translateY(0)',
           },
         },
+        'slide-down-full': {
+          '0%': {
+            transform: 'translateY(-100%)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
         'shake': {
           '0%, 100%': {
             transform: 'translateX(0)',
@@ -120,6 +128,7 @@ export default {
         'fade-in-up': 'fade-in-up 0.4s ease-out forwards',
         'fade-in-down': 'fade-in-down 0.3s ease-out forwards',
         'slide-down': 'slide-down 0.25s ease-out forwards',
+        'slide-down-full': 'slide-down-full 1s ease-out forwards',
         'shake': 'shake 0.3s ease-in-out',
         'slide-up': 'slide-up 0.3s ease-in-out forwards',
       },

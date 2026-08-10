@@ -92,7 +92,7 @@ const Header = () => {
 
       {/* Hamburger Menu */}
       {isMenuOpen && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col">
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col animate-slide-down-full">
           {/* Close Button */}
           <button
             onClick={() => setIsMenuOpen(false)}
