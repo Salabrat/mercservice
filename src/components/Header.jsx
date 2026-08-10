@@ -35,6 +35,16 @@ const Header = () => {
 
   return (
     <>
+      <style>{`
+        @keyframes slideDown {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+      `}</style>
       <header className={`bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -92,7 +102,12 @@ const Header = () => {
 
       {/* Hamburger Menu */}
       {isMenuOpen && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col animate-slide-down-full">
+        <div
+          className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col"
+          style={{
+            animation: 'slideDown 1s ease-out forwards'
+          }}
+        >
           {/* Close Button */}
           <button
             onClick={() => setIsMenuOpen(false)}
