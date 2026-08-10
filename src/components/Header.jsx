@@ -81,7 +81,8 @@ const Header = () => {
               strokeWidth="1.8"
               style={{
                 transition: 'all 0.3s ease-in-out',
-                opacity: isMenuOpen ? 0 : 1
+                transform: isMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
+                transformOrigin: '4px 12px'
               }}
             />
             <line
