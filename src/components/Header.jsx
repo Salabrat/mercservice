@@ -60,101 +60,104 @@ const Header = () => {
 
       {/* Hamburger Menu */}
       {isMenuOpen && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex">
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#2C2C2C] z-[100] flex flex-col">
           {/* Close Button */}
-          <button 
+          <button
             onClick={() => setIsMenuOpen(false)}
             className="absolute top-6 right-6 p-2 text-white hover:text-gray-300 transition-colors z-50"
           >
             <X className="w-8 h-8" />
           </button>
 
-          {/* Left side - Navigation */}
-          <div className="flex flex-col flex-1">
-            {/* Logo at top */}
-            <div className="flex justify-center pt-12 pb-8">
-              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
-            </div>
-
-            {/* Navigation Items */}
-            <nav className="flex flex-col items-start space-y-5 flex-1 pl-8">
-              <Link
-                to="/"
-                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                ГЛАВНАЯ
-              </Link>
-              <Link
-                to="/catalog"
-                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                КАТАЛОГ
-              </Link>
-              <Link
-                to="/catalog"
-                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                УСЛУГИ
-              </Link>
-              <Link
-                to="/catalog"
-                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                О НАС
-              </Link>
-              <Link
-                to="/catalog"
-                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                БЛОГ
-              </Link>
-              <Link
-                to="/catalog"
-                className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                КОНТАКТЫ
-              </Link>
-            </nav>
-
-            {/* Social Media and Phone */}
-            <div className="pb-12 flex flex-col items-center space-y-6">
-              <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
-                <Phone className="w-5 h-5 mr-3" />
-                +7 499 681 78 74
-              </a>
-              <div className="flex items-center space-x-8">
-                <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
-                  <Youtube className="w-6 h-6 mr-2" />
-                  <span className="text-sm">YouTube</span>
-                </a>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
-                  <Instagram className="w-6 h-6 mr-2" />
-                  <span className="text-sm">Instagram</span>
-                </a>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
-                  <Send className="w-6 h-6 mr-2" />
-                  <span className="text-sm">Telegram</span>
-                </a>
-              </div>
-
-              {/* SALIKS X BRABUS Block */}
-              <div className="flex flex-col items-center space-y-3 mt-4">
-                <span className="text-white text-sm font-medium">SALIKS X BRABUS</span>
-                <button className="px-6 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-900 transition-colors">
-                  Смотреть
-                </button>
-              </div>
-            </div>
+          {/* Logo at top - centered across full menu */}
+          <div className="flex justify-center pt-12 pb-8">
+            <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
           </div>
 
-          {/* Right side - Image */}
-          <img src="/images/13.jpg" alt="Menu Image" className="hidden md:block w-1/2 h-auto object-contain mr-5" />
+          {/* Content area */}
+          <div className="flex flex-1">
+            {/* Left side - Navigation */}
+            <div className="flex flex-col flex-1">
+              {/* Navigation Items */}
+              <nav className="flex flex-col items-start space-y-5 flex-1 pl-8">
+                <Link
+                  to="/"
+                  className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  ГЛАВНАЯ
+                </Link>
+                <Link
+                  to="/catalog"
+                  className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  КАТАЛОГ
+                </Link>
+                <Link
+                  to="/catalog"
+                  className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  УСЛУГИ
+                </Link>
+                <Link
+                  to="/catalog"
+                  className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  О НАС
+                </Link>
+                <Link
+                  to="/catalog"
+                  className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  БЛОГ
+                </Link>
+                <Link
+                  to="/catalog"
+                  className="text-3xl font-medium text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  КОНТАКТЫ
+                </Link>
+              </nav>
+
+              {/* Social Media and Phone */}
+              <div className="pb-12 flex flex-col items-center space-y-6">
+                <a href="tel:+74996817874" className="flex items-center text-white hover:text-gray-300 transition-colors text-lg font-bold">
+                  <Phone className="w-5 h-5 mr-3" />
+                  +7 499 681 78 74
+                </a>
+                <div className="flex items-center space-x-8">
+                  <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
+                    <Youtube className="w-6 h-6 mr-2" />
+                    <span className="text-sm">YouTube</span>
+                  </a>
+                  <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
+                    <Instagram className="w-6 h-6 mr-2" />
+                    <span className="text-sm">Instagram</span>
+                  </a>
+                  <a href="#" className="text-white hover:text-gray-300 transition-colors flex items-center">
+                    <Send className="w-6 h-6 mr-2" />
+                    <span className="text-sm">Telegram</span>
+                  </a>
+                </div>
+
+                {/* SALIKS X BRABUS Block */}
+                <div className="flex flex-col items-center space-y-3 mt-4">
+                  <span className="text-white text-sm font-medium">SALIKS X BRABUS</span>
+                  <button className="px-6 py-2 border border-white text-white text-sm font-medium hover:bg-white hover:text-gray-900 transition-colors">
+                    Смотреть
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Image */}
+            <img src="/images/13.jpg" alt="Menu Image" className="hidden md:block w-1/2 h-auto object-contain mr-5" />
+          </div>
 
         </div>
       )}
