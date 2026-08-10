@@ -80,7 +80,7 @@ const Header = () => {
             <div className="flex flex-col flex-1 pl-8">
               {/* White divider line - top */}
               <div className="mb-6">
-                <div className="h-[3px] bg-white w-[calc(100%-50px)]"></div>
+                <div className="h-[3px] bg-white mr-[50px]"></div>
               </div>
 
               {/* Navigation Items */}
@@ -131,7 +131,7 @@ const Header = () => {
 
               {/* White divider line - middle */}
               <div className="mb-6">
-                <div className="h-[3px] bg-white w-[calc(100%-50px)]"></div>
+                <div className="h-[3px] bg-white mr-[50px]"></div>
               </div>
 
               {/* Social Media */}
@@ -152,7 +152,7 @@ const Header = () => {
 
               {/* White divider line - bottom */}
               <div className="mb-6">
-                <div className="h-[3px] bg-white w-[calc(100%-50px)]"></div>
+                <div className="h-[3px] bg-white mr-[50px]"></div>
               </div>
 
               {/* Phone */}
