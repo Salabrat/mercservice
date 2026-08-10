@@ -79,7 +79,7 @@ const Header = () => {
             {/* Left side - Navigation */}
             <div className="flex flex-col flex-1">
               {/* Navigation Items */}
-              <nav className="flex flex-col items-start space-y-5 flex-1 pl-8">
+              <div className="flex flex-col items-start space-y-5 flex-1 pl-8">
                 <Link
                   to="/"
                   className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
@@ -122,7 +122,7 @@ const Header = () => {
                 >
                   КОНТАКТЫ
                 </Link>
-              </nav>
+              </div>
 
               {/* White divider line */}
               <div className="pl-8 pr-[50px]">
