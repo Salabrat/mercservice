@@ -79,7 +79,7 @@ const Header = () => {
             {/* Left side - Navigation */}
             <div className="flex flex-col flex-1">
               {/* Navigation Items */}
-              <div className="flex flex-col items-start space-y-5 flex-1 pl-8 mb-[15px]">
+              <div className="flex flex-col items-start space-y-5 flex-1 pl-8 mb-[5px]">
                 <Link
                   to="/"
                   className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
