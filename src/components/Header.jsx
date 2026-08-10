@@ -152,7 +152,7 @@ const Header = () => {
           </div>
 
           {/* Right side - Image */}
-          <img src="/images/13.jpg" alt="Menu Image" className="hidden md:flex flex-1 items-center justify-center max-w-full max-h-full object-contain" />
+          <img src="/images/13.jpg" alt="Menu Image" className="hidden md:block w-1/2 h-auto object-contain mr-5" />
 
         </div>
       )}
