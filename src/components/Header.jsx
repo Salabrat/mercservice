@@ -50,7 +50,13 @@ const Header = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="absolute left-6 top-1/2 -translate-y-1/2 p-2 transition-colors z-50"
         >
-          {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          {isMenuOpen ? <X className="w-8 h-8" /> : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="w-8 h-8">
+              <line x1="4" x2="20" y1="6" y2="6" strokeWidth="3" />
+              <line x1="4" x2="25" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="18" y2="18" strokeWidth="3" />
+            </svg>
+          )}
         </button>
       </header>
 
