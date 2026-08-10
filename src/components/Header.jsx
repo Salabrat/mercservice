@@ -60,7 +60,7 @@ const Header = () => {
           {/* Close Button */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute left-6 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-50"
+            className="absolute left-6 top-6 p-2 text-white hover:text-gray-300 transition-colors z-50"
           >
             <X className="w-8 h-8" />
           </button>
