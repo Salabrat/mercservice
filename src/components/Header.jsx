@@ -80,7 +80,7 @@ const Header = () => {
               y2="12"
               strokeWidth="1.8"
               style={{
-                transition: 'all 0.3s ease-in-out',
+                transition: 'all 0.2s ease-in-out',
                 transform: isMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
                 transformOrigin: '4px 12px'
               }}
