@@ -72,49 +72,47 @@ const Header = () => {
           {/* Left side - Navigation */}
           <div className="flex flex-col flex-1">
             {/* Logo at top */}
-            <div className="pt-12 pb-8 flex justify-center">
-              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
-            </div>
+            <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain mx-auto mt-12 mb-8" />
 
             {/* Navigation Items */}
             <nav className="flex flex-col items-start space-y-5 flex-1 pl-8">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 ГЛАВНАЯ
               </Link>
-              <Link 
-                to="/catalog" 
+              <Link
+                to="/catalog"
                 className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 КАТАЛОГ
               </Link>
-              <Link 
-                to="/catalog" 
+              <Link
+                to="/catalog"
                 className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 УСЛУГИ
               </Link>
-              <Link 
-                to="/catalog" 
+              <Link
+                to="/catalog"
                 className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 О НАС
               </Link>
-              <Link 
-                to="/catalog" 
+              <Link
+                to="/catalog"
                 className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 БЛОГ
               </Link>
-              <Link 
-                to="/catalog" 
+              <Link
+                to="/catalog"
                 className="text-xl font-medium text-white hover:text-gray-300 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -142,7 +140,7 @@ const Header = () => {
                   <span className="text-sm">Telegram</span>
                 </a>
               </div>
-              
+
               {/* SALIKS X BRABUS Block */}
               <div className="flex flex-col items-center space-y-3 mt-4">
                 <span className="text-white text-sm font-medium">SALIKS X BRABUS</span>
@@ -154,9 +152,7 @@ const Header = () => {
           </div>
 
           {/* Right side - Image */}
-          <div className="hidden md:flex flex-1 items-center justify-center">
-            <img src="/images/13.jpg" alt="Menu Image" className="max-w-full max-h-full object-contain" />
-          </div>
+          <img src="/images/13.jpg" alt="Menu Image" className="hidden md:flex flex-1 items-center justify-center max-w-full max-h-full object-contain" />
 
         </div>
       )}
