@@ -218,6 +218,8 @@ const HomePage = ({ brands }) => {
         </div>
       </section>
 
+      <div className="mx-5 border-b-2 border-black"></div>
+
       {/* Services Section */}
       <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-custom-gray gap-5">
         <div className="md:w-1/2 flex flex-col justify-center pl-5">
@@ -239,6 +241,8 @@ const HomePage = ({ brands }) => {
           />
         </div>
       </section>
+
+      <div className="mx-5 border-b-2 border-black"></div>
 
       {/* Pre-order Section */}
       <section className="flex flex-col md:flex-row items-stretch py-[70px] bg-custom-gray">
@@ -267,6 +271,8 @@ const HomePage = ({ brands }) => {
           </div>
         </div>
       </section>
+
+      <div className="mx-5 border-b-2 border-black"></div>
 
       {/* GREATS Section */}
       <section className="relative py-20 px-5">
