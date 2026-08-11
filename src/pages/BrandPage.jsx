@@ -153,14 +153,6 @@ const BrandPage = ({ cars, brands }) => {
     setTimeout(() => setFilterOpen(false), 150)
   }
 
-  // Reset panel open state when filter panel closes
-  useEffect(() => {
-    if (filterOpen) {
-      setIsPanelOpen(true)
-    } else {
-      setIsPanelOpen(false)
-    }
-  }, [filterOpen])
 
   return (
     <div className="min-h-screen bg-custom-gray py-20">
@@ -274,7 +266,7 @@ const BrandPage = ({ cars, brands }) => {
             <div className="absolute inset-0 bg-black/50 transition-opacity duration-300" onClick={() => setFilterOpen(false)} />
             <div className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto animate-slide-in-right ${pulseAnimation ? 'animate-pulse' : ''} ${shakeAnimation ? 'animate-shake' : ''}`}>
               <div className="p-6">
-                <div className={`flex justify-between items-center mb-5 ${isPanelOpen ? 'animate-fade-in-down' : ''}`} style={{ opacity: isPanelOpen ? 1 : 0 }}>
+                <div className="flex justify-between items-center mb-5">
                   <h2 className="text-xl font-bold text-gray-900">Настроить фильтры</h2>
                   <button onClick={() => setFilterOpen(false)} className="text-gray-500 hover:text-gray-700">
                     <X className="w-6 h-6" />
@@ -282,7 +274,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Brand Filter */}
-                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.1s', opacity: isPanelOpen ? 1 : 0 }}>
+                <div className="mb-4">
                   <div className="flex justify-between items-center py-3 border-b-2 border-gray-900">
                     <span className="font-semibold text-gray-900 text-sm">Марка</span>
                     <button
@@ -311,7 +303,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Model Filter */}
-                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.2s', opacity: isPanelOpen ? 1 : 0 }}>
+                <div className="mb-4">
                   <div className="flex justify-between items-center py-3 border-b-2 border-gray-900">
                     <span className="font-semibold text-gray-900 text-sm">Модель</span>
                     <button
@@ -347,7 +339,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Availability Filter */}
-                <div className={`mb-4 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.3s', opacity: isPanelOpen ? 1 : 0 }}>
+                <div className="mb-4">
                   <div className="flex justify-between items-center py-3 border-b-2 border-gray-900">
                     <span className="font-semibold text-gray-900 text-sm">Наличие</span>
                     <button
@@ -385,7 +377,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Engine Filter */}
-                <div className={`mb-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.4s', opacity: isPanelOpen ? 1 : 0 }}>
+                <div className="mb-6">
                   <div className="py-3 border-b-2 border-gray-900">
                     <span className="font-semibold text-gray-900 text-sm block mb-3">Двигатель</span>
                     <div className="flex gap-6">
@@ -412,7 +404,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className={`flex gap-4 mt-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.5s', opacity: isPanelOpen ? 1 : 0 }}>
+                <div className="flex gap-4 mt-6">
                   <button
                     onClick={applyFilters}
                     className="flex-1 bg-black text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
