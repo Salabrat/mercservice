@@ -289,7 +289,7 @@ const BrandPage = ({ cars, brands }) => {
                       onClick={() => setCustomBrandOpen(!customBrandOpen)}
                       className="flex items-center gap-2 text-gray-900 text-sm"
                     >
-                      <span className={filters.brand ? '' : 'text-gray-400'}>{filters.brand || 'Выбрать'}</span>
+                      <span className={filters.brand ? '' : 'text-gray-500'}>{filters.brand || 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customBrandOpen ? 'rotate-180' : ''}`} />
                     </button>
                   </div>
@@ -319,7 +319,7 @@ const BrandPage = ({ cars, brands }) => {
                       disabled={!filters.brand}
                       className="flex items-center gap-2 text-gray-900 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span className={filters.model ? '' : 'text-gray-400'}>{filters.model || 'Выбрать'}</span>
+                      <span className={filters.model ? '' : 'text-gray-500'}>{filters.model || 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customModelOpen ? 'rotate-180' : ''}`} />
                     </button>
                   </div>
@@ -354,7 +354,7 @@ const BrandPage = ({ cars, brands }) => {
                       onClick={() => setCustomAvailabilityOpen(!customAvailabilityOpen)}
                       className="flex items-center gap-2 text-gray-900 text-sm"
                     >
-                      <span className={filters.availability ? '' : 'text-gray-400'}>{filters.availability === 'in-stock' ? 'В наличии' : filters.availability === 'pre-order' ? 'Под заказ' : filters.availability === 'expected' ? 'Ожидается' : 'Выбрать'}</span>
+                      <span className={filters.availability ? '' : 'text-gray-500'}>{filters.availability === 'in-stock' ? 'В наличии' : filters.availability === 'pre-order' ? 'Под заказ' : filters.availability === 'expected' ? 'Ожидается' : 'Выбрать'}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customAvailabilityOpen ? 'rotate-180' : ''}`} />
                     </button>
                   </div>
@@ -391,19 +391,19 @@ const BrandPage = ({ cars, brands }) => {
                     <div className="flex gap-6">
                       <button
                         onClick={() => handleFilterChange('engine', 'all')}
-                        className={`text-sm ${filters.engine === 'all' ? 'font-bold text-gray-900' : 'text-gray-400'}`}
+                        className={`text-sm ${filters.engine === 'all' ? 'font-bold text-gray-900' : 'text-gray-500'}`}
                       >
                         Все
                       </button>
                       <button
                         onClick={() => handleFilterChange('engine', 'gasoline')}
-                        className={`text-sm ${filters.engine === 'gasoline' ? 'font-bold text-gray-900' : 'text-gray-400'}`}
+                        className={`text-sm ${filters.engine === 'gasoline' ? 'font-bold text-gray-900' : 'text-gray-500'}`}
                       >
                         Бензин
                       </button>
                       <button
                         onClick={() => handleFilterChange('engine', 'hybrid')}
-                        className={`text-sm ${filters.engine === 'hybrid' ? 'font-bold text-gray-900' : 'text-gray-400'}`}
+                        className={`text-sm ${filters.engine === 'hybrid' ? 'font-bold text-gray-900' : 'text-gray-500'}`}
                       >
                         Гибрид
                       </button>
