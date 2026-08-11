@@ -339,7 +339,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Availability Filter */}
-                <div className="mb-4 animate-fade-in-down">
+                <div className="mb-4 animate-fade-in-down" style={{ animationDelay: '0.1s' }}>
                   <div className="flex justify-between items-center py-3 border-b-2 border-gray-900">
                     <span className="font-semibold text-gray-900 text-sm">Наличие</span>
                     <button
@@ -377,7 +377,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Engine Filter */}
-                <div className="mb-6 animate-fade-in-down" style={{ animationDelay: '0.1s' }}>
+                <div className="mb-6 animate-fade-in-down" style={{ animationDelay: '0.2s' }}>
                   <div className="py-3 border-b-2 border-gray-900">
                     <span className="font-semibold text-gray-900 text-sm block mb-3">Двигатель</span>
                     <div className="flex gap-6">
@@ -404,7 +404,7 @@ const BrandPage = ({ cars, brands }) => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4 mt-6 animate-fade-in-down" style={{ animationDelay: '0.2s' }}>
+                <div className="flex gap-4 mt-6 animate-fade-in-down" style={{ animationDelay: '0.3s' }}>
                   <button
                     onClick={applyFilters}
                     className="flex-1 bg-black text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
