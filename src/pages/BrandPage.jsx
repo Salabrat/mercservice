@@ -415,7 +415,7 @@ const BrandPage = ({ cars, brands }) => {
                 <div className={`flex gap-4 mt-6 ${isPanelOpen ? 'animate-fade-in-up' : ''}`} style={{ animationDelay: '0.5s' }}>
                   <button
                     onClick={applyFilters}
-                    className="flex-1 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                    className="flex-1 bg-black text-white px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
                   >
                     Применить
                   </button>
