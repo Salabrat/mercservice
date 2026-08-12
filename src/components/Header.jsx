@@ -4,6 +4,22 @@ import { Menu, X, Phone, Youtube, Instagram, Send } from 'lucide-react'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.querySelector('section.min-h-screen')
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom
+        setIsVisible(heroBottom <= 0)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Block scroll when menu is open
   useEffect(() => {
@@ -29,7 +45,7 @@ const Header = () => {
           }
         }
       `}</style>
-      <header className="bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out opacity-100 translate-y-0">
+      <header className={`bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center justify-center flex-1">
@@ -54,7 +70,8 @@ const Header = () => {
               style={{
                 transition: 'all 0.3s ease-in-out',
                 transform: isMenuOpen ? 'translateY(6px) rotate(45deg)' : 'translateY(0) rotate(0deg)',
-                transformOrigin: '4px 6px'
+                transformOrigin: '4px 6px',
+                stroke: isMenuOpen ? 'white' : 'currentColor'
               }}
             />
             <line
@@ -64,9 +81,10 @@ const Header = () => {
               y2="12"
               strokeWidth="1.8"
               style={{
-                transition: 'all 0.2s ease-in-out',
+                transition: 'all 0.3s ease-in-out',
                 transform: isMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
-                transformOrigin: '4px 12px'
+                transformOrigin: '4px 12px',
+                stroke: isMenuOpen ? 'white' : 'currentColor'
               }}
             />
             <line
@@ -78,7 +96,8 @@ const Header = () => {
               style={{
                 transition: 'all 0.3s ease-in-out',
                 transform: isMenuOpen ? 'translateY(-6px) rotate(-45deg)' : 'translateY(0) rotate(0deg)',
-                transformOrigin: '4px 18px'
+                transformOrigin: '4px 18px',
+                stroke: isMenuOpen ? 'white' : 'currentColor'
               }}
             />
           </svg>
