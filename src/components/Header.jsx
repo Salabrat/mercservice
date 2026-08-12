@@ -9,9 +9,19 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const catalogElement = document.querySelector('.bg-white.rounded-xl')
+      const heroSection = document.querySelector('section.min-h-screen')
+      
       if (catalogElement) {
+        // On catalog/brand pages - show when catalog element is reached
         const catalogTop = catalogElement.getBoundingClientRect().top
-        setIsVisible(catalogTop <= 64) // Show when catalog is 64px from top (header height)
+        setIsVisible(catalogTop <= 64)
+      } else if (heroSection) {
+        // On home page - show when hero section is scrolled past
+        const heroBottom = heroSection.getBoundingClientRect().bottom
+        setIsVisible(heroBottom <= 0)
+      } else {
+        // On other pages without catalog or hero - always show
+        setIsVisible(true)
       }
     }
 
