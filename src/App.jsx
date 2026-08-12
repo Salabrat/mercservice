@@ -41,7 +41,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage brands={brands} />} />
-            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/catalog" element={<CatalogPage brands={brands} />} />
             <Route path="/catalog/:brand" element={<BrandPage brands={brands} />} />
             <Route path="/admin" element={<AdminPage onAddBrand={handleAddBrand} />} />
           </Routes>
