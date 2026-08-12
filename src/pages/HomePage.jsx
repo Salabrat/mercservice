@@ -156,7 +156,7 @@ const HomePage = ({ brands }) => {
       </section>
 
       {/* Wide Selection Section */}
-      <section className="bg-custom-gray" style={{ paddingTop: '30px', paddingBottom: '40px' }}>
+      <section className="bg-custom-gray" style={{ paddingTop: '30px', paddingBottom: '30px' }}>
         <div className="pl-5 pr-5 flex flex-col lg:flex-row items-center gap-8">
           <div className="flex-1 flex flex-col sm:flex-row gap-4">
             <img src="/images/7.jpg" alt="Luxury car collection" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
