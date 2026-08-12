@@ -68,6 +68,17 @@ const HomePage = ({ brands }) => {
 
   return (
     <div className="min-h-screen bg-custom-gray">
+      {/* Fixed Transparent Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link to="/" className="flex items-center">
+              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
+            </Link>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center relative pl-5 overflow-hidden">
         <div className="absolute inset-0 z-0">
