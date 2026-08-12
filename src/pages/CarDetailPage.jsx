@@ -8,7 +8,7 @@ const initialCars = [
     brand: 'Mercedes-Benz', 
     model: 'S-Class', 
     price: '15 000', 
-    image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop', 
+    image: '/images/car/1.jpg', 
     category: 'Премиум', 
     year: '2024', 
     transmission: 'Автомат', 
@@ -20,10 +20,10 @@ const initialCars = [
     acceleration: '4.8 СЕКУНДЫ',
     drive: 'полный',
     images: [
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop'
+      '/images/car/1.jpg',
+      '/images/car/2.jpg',
+      '/images/car/3.jpg',
+      '/images/car/4.jpg'
     ],
     pricing: {
       day1: '18 000 ₽',
@@ -45,7 +45,7 @@ const initialCars = [
     brand: 'BMW', 
     model: '7 Series', 
     price: '12 000', 
-    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop', 
+    image: '/images/car/2.jpg', 
     category: 'Премиум', 
     year: '2024', 
     transmission: 'Автомат', 
@@ -57,9 +57,9 @@ const initialCars = [
     acceleration: '5.4 СЕКУНДЫ',
     drive: 'полный',
     images: [
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=500&fit=crop'
+      '/images/car/2.jpg',
+      '/images/car/1.jpg',
+      '/images/car/3.jpg'
     ],
     pricing: {
       day1: '15 000 ₽',
@@ -81,7 +81,7 @@ const initialCars = [
     brand: 'Porsche', 
     model: '911 Carrera', 
     price: '25 000', 
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=500&fit=crop', 
+    image: '/images/car/3.jpg', 
     category: 'Спорткар', 
     year: '2024', 
     transmission: 'Робот', 
@@ -93,10 +93,10 @@ const initialCars = [
     acceleration: '3.9 СЕКУНДЫ',
     drive: 'полный',
     images: [
-      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=500&fit=crop'
+      '/images/car/3.jpg',
+      '/images/car/1.jpg',
+      '/images/car/2.jpg',
+      '/images/car/4.jpg'
     ],
     pricing: {
       day1: '30 000 ₽',
@@ -118,7 +118,7 @@ const initialCars = [
     brand: 'Audi', 
     model: 'A8', 
     price: '11 000', 
-    image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=500&fit=crop', 
+    image: '/images/car/4.jpg', 
     category: 'Премиум', 
     year: '2024', 
     transmission: 'Автомат', 
@@ -130,9 +130,9 @@ const initialCars = [
     acceleration: '5.6 СЕКУНДЫ',
     drive: 'полный',
     images: [
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop'
+      '/images/car/4.jpg',
+      '/images/car/1.jpg',
+      '/images/car/2.jpg'
     ],
     pricing: {
       day1: '14 000 ₽',
@@ -154,7 +154,7 @@ const initialCars = [
     brand: 'Mercedes-Benz', 
     model: 'G-Class', 
     price: '20 000', 
-    image: 'https://images.unsplash.com/photo-1520031441872-265149a9e690?w=800&h=500&fit=crop', 
+    image: '/images/car/1.jpg', 
     category: 'Внедорожник', 
     year: '2024', 
     transmission: 'Автомат', 
@@ -166,10 +166,10 @@ const initialCars = [
     acceleration: '5.9 СЕКУНДЫ',
     drive: 'полный',
     images: [
-      'https://images.unsplash.com/photo-1520031441872-265149a9e690?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=500&fit=crop'
+      '/images/car/1.jpg',
+      '/images/car/2.jpg',
+      '/images/car/3.jpg',
+      '/images/car/4.jpg'
     ],
     pricing: {
       day1: '25 000 ₽',
@@ -191,7 +191,7 @@ const initialCars = [
     brand: 'Bentley', 
     model: 'Flying Spur', 
     price: '35 000', 
-    image: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=800&h=500&fit=crop', 
+    image: '/images/car/2.jpg', 
     category: 'Премиум', 
     year: '2024', 
     transmission: 'Автомат', 
@@ -203,10 +203,10 @@ const initialCars = [
     acceleration: '3.8 СЕКУНДЫ',
     drive: 'полный',
     images: [
-      'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=500&fit=crop'
+      '/images/car/2.jpg',
+      '/images/car/1.jpg',
+      '/images/car/3.jpg',
+      '/images/car/4.jpg'
     ],
     pricing: {
       day1: '40 000 ₽',
@@ -255,14 +255,10 @@ const CarDetailPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link to="/" className="inline-flex items-center text-primary hover:text-primary-dark mb-6 transition-colors">
+        <Link to="/catalog" className="inline-flex items-center text-gray-900 hover:text-gray-700 mb-6 transition-colors">
           <ArrowLeft className="w-5 h-5 mr-2" />
           Вернуться в каталог
         </Link>
-
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-          АРЕНДА {car.brand.toUpperCase()} {car.model.toUpperCase()}
-        </h1>
 
         {/* Image Gallery */}
         <div className="relative mb-8">
@@ -270,7 +266,7 @@ const CarDetailPage = () => {
             <img 
               src={car.images[currentImageIndex]} 
               alt={`${car.brand} ${car.model}`}
-              className="w-full h-64 md:h-96 object-cover"
+              className="w-full h-64 md:h-[500px] object-cover"
             />
             <button
               onClick={prevImage}
@@ -293,13 +289,21 @@ const CarDetailPage = () => {
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
                 className={`flex-shrink-0 w-20 h-14 md:w-32 md:h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                  currentImageIndex === index ? 'border-primary' : 'border-transparent hover:border-gray-300'
+                  currentImageIndex === index ? 'border-black' : 'border-transparent hover:border-gray-300'
                 }`}
               >
                 <img src={img} alt={`${car.brand} ${car.model} ${index + 1}`} className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Car Title */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            {car.brand} {car.model}
+          </h1>
+          <p className="text-xl text-gray-600">{car.price} ₽ / сутки</p>
         </div>
 
         {/* Specifications */}
@@ -309,17 +313,17 @@ const CarDetailPage = () => {
             <p className="font-semibold text-gray-900">{car.category}</p>
           </div>
           <div className="bg-white rounded-xl p-4 shadow-md">
-            <Zap className="w-6 h-6 text-primary mb-2" />
+            <Zap className="w-6 h-6 text-gray-900 mb-2" />
             <p className="text-sm text-gray-600 mb-1">Мощность</p>
             <p className="font-semibold text-gray-900">{car.power}</p>
           </div>
           <div className="bg-white rounded-xl p-4 shadow-md">
-            <Cog className="w-6 h-6 text-primary mb-2" />
+            <Cog className="w-6 h-6 text-gray-900 mb-2" />
             <p className="text-sm text-gray-600 mb-1">Объем двигателя</p>
             <p className="font-semibold text-gray-900">{car.engine}</p>
           </div>
           <div className="bg-white rounded-xl p-4 shadow-md">
-            <Gauge className="w-6 h-6 text-primary mb-2" />
+            <Gauge className="w-6 h-6 text-gray-900 mb-2" />
             <p className="text-sm text-gray-600 mb-1">Разгон 0-100</p>
             <p className="font-semibold text-gray-900">{car.acceleration}</p>
           </div>
@@ -328,7 +332,7 @@ const CarDetailPage = () => {
             <p className="font-semibold text-gray-900">{car.drive}</p>
           </div>
           <div className="bg-white rounded-xl p-4 shadow-md">
-            <Users className="w-6 h-6 text-primary mb-2" />
+            <Users className="w-6 h-6 text-gray-900 mb-2" />
             <p className="text-sm text-gray-600 mb-1">Кол-во мест</p>
             <p className="font-semibold text-gray-900">{car.seats}</p>
           </div>
@@ -346,14 +350,11 @@ const CarDetailPage = () => {
           {/* Price and Booking */}
           <div>
             <div className="bg-white rounded-xl p-6 shadow-md sticky top-24">
-              <p className="text-sm text-gray-600 mb-1">Цена за сутки</p>
-              <p className="text-3xl font-bold text-primary mb-6">от {car.price} ₽ / сутки</p>
-              
-              <button className="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:bg-primary-dark transition-colors mb-4">
+              <button className="w-full bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-6">
                 Забронировать
               </button>
 
-              <div className="border-t pt-4">
+              <div className="border-t border-gray-200 pt-4">
                 <h3 className="font-semibold text-gray-900 mb-3">Цены на аренду</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -375,14 +376,14 @@ const CarDetailPage = () => {
                 </div>
               </div>
 
-              <div className="border-t pt-4 mt-4">
+              <div className="border-t border-gray-200 pt-4 mt-4">
                 <div className="flex justify-between mb-2">
                   <span className="text-gray-600">Аренда с водителем</span>
                   <span className="font-semibold">{car.driverPrice}</span>
                 </div>
               </div>
 
-              <div className="border-t pt-4 mt-4">
+              <div className="border-t border-gray-200 pt-4 mt-4">
                 <div className="flex justify-between mb-2">
                   <span className="text-gray-600">Обеспечительный платеж</span>
                   <span className="font-semibold">{car.deposit}</span>
