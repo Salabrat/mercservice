@@ -259,7 +259,7 @@ const BrandPage = ({ cars, brands }) => {
           </div>
           
           <button
-            onClick={() => setFilterOpen(true)}
+            onClick={() => { setFilterTitle('Настроить фильтры'); setFilterOpen(true); }}
             className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium"
           >
             <SlidersHorizontal className="w-4 h-4 mr-2" />
