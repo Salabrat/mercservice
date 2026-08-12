@@ -45,7 +45,7 @@ const Header = () => {
           }
         }
       `}</style>
-      <header className={`bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'fixed top-0 opacity-100 translate-y-0' : 'relative opacity-100 translate-y-0'}`}>
+      <header className={`bg-white/90 backdrop-blur-md border-b border-gray-200/50 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'fixed top-0 opacity-100 translate-y-0' : 'relative opacity-0 -translate-y-full pointer-events-none'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center justify-center flex-1">
