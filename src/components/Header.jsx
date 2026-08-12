@@ -4,32 +4,6 @@ import { Menu, X, Phone, Youtube, Instagram, Send } from 'lucide-react'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const catalogElement = document.querySelector('.bg-white.rounded-xl')
-      const heroSection = document.querySelector('section.min-h-screen')
-      
-      if (catalogElement) {
-        // On catalog/brand pages - show when catalog element is reached
-        const catalogTop = catalogElement.getBoundingClientRect().top
-        setIsVisible(catalogTop <= 64)
-      } else if (heroSection) {
-        // On home page - show when hero section is scrolled past
-        const heroBottom = heroSection.getBoundingClientRect().bottom
-        setIsVisible(heroBottom <= 0)
-      } else {
-        // On other pages without catalog or hero - always show
-        setIsVisible(true)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   // Block scroll when menu is open
   useEffect(() => {
@@ -55,7 +29,7 @@ const Header = () => {
           }
         }
       `}</style>
-      <header className={`bg-white/90 backdrop-blur-md border-b border-gray-200/50 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isVisible ? 'fixed top-0 opacity-100 translate-y-0' : 'relative opacity-0 -translate-y-full pointer-events-none'}`}>
+      <header className="bg-custom-gray/80 backdrop-blur-sm border-b border-gray-200/50 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out opacity-100 translate-y-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center justify-center flex-1">
