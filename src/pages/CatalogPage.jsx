@@ -15,7 +15,6 @@ const CatalogPage = ({ cars, brands }) => {
   const [filterOpen, setFilterOpen] = useState(false)
   const [filters, setFilters] = useState({
     brand: '',
-    model: '',
     availability: '',
     engine: 'all'
   })
@@ -95,16 +94,10 @@ const CatalogPage = ({ cars, brands }) => {
   // Apply additional filters
   const filteredCars = sortedCars.filter(car => {
     if (filters.brand && car.brand !== filters.brand) return false
-    if (filters.model && car.model !== filters.model) return false
     if (filters.availability && car.availability !== filters.availability) return false
     if (filters.engine !== 'all' && car.engine !== filters.engine) return false
     return true
   })
-
-  // Get unique models for selected brand
-  const models = filters.brand 
-    ? [...new Set(cars.filter(car => car.brand === filters.brand).map(car => car.model))]
-    : []
 
   const handleSortChange = (value) => {
     setSortBy(value)
@@ -132,7 +125,6 @@ const CatalogPage = ({ cars, brands }) => {
     setTimeout(() => {
       setFilters({
         brand: '',
-        model: '',
         availability: '',
         engine: 'all'
       })
@@ -288,42 +280,6 @@ const CatalogPage = ({ cars, brands }) => {
                           {brand.name}
                         </div>
                       ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Model Filter */}
-                <div className="mb-4 animate-fade-in-down">
-                  <div className="flex justify-between items-center py-3 border-b-2 border-gray-900">
-                    <span className="font-semibold text-gray-900 text-sm">Модель</span>
-                    <button
-                      onClick={() => filters.brand && setCustomModelOpen(!customModelOpen)}
-                      disabled={!filters.brand}
-                      className="flex items-center gap-2 text-gray-900 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <span className={filters.model ? '' : 'text-gray-500'}>{filters.model || 'Выбрать'}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${customModelOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${customModelOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-                  >
-                    <div className="py-2">
-                      {models.length > 0 ? (
-                        models.map((model) => (
-                          <div
-                            key={model}
-                            onClick={() => { handleFilterChange('model', model); setCustomModelOpen(false); }}
-                            className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm"
-                          >
-                            {model}
-                          </div>
-                        ))
-                      ) : (
-                        <div className="px-4 py-2 text-gray-400 text-sm">
-                          Нет доступных моделей
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
