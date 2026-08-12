@@ -101,7 +101,7 @@ const HeroHeader = () => {
 
             {/* Logo at top - centered across full menu */}
             <div className="flex justify-center pt-[18px] pb-8 px-8 max-w-[calc(100%-80px)] mx-auto">
-              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
+              <img src="/images/MAINLOGO white.png" alt="MAINLOGO" className="h-12 object-contain" />
             </div>
 
             {/* Content area */}
