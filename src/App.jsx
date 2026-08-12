@@ -5,12 +5,10 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
-import CarDetailPage from './pages/CarDetailPage'
 import AdminPage from './pages/AdminPage'
 import BrandPage from './pages/BrandPage'
 
 function App() {
-  const [cars, setCars] = useState([])
   const [brands, setBrands] = useState([])
 
   // Fetch brands from API on mount
@@ -20,10 +18,6 @@ function App() {
       .then(data => setBrands(data))
       .catch(err => console.error('Error fetching brands:', err))
   }, [])
-
-  const handleAddCar = (newCar) => {
-    setCars([...cars, newCar])
-  }
 
   const handleAddBrand = (newBrand) => {
     fetch('http://localhost:3001/api/brands', {
@@ -47,10 +41,9 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage brands={brands} />} />
-            <Route path="/catalog" element={<CatalogPage onAddCar={handleAddCar} />} />
-            <Route path="/catalog/:brand" element={<BrandPage cars={cars} brands={brands} />} />
-            <Route path="/car/:id" element={<CarDetailPage />} />
-            <Route path="/admin" element={<AdminPage onAddCar={handleAddCar} onAddBrand={handleAddBrand} />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/catalog/:brand" element={<BrandPage brands={brands} />} />
+            <Route path="/admin" element={<AdminPage onAddBrand={handleAddBrand} />} />
           </Routes>
           <Footer />
         </div>
