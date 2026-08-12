@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowLeft, ChevronLeft, ChevronRight, Calendar, Fuel, Gauge, Users, Cog, Zap } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const initialCars = [
   { 
@@ -253,42 +253,42 @@ const CarDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link to="/catalog" className="inline-flex items-center text-gray-900 hover:text-gray-700 mb-6 transition-colors">
+        <Link to="/catalog" className="inline-flex items-center text-gray-900 hover:text-gray-700 mb-8 transition-colors">
           <ArrowLeft className="w-5 h-5 mr-2" />
           Вернуться в каталог
         </Link>
 
         {/* Image Gallery */}
-        <div className="relative mb-8">
-          <div className="relative rounded-xl overflow-hidden">
+        <div className="relative mb-6">
+          <div className="relative rounded-lg overflow-hidden bg-gray-100">
             <img 
               src={car.images[currentImageIndex]} 
               alt={`${car.brand} ${car.model}`}
-              className="w-full h-64 md:h-[500px] object-cover"
+              className="w-full h-[500px] object-cover"
             />
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-colors"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full p-3 shadow-md transition-colors"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-6 h-6 text-gray-900" />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full p-3 shadow-md transition-colors"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-6 h-6 text-gray-900" />
             </button>
           </div>
           
           {/* Thumbnail Gallery */}
-          <div className="flex gap-2 mt-4 overflow-x-auto pb-2">
+          <div className="flex gap-3 mt-4">
             {car.images.map((img, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`flex-shrink-0 w-20 h-14 md:w-32 md:h-20 rounded-lg overflow-hidden border-2 transition-colors ${
+                className={`flex-shrink-0 w-24 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
                   currentImageIndex === index ? 'border-black' : 'border-transparent hover:border-gray-300'
                 }`}
               >
@@ -298,42 +298,46 @@ const CarDetailPage = () => {
           </div>
         </div>
 
-        {/* Car Title */}
+        {/* Car Title and Price */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
             {car.brand} {car.model}
           </h1>
-          <p className="text-xl text-gray-600">{car.price} ₽ / сутки</p>
+          <p className="text-2xl text-gray-600">{car.price} ₽ / сутки</p>
         </div>
 
         {/* Specifications */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <p className="text-sm text-gray-600 mb-1">Класс</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Класс</p>
             <p className="font-semibold text-gray-900">{car.category}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <Zap className="w-6 h-6 text-gray-900 mb-2" />
-            <p className="text-sm text-gray-600 mb-1">Мощность</p>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Мощность</p>
             <p className="font-semibold text-gray-900">{car.power}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <Cog className="w-6 h-6 text-gray-900 mb-2" />
-            <p className="text-sm text-gray-600 mb-1">Объем двигателя</p>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Объем двигателя</p>
             <p className="font-semibold text-gray-900">{car.engine}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <Gauge className="w-6 h-6 text-gray-900 mb-2" />
-            <p className="text-sm text-gray-600 mb-1">Разгон 0-100</p>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Разгон 0-100</p>
             <p className="font-semibold text-gray-900">{car.acceleration}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <p className="text-sm text-gray-600 mb-1">Привод</p>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Привод</p>
             <p className="font-semibold text-gray-900">{car.drive}</p>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-md">
-            <Users className="w-6 h-6 text-gray-900 mb-2" />
-            <p className="text-sm text-gray-600 mb-1">Кол-во мест</p>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Коробка</p>
+            <p className="font-semibold text-gray-900">{car.transmission}</p>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Топливо</p>
+            <p className="font-semibold text-gray-900">{car.fuel}</p>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <p className="text-sm text-gray-500 mb-1">Кол-во мест</p>
             <p className="font-semibold text-gray-900">{car.seats}</p>
           </div>
         </div>
@@ -341,22 +345,45 @@ const CarDetailPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
           {/* Description */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl p-6 shadow-md">
+            <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Описание</h2>
               <p className="text-gray-600 leading-relaxed">{car.description}</p>
+            </div>
+
+            {/* Rental Rules */}
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Правила аренды</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-500 mb-1">Минимальный возраст</p>
+                  <p className="font-semibold text-gray-900">{car.rules.age}</p>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-500 mb-1">Водительский стаж</p>
+                  <p className="font-semibold text-gray-900">{car.rules.experience}</p>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-500 mb-1">Минимальный срок</p>
+                  <p className="font-semibold text-gray-900">{car.rules.minRental}</p>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-500 mb-1">Лимит пробега</p>
+                  <p className="font-semibold text-gray-900">{car.rules.mileage} в сутки</p>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Price and Booking */}
           <div>
-            <div className="bg-white rounded-xl p-6 shadow-md sticky top-24">
+            <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
               <button className="w-full bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-6">
                 Забронировать
               </button>
 
               <div className="border-t border-gray-200 pt-4">
-                <h3 className="font-semibold text-gray-900 mb-3">Цены на аренду</h3>
-                <div className="space-y-2 text-sm">
+                <h3 className="font-semibold text-gray-900 mb-4">Цены на аренду</h3>
+                <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">1 сутки</span>
                     <span className="font-semibold">{car.pricing.day1}</span>
@@ -392,29 +419,6 @@ const CarDetailPage = () => {
                   * Пока машина у Вас, залог заморожен на Вашей карте. Мы не храним деньги клиентов на своем счету.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Rental Rules */}
-        <div className="bg-white rounded-xl p-6 shadow-md mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Правила аренды</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm text-gray-600 mb-1">Минимальный возраст</p>
-              <p className="font-semibold text-gray-900">{car.rules.age}</p>
-            </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm text-gray-600 mb-1">Водительский стаж</p>
-              <p className="font-semibold text-gray-900">{car.rules.experience}</p>
-            </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm text-gray-600 mb-1">Минимальный срок</p>
-              <p className="font-semibold text-gray-900">{car.rules.minRental}</p>
-            </div>
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm text-gray-600 mb-1">Лимит пробега</p>
-              <p className="font-semibold text-gray-900">{car.rules.mileage} в сутки</p>
             </div>
           </div>
         </div>
