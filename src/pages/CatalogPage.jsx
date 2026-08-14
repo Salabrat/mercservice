@@ -430,14 +430,14 @@ const CatalogPage = ({ cars, brands }) => {
                 />
                 <div className="p-6">
                   <h3 
-                    className="font-bold text-gray-900 mb-1"
-                    style={{ fontSize: 'clamp(1.25rem, 4vw, 2.25rem)' }}
+                    className="font-bold text-gray-900 mb-0.5"
+                    style={{ fontSize: 'clamp(0.625rem, 4vw, 1.625rem)' }}
                   >
                     {car.brand}
                   </h3>
                   <p 
-                    className="text-gray-700 mb-4"
-                    style={{ fontSize: 'clamp(1.25rem, 4vw, 2.25rem)' }}
+                    className="text-gray-700 mb-2"
+                    style={{ fontSize: 'clamp(0.625rem, 4vw, 1.625rem)' }}
                   >
                     {car.name || car.model}
                   </p>
