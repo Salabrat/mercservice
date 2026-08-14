@@ -435,18 +435,18 @@ const BrandPage = ({ cars, brands }) => {
                   src={car.images && car.images[0] ? car.images[0] : car.image} 
                   alt={car.name || car.model} 
                   className="w-full object-cover"
-                  style={{ height: 'clamp(230px, 15vw, 302px)' }}
+                  style={{ height: 'clamp(17.5rem, 16.4916rem + 5.04202vw, 21.25rem)' }}
                 />
-                <div className="p-6">
+                <div style={{ padding: 'clamp(15px, 2vw, 30px)' }}>
                   <h3 
                     className="font-bold text-gray-900 mb-0.5"
-                    style={{ fontSize: 'clamp(0.625rem, 4vw, 1.625rem)' }}
+                    style={{ fontSize: 'clamp(1.25rem, 1.08193rem + 0.840336vw, 1.875rem)', lineHeight: '1.2' }}
                   >
                     {car.brand}
                   </h3>
                   <p 
                     className="text-gray-700 mb-2"
-                    style={{ fontSize: 'clamp(0.625rem, 4vw, 1.625rem)' }}
+                    style={{ fontSize: 'clamp(1.25rem, 1.08193rem + 0.840336vw, 1.875rem)', lineHeight: '1.2' }}
                   >
                     {car.name || car.model}
                   </p>
@@ -454,13 +454,13 @@ const BrandPage = ({ cars, brands }) => {
                     <div>
                       <p 
                         className="text-gray-400 mb-0.5"
-                        style={{ fontSize: 'clamp(0.75rem, 2vw, 1rem)' }}
+                        style={{ fontSize: 'clamp(0.875rem, 0.7563rem + 0.59497vw, 1.25rem)' }}
                       >
                         Год выпуска
                       </p>
                       <span 
                         className="text-gray-600"
-                        style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)' }}
+                        style={{ fontSize: 'clamp(1rem, 0.88135rem + 0.59497vw, 1.5rem)' }}
                       >
                         {car.year}
                       </span>
@@ -468,13 +468,13 @@ const BrandPage = ({ cars, brands }) => {
                     <div className="text-left" style={{ marginRight: '70px' }}>
                       <p 
                         className="text-gray-400 mb-0.5"
-                        style={{ fontSize: 'clamp(0.75rem, 2vw, 1rem)' }}
+                        style={{ fontSize: 'clamp(0.875rem, 0.7563rem + 0.59497vw, 1.25rem)' }}
                       >
                         Цена
                       </p>
                       <span 
                         className="font-bold text-gray-900"
-                        style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)' }}
+                        style={{ fontSize: 'clamp(1rem, 0.88135rem + 0.59497vw, 1.5rem)' }}
                       >
                         {car.price}
                       </span>
