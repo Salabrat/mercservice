@@ -435,12 +435,18 @@ const BrandPage = ({ cars, brands }) => {
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-1">{car.brand}</h3>
                   <p className="text-gray-700 mb-4">{car.name || car.model}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">{car.year}</span>
-                    <span className="text-2xl font-bold text-primary">{car.price}</span>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <p className="text-gray-400 text-sm mb-1">Год выпуска</p>
+                      <span className="text-gray-600">{car.year}</span>
+                    </div>
+                    <div className="text-right mr-10">
+                      <p className="text-gray-400 text-sm mb-1">Цена</p>
+                      <span className="text-2xl font-bold text-gray-900">{car.price}</span>
+                    </div>
                   </div>
                 </div>
-                <img src="/images/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-8 h-8" />
+                <img src="/images/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-8 h-8 object-contain" />
               </div>
             ))}
           </div>
