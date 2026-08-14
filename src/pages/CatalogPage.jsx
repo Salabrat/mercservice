@@ -424,20 +424,20 @@ const CatalogPage = ({ cars, brands }) => {
               <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative">
                 <img src={car.images && car.images[0] ? car.images[0] : car.image} alt={car.name || car.model} className="w-full h-68 object-cover" />
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{car.brand}</h3>
+                  <h3 className="text-4xl font-bold text-gray-900 mb-1">{car.brand}</h3>
                   <p className="text-gray-700 mb-4">{car.name || car.model}</p>
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-gray-400 text-sm mb-1">Год выпуска</p>
-                      <span className="text-gray-600">{car.year}</span>
+                      <p className="text-gray-400 text-base mb-1">Год выпуска</p>
+                      <span className="text-gray-600 text-2xl">{car.year}</span>
                     </div>
-                    <div className="text-right mr-10">
-                      <p className="text-gray-400 text-sm mb-1">Цена</p>
+                    <div className="text-left mr-20">
+                      <p className="text-gray-400 text-base mb-1">Цена</p>
                       <span className="text-2xl font-bold text-gray-900">{car.price}</span>
                     </div>
                   </div>
                 </div>
-                <img src="/images/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-8 h-8 object-contain" />
+                <img src="/images/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-10 h-10 object-contain" />
               </div>
             ))}
           </div>
