@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Plus, Image, Type } from 'lucide-react'
+import { ArrowLeft, Plus, Image, Type, Car, Settings, Camera, Edit2, Trash2 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const AdminPage = ({ onAddCar, onAddBrand }) => {
   const { user } = useAuth()
-  const [activeSection, setActiveSection] = useState('cars')
+  const [activeSection, setActiveSection] = useState('appearance')
   const [carFormData, setCarFormData] = useState({
     brand: '',
     model: '',
@@ -96,220 +96,140 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
           <div className="md:col-span-1">
             <div className="bg-white rounded-xl p-4 shadow-sm">
               <button
-                onClick={() => setActiveSection('cars')}
+                onClick={() => setActiveSection('appearance')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors mb-2 ${
-                  activeSection === 'cars' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  activeSection === 'appearance' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                <Plus className="w-5 h-5" />
-                Добавить авто
+                <Camera className="w-5 h-5" />
+                ФОТО + ТЕКСТ
+              </button>
+              <button
+                onClick={() => setActiveSection('cars')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors mb-2 ${
+                  activeSection === 'cars' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                <Car className="w-5 h-5" />
+                АВТОМОБИЛИ
               </button>
               <button
                 onClick={() => setActiveSection('brands')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors mb-2 ${
-                  activeSection === 'brands' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  activeSection === 'brands' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 <Image className="w-5 h-5" />
-                Добавить бренд
+                БРЕНДЫ
               </button>
               <button
-                onClick={() => setActiveSection('content')}
+                onClick={() => setActiveSection('settings')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
-                  activeSection === 'content' ? 'bg-primary text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  activeSection === 'settings' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                <Type className="w-5 h-5" />
-                Изменить контент
+                <Settings className="w-5 h-5" />
+                НАСТРОЙКИ САЙТА
               </button>
             </div>
           </div>
 
           {/* Main Content */}
           <div className="md:col-span-3">
+            {activeSection === 'appearance' && (
+              <div className="bg-white rounded-xl p-8 shadow-sm">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Изменение внешнего вида сайта</h2>
+                <div className="text-center py-12">
+                  <Camera className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                  <p className="text-gray-500">Раздел в разработке...</p>
+                  <p className="text-gray-400 text-sm mt-2">Здесь будет возможность изменять фото и текст на сайте</p>
+                </div>
+              </div>
+            )}
+
             {activeSection === 'cars' && (
               <div className="bg-white rounded-xl p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Добавить автомобиль</h2>
-                <form onSubmit={handleCarSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Марка</label>
-                      <input
-                        type="text"
-                        value={carFormData.brand}
-                        onChange={(e) => setCarFormData({...carFormData, brand: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                        placeholder="Mercedes-Benz"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Модель</label>
-                      <input
-                        type="text"
-                        value={carFormData.model}
-                        onChange={(e) => setCarFormData({...carFormData, model: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                        placeholder="S-Class"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Цена (₽/день)</label>
-                      <input
-                        type="number"
-                        value={carFormData.price}
-                        onChange={(e) => setCarFormData({...carFormData, price: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                        placeholder="15000"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Категория</label>
-                      <select
-                        value={carFormData.category}
-                        onChange={(e) => setCarFormData({...carFormData, category: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      >
-                        <option value="Премиум">Премиум</option>
-                        <option value="Спорткар">Спорткар</option>
-                        <option value="Внедорожник">Внедорожник</option>
-                        <option value="Кабриолет">Кабриолет</option>
-                        <option value="Электрокар">Электрокар</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Год</label>
-                      <input
-                        type="number"
-                        value={carFormData.year}
-                        onChange={(e) => setCarFormData({...carFormData, year: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                        placeholder="2024"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">КПП</label>
-                      <select
-                        value={carFormData.transmission}
-                        onChange={(e) => setCarFormData({...carFormData, transmission: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      >
-                        <option value="Автомат">Автомат</option>
-                        <option value="Ручная">Ручная</option>
-                        <option value="Робот">Робот</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Топливо</label>
-                      <select
-                        value={carFormData.fuel}
-                        onChange={(e) => setCarFormData({...carFormData, fuel: e.target.value})}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      >
-                        <option value="Бензин">Бензин</option>
-                        <option value="Дизель">Дизель</option>
-                        <option value="Электричество">Электричество</option>
-                        <option value="Гибрид">Гибрид</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Мест</label>
-                    <input
-                      type="number"
-                      value={carFormData.seats}
-                      onChange={(e) => setCarFormData({...carFormData, seats: e.target.value})}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      placeholder="5"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">URL изображения</label>
-                    <input
-                      type="url"
-                      value={carFormData.image}
-                      onChange={(e) => setCarFormData({...carFormData, image: e.target.value})}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      placeholder="https://example.com/image.jpg"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Описание</label>
-                    <textarea
-                      rows={4}
-                      value={carFormData.description}
-                      onChange={(e) => setCarFormData({...carFormData, description: e.target.value})}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none"
-                      placeholder="Описание автомобиля..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center"
-                  >
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Управление автомобилями</h2>
+                <div className="mb-6">
+                  <button className="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center">
                     <Plus className="w-5 h-5 mr-2" />
                     Добавить автомобиль
                   </button>
-                </form>
+                </div>
+                <div className="text-center py-12">
+                  <Car className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                  <p className="text-gray-500">Раздел в разработке...</p>
+                  <p className="text-gray-400 text-sm mt-2">Здесь будет список автомобилей с возможностью редактирования и удаления</p>
+                </div>
               </div>
             )}
 
             {activeSection === 'brands' && (
               <div className="bg-white rounded-xl p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Добавить бренд</h2>
-                <form onSubmit={handleBrandSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Название бренда</label>
-                    <input
-                      type="text"
-                      value={brandData.name}
-                      onChange={(e) => setBrandData({...brandData, name: e.target.value})}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      placeholder="Mercedes-Benz"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Логотип (PNG 500x500)</label>
-                    <input
-                      type="file"
-                      accept="image/png"
-                      onChange={handleLogoChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      required
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center"
-                  >
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Управление брендами</h2>
+                <div className="mb-6">
+                  <button className="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center">
                     <Plus className="w-5 h-5 mr-2" />
                     Добавить бренд
                   </button>
-                </form>
+                </div>
+                <div className="text-center py-12">
+                  <Image className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                  <p className="text-gray-500">Раздел в разработке...</p>
+                  <p className="text-gray-400 text-sm mt-2">Здесь будет список брендов с возможностью редактирования и удаления</p>
+                </div>
               </div>
             )}
 
-            {activeSection === 'content' && (
+            {activeSection === 'settings' && (
               <div className="bg-white rounded-xl p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Изменить контент сайта</h2>
-                <div className="text-center py-12">
-                  <Type className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-500">Раздел в разработке...</p>
-                  <p className="text-gray-400 text-sm mt-2">Здесь будет возможность изменять текст и фотографии сайта</p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Настройки сайта</h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Социальные сети</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">YouTube</label>
+                        <input
+                          type="url"
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                          placeholder="https://youtube.com/channel/..."
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Instagram</label>
+                        <input
+                          type="url"
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                          placeholder="https://instagram.com/..."
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Telegram</label>
+                        <input
+                          type="url"
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                          placeholder="https://t.me/..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Контакты</h3>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Телефон</label>
+                        <input
+                          type="tel"
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                          placeholder="+7 499 681 78 74"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                    Сохранить настройки
+                  </button>
                 </div>
               </div>
             )}
