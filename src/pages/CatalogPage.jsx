@@ -421,16 +421,17 @@ const CatalogPage = ({ cars, brands }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pl-5 pr-5">
             {filteredCars.map(car => (
-              <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <img src={car.images && car.images[0] ? car.images[0] : car.image} alt={car.name || car.model} className="w-full h-64 object-cover" />
+              <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative">
+                <img src={car.images && car.images[0] ? car.images[0] : car.image} alt={car.name || car.model} className="w-full h-68 object-cover" />
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{car.brand} {car.name || car.model}</h3>
-                  <p className="text-gray-600 mb-4">{car.year}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{car.brand}</h3>
+                  <p className="text-gray-700 mb-4">{car.name || car.model}</p>
                   <div className="flex justify-between items-center">
+                    <span className="text-gray-600">{car.year}</span>
                     <span className="text-2xl font-bold text-primary">{car.price}</span>
-                    <span className="text-sm text-gray-500">{car.availability || car.category}</span>
                   </div>
                 </div>
+                <img src="/images/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-8 h-8" />
               </div>
             ))}
           </div>
