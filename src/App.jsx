@@ -24,6 +24,14 @@ function AppContent() {
       .catch(err => console.error('Error fetching brands:', err))
   }, [])
 
+  // Fetch cars from API on mount
+  useEffect(() => {
+    fetch('http://localhost:3002/api/cars')
+      .then(res => res.json())
+      .then(data => setCars(data))
+      .catch(err => console.error('Error fetching cars:', err))
+  }, [])
+
   // Handle Ctrl+Shift+F hotkey for admin login
   useEffect(() => {
     const handleKeyDown = (e) => {

@@ -28,27 +28,42 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
   const handleCarSubmit = (e) => {
     e.preventDefault()
-    onAddCar({
+    const carData = {
       ...carFormData,
-      id: Date.now(),
       price: carFormData.price + ' ₽'
+    }
+    
+    fetch('http://localhost:3002/api/cars', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(carData)
     })
-    setCarFormData({
-      brand: '',
-      name: '',
-      price: '',
-      power: '',
-      engineVolume: '',
-      engineType: 'Бензин',
-      availability: 'В наличии',
-      bodyColor: '',
-      country: '',
-      interiorColor: '',
-      year: '',
-      description: '',
-      images: []
-    })
-    alert('Автомобиль добавлен!')
+      .then(res => res.json())
+      .then(data => {
+        onAddCar(data)
+        setCarFormData({
+          brand: '',
+          name: '',
+          price: '',
+          power: '',
+          engineVolume: '',
+          engineType: 'Бензин',
+          availability: 'В наличии',
+          bodyColor: '',
+          country: '',
+          interiorColor: '',
+          year: '',
+          description: '',
+          images: []
+        })
+        alert('Автомобиль добавлен!')
+      })
+      .catch(err => {
+        console.error('Error adding car:', err)
+        alert('Ошибка при добавлении автомобиля')
+      })
   }
 
   const handleImageChange = (e) => {
