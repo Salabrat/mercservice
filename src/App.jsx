@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import AdminLoginModal from './components/AdminLoginModal'
 import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
 import CarDetailPage from './pages/CarDetailPage'
 import AdminPage from './pages/AdminPage'
 import BrandPage from './pages/BrandPage'
 
-function App() {
+function AppContent() {
   const [cars, setCars] = useState([])
   const [brands, setBrands] = useState([])
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const { user } = useAuth()
 
   // Fetch brands from API on mount
   useEffect(() => {
@@ -20,6 +23,22 @@ function App() {
       .then(data => setBrands(data))
       .catch(err => console.error('Error fetching brands:', err))
   }, [])
+
+  // Handle Ctrl+Shift+F hotkey for admin login
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'F') {
+        e.preventDefault()
+        if (user?.role === 'admin') {
+          window.location.href = '/admin'
+        } else {
+          setIsLoginModalOpen(true)
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [user])
 
   const handleAddCar = (newCar) => {
     setCars([...cars, newCar])
@@ -41,7 +60,7 @@ function App() {
   }
 
   return (
-    <AuthProvider>
+    <>
       <Router>
         <div className="min-h-screen">
           <Header />
@@ -55,6 +74,15 @@ function App() {
           <Footer />
         </div>
       </Router>
+      <AdminLoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
     </AuthProvider>
   )
 }
