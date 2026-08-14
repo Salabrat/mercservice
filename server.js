@@ -10,7 +10,7 @@ const CARS_FILE = path.join(__dirname, 'data', 'cars.json');
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '100mb' }));
 
 // Ensure data directory exists
 const dataDir = path.join(__dirname, 'data');
