@@ -18,6 +18,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     country: '',
     interiorColor: '',
     year: '',
+    description: '',
     images: []
   })
   const [brandData, setBrandData] = useState({
@@ -44,6 +45,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
       country: '',
       interiorColor: '',
       year: '',
+      description: '',
       images: []
     })
     alert('Автомобиль добавлен!')
@@ -317,6 +319,17 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
                       placeholder="2024"
                       required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Краткое описание</label>
+                    <textarea
+                      rows={3}
+                      value={carFormData.description}
+                      onChange={(e) => setCarFormData({...carFormData, description: e.target.value})}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none resize-none"
+                      placeholder="Краткое описание автомобиля..."
                     />
                   </div>
 
