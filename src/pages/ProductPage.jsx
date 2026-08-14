@@ -293,7 +293,7 @@ export default function ProductPage() {
       <div className="max-w-[1510px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
-          <div>
+          <div style={{ marginTop: '260px' }}>
             <div className="bg-white rounded-xl overflow-hidden mb-4">
               <img
                 src={images[currentImageIndex]}
@@ -324,7 +324,7 @@ export default function ProductPage() {
           </div>
 
           {/* Product Info */}
-          <div className="bg-white rounded-xl p-6">
+          <div className="p-6">
             <h1
               className="font-bold text-gray-900 mb-2"
               style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)', lineHeight: '1.2' }}
