@@ -431,7 +431,7 @@ const BrandPage = ({ cars, brands }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pl-5 pr-5">
             {filteredCars.map(car => (
               <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <img src={car.images && car.images[0] ? car.images[0] : car.image} alt={car.name || car.model} className="w-full h-48 object-cover" />
+                <img src={car.images && car.images[0] ? car.images[0] : car.image} alt={car.name || car.model} className="w-full h-64 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{car.brand} {car.name || car.model}</h3>
                   <p className="text-gray-600 mb-4">{car.year}</p>
