@@ -446,7 +446,7 @@ const BrandPage = ({ cars, brands }) => {
                     </div>
                   </div>
                 </div>
-                <img src="/images/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-10 h-10 object-contain" />
+                <img src="/logo/strelka_clickauto.png" alt="Arrow" className="absolute bottom-4 right-4 w-10 h-10 object-contain" />
               </div>
             ))}
           </div>
