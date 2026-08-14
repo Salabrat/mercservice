@@ -33,6 +33,13 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
       price: carFormData.price + ' ₽'
     }
     
+    console.log('Sending car data to server:', {
+      brand: carData.brand,
+      name: carData.name,
+      price: carData.price,
+      imagesCount: carData.images ? carData.images.length : 0
+    })
+    
     fetch('http://localhost:3002/api/cars', {
       method: 'POST',
       headers: {
@@ -40,8 +47,16 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
       },
       body: JSON.stringify(carData)
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(err => {
+            throw new Error(err.error || err.details || 'Server error')
+          })
+        }
+        return res.json()
+      })
       .then(data => {
+        console.log('Server response:', data)
         onAddCar(data)
         setCarFormData({
           brand: '',
@@ -62,7 +77,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
       })
       .catch(err => {
         console.error('Error adding car:', err)
-        alert('Ошибка при добавлении автомобиля')
+        alert('Ошибка при добавлении автомобиля: ' + err.message)
       })
   }
 

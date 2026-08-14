@@ -113,23 +113,36 @@ app.get('/api/cars', (req, res) => {
 
 // Add a car
 app.post('/api/cars', (req, res) => {
-  const carData = req.body;
-  
-  if (!carData.brand || !carData.name || !carData.price) {
-    return res.status(400).json({ error: 'Brand, name and price are required' });
+  try {
+    const carData = req.body;
+    
+    console.log('Received car data:', {
+      brand: carData.brand,
+      name: carData.name,
+      price: carData.price,
+      imagesCount: carData.images ? carData.images.length : 0
+    });
+    
+    if (!carData.brand || !carData.name || !carData.price) {
+      return res.status(400).json({ error: 'Brand, name and price are required' });
+    }
+
+    const cars = readCars();
+    const newCar = {
+      id: Date.now(),
+      ...carData,
+      createdAt: new Date().toISOString()
+    };
+
+    cars.push(newCar);
+    writeCars(cars);
+
+    console.log('Car added successfully:', newCar.id);
+    res.json(newCar);
+  } catch (error) {
+    console.error('Error adding car:', error);
+    res.status(500).json({ error: 'Failed to add car', details: error.message });
   }
-
-  const cars = readCars();
-  const newCar = {
-    id: Date.now(),
-    ...carData,
-    createdAt: new Date().toISOString()
-  };
-
-  cars.push(newCar);
-  writeCars(cars);
-
-  res.json(newCar);
 });
 
 // Delete a car
