@@ -465,7 +465,7 @@ const BrandPage = ({ cars, brands }) => {
                         {car.year}
                       </span>
                     </div>
-                    <div className="text-left mr-20">
+                    <div className="text-left" style={{ marginRight: '70px' }}>
                       <p 
                         className="text-gray-400 mb-1"
                         style={{ fontSize: 'clamp(0.75rem, 2vw, 1rem)' }}
