@@ -421,7 +421,7 @@ const CatalogPage = ({ cars, brands }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pl-5 pr-5">
             {filteredCars.map(car => (
-              <div key={car.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative">
+              <Link key={car.id} to={`/product/${car.id}`} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative flex flex-col text-decoration-none color-inherit">
                 <img 
                   src={car.images && car.images[0] ? car.images[0] : car.image} 
                   alt={car.name || car.model} 
@@ -478,7 +478,7 @@ const CatalogPage = ({ cars, brands }) => {
                   className="absolute bottom-4 right-4 object-contain"
                   style={{ width: 'clamp(1.375rem, 5vw, 1.875rem)', height: 'clamp(1.375rem, 5vw, 1.875rem)' }}
                 />
-              </div>
+              </Link>
             ))}
           </div>
         )}

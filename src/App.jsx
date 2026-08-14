@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import AdminLoginModal from './components/AdminLoginModal'
 import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
-import CarDetailPage from './pages/CarDetailPage'
+import ProductPage from './pages/ProductPage'
 import AdminPage from './pages/AdminPage'
 import BrandPage from './pages/BrandPage'
 
@@ -76,7 +76,7 @@ function AppContent() {
             <Route path="/" element={<HomePage brands={brands} />} />
             <Route path="/catalog" element={<CatalogPage cars={cars} brands={brands} onAddCar={handleAddCar} />} />
             <Route path="/catalog/:brand" element={<BrandPage cars={cars} brands={brands} />} />
-            <Route path="/car/:id" element={<CarDetailPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/admin" element={<AdminPage onAddCar={handleAddCar} onAddBrand={handleAddBrand} />} />
           </Routes>
           <Footer />
