@@ -297,10 +297,13 @@ export default function ProductPage() {
             {/* Title with brand logo */}
             <div className="flex items-center" style={{ marginLeft: '15px', marginBottom: '30px' }}>
               <img
-                src={car.brandLogo || `/images/${car.brand.toLowerCase()}.png`}
+                src={car.brandLogo || `/logo/${car.brand.toLowerCase().substring(0, 4)}.png`}
                 alt={car.brand}
                 className="object-contain"
                 style={{ width: '47px', height: '47px', marginRight: '10px' }}
+                onError={(e) => {
+                  e.target.style.display = 'none'
+                }}
               />
               <h1
                 className="font-bold text-gray-900"
