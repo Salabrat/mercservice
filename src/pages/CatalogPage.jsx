@@ -476,7 +476,7 @@ const CatalogPage = ({ cars, brands }) => {
                   src="/logo/strelka_clickauto.png" 
                   alt="Arrow" 
                   className="absolute bottom-4 right-4 object-contain"
-                  style={{ width: 'clamp(2rem, 5vw, 2.5rem)', height: 'clamp(2rem, 5vw, 2.5rem)' }}
+                  style={{ width: 'clamp(1.375rem, 5vw, 1.875rem)', height: 'clamp(1.375rem, 5vw, 1.875rem)' }}
                 />
               </div>
             ))}
