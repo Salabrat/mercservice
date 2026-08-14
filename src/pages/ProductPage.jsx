@@ -300,7 +300,7 @@ export default function ProductPage() {
                 src={car.brandLogo || `/logo/${car.brand.toLowerCase().substring(0, 4)}.png`}
                 alt={car.brand}
                 className="object-contain"
-                style={{ width: '47px', height: '47px', marginRight: '10px' }}
+                style={{ width: '94px', height: '94px', marginRight: '10px' }}
                 onError={(e) => {
                   e.target.style.display = 'none'
                 }}
