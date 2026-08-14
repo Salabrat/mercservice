@@ -450,10 +450,10 @@ const BrandPage = ({ cars, brands }) => {
                   >
                     {car.name || car.model}
                   </p>
-                  <div className="flex justify-between items-start">
+                  <div className="flex justify-between items-start" style={{ marginTop: '20px' }}>
                     <div>
                       <p 
-                        className="text-gray-400 mb-1"
+                        className="text-gray-400 mb-0.5"
                         style={{ fontSize: 'clamp(0.75rem, 2vw, 1rem)' }}
                       >
                         Год выпуска
@@ -467,7 +467,7 @@ const BrandPage = ({ cars, brands }) => {
                     </div>
                     <div className="text-left" style={{ marginRight: '70px' }}>
                       <p 
-                        className="text-gray-400 mb-1"
+                        className="text-gray-400 mb-0.5"
                         style={{ fontSize: 'clamp(0.75rem, 2vw, 1rem)' }}
                       >
                         Цена
