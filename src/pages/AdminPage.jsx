@@ -8,15 +8,17 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
   const [activeSection, setActiveSection] = useState('appearance')
   const [carFormData, setCarFormData] = useState({
     brand: '',
-    model: '',
+    name: '',
     price: '',
-    category: 'Премиум',
-    image: '',
-    description: '',
+    power: '',
+    engineVolume: '',
+    engineType: 'Бензин',
+    availability: 'В наличии',
+    bodyColor: '',
+    country: '',
+    interiorColor: '',
     year: '',
-    transmission: 'Автомат',
-    fuel: 'Бензин',
-    seats: ''
+    images: []
   })
   const [brandData, setBrandData] = useState({
     name: '',
@@ -32,17 +34,33 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     })
     setCarFormData({
       brand: '',
-      model: '',
+      name: '',
       price: '',
-      category: 'Премиум',
-      image: '',
-      description: '',
+      power: '',
+      engineVolume: '',
+      engineType: 'Бензин',
+      availability: 'В наличии',
+      bodyColor: '',
+      country: '',
+      interiorColor: '',
       year: '',
-      transmission: 'Автомат',
-      fuel: 'Бензин',
-      seats: ''
+      images: []
     })
     alert('Автомобиль добавлен!')
+  }
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files)
+    const imagePromises = files.map(file => {
+      return new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.onload = (event) => resolve(event.target.result)
+        reader.readAsDataURL(file)
+      })
+    })
+    Promise.all(imagePromises).then(images => {
+      setCarFormData({ ...carFormData, images })
+    })
   }
 
   const handleBrandSubmit = (e) => {
@@ -149,18 +167,184 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
             {activeSection === 'cars' && (
               <div className="bg-white rounded-xl p-8 shadow-sm">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Управление автомобилями</h2>
-                <div className="mb-6">
-                  <button className="bg-black text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Добавить автомобиль</h2>
+                <form onSubmit={handleCarSubmit} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Марка</label>
+                      <select
+                        value={carFormData.brand}
+                        onChange={(e) => setCarFormData({...carFormData, brand: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        required
+                      >
+                        <option value="">Выберите марку</option>
+                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Audi">Audi</option>
+                        <option value="Porsche">Porsche</option>
+                        <option value="Bentley">Bentley</option>
+                        <option value="Lamborghini">Lamborghini</option>
+                        <option value="Ferrari">Ferrari</option>
+                        <option value="Rolls-Royce">Rolls-Royce</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Название авто</label>
+                      <input
+                        type="text"
+                        value={carFormData.name}
+                        onChange={(e) => setCarFormData({...carFormData, name: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="S-Class"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Цена (₽/день)</label>
+                      <input
+                        type="number"
+                        value={carFormData.price}
+                        onChange={(e) => setCarFormData({...carFormData, price: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="15000"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Мощность (л.с.)</label>
+                      <input
+                        type="number"
+                        value={carFormData.power}
+                        onChange={(e) => setCarFormData({...carFormData, power: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="435"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Объем двигателя (л)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={carFormData.engineVolume}
+                        onChange={(e) => setCarFormData({...carFormData, engineVolume: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="3.0"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Тип двигателя</label>
+                      <select
+                        value={carFormData.engineType}
+                        onChange={(e) => setCarFormData({...carFormData, engineType: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        required
+                      >
+                        <option value="Бензин">Бензин</option>
+                        <option value="Дизель">Дизель</option>
+                        <option value="Гибрид">Гибрид</option>
+                        <option value="Электричество">Электричество</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Наличие</label>
+                      <select
+                        value={carFormData.availability}
+                        onChange={(e) => setCarFormData({...carFormData, availability: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        required
+                      >
+                        <option value="В наличии">В наличии</option>
+                        <option value="Под заказ">Под заказ</option>
+                        <option value="Ожидается">Ожидается</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Цвет кузова</label>
+                      <input
+                        type="text"
+                        value={carFormData.bodyColor}
+                        onChange={(e) => setCarFormData({...carFormData, bodyColor: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="Черный"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Страна производства</label>
+                      <input
+                        type="text"
+                        value={carFormData.country}
+                        onChange={(e) => setCarFormData({...carFormData, country: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="Германия"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Цвет салона</label>
+                      <input
+                        type="text"
+                        value={carFormData.interiorColor}
+                        onChange={(e) => setCarFormData({...carFormData, interiorColor: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="Черный"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Год выпуска</label>
+                    <input
+                      type="number"
+                      value={carFormData.year}
+                      onChange={(e) => setCarFormData({...carFormData, year: e.target.value})}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                      placeholder="2024"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Фотографии</label>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                      required
+                    />
+                    {carFormData.images.length > 0 && (
+                      <div className="mt-2 text-sm text-gray-600">
+                        Загружено {carFormData.images.length} изображений
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
+                  >
                     <Plus className="w-5 h-5 mr-2" />
                     Добавить автомобиль
                   </button>
-                </div>
-                <div className="text-center py-12">
-                  <Car className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-500">Раздел в разработке...</p>
-                  <p className="text-gray-400 text-sm mt-2">Здесь будет список автомобилей с возможностью редактирования и удаления</p>
-                </div>
+                </form>
               </div>
             )}
 
