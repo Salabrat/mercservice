@@ -435,7 +435,12 @@ const CatalogPage = ({ cars, brands }) => {
                   >
                     {car.brand}
                   </h3>
-                  <p className="text-gray-700 mb-4">{car.name || car.model}</p>
+                  <p 
+                    className="text-gray-700 mb-4"
+                    style={{ fontSize: 'clamp(1.25rem, 4vw, 2.25rem)' }}
+                  >
+                    {car.name || car.model}
+                  </p>
                   <div className="flex justify-between items-start">
                     <div>
                       <p 
