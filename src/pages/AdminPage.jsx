@@ -30,7 +30,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     onAddCar({
       ...carFormData,
       id: Date.now(),
-      price: carFormData.price + ' ₽/день'
+      price: carFormData.price + ' ₽'
     })
     setCarFormData({
       brand: '',
@@ -204,7 +204,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Цена (₽/день)</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Цена (₽)</label>
                       <input
                         type="number"
                         value={carFormData.price}
