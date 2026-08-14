@@ -426,7 +426,7 @@ const CatalogPage = ({ cars, brands }) => {
                   src={car.images && car.images[0] ? car.images[0] : car.image} 
                   alt={car.name || car.model} 
                   className="w-full object-cover"
-                  style={{ height: 'clamp(215px, 15vw, 287px)' }}
+                  style={{ height: 'clamp(230px, 15vw, 302px)' }}
                 />
                 <div className="p-6">
                   <h3 
