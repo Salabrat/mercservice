@@ -294,6 +294,22 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
           <div style={{ marginTop: '260px' }}>
+            {/* Title with brand logo */}
+            <div className="flex items-center" style={{ marginLeft: '15px', marginBottom: '30px' }}>
+              <img
+                src={car.brandLogo || `/images/${car.brand.toLowerCase()}.png`}
+                alt={car.brand}
+                className="object-contain"
+                style={{ width: '47px', height: '47px', marginRight: '10px' }}
+              />
+              <h1
+                className="font-bold text-gray-900"
+                style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)', lineHeight: '1.2' }}
+              >
+                {car.brand} {car.name || car.model}
+              </h1>
+            </div>
+
             <div className="bg-white rounded-xl overflow-hidden mb-4">
               <img
                 src={images[currentImageIndex]}
@@ -325,12 +341,6 @@ export default function ProductPage() {
 
           {/* Product Info */}
           <div className="p-6">
-            <h1
-              className="font-bold text-gray-900 mb-2"
-              style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)', lineHeight: '1.2' }}
-            >
-              {car.brand} {car.name || car.model}
-            </h1>
             
             <p
               className="text-2xl font-bold text-gray-900 mb-6"
