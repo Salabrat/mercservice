@@ -65,7 +65,7 @@ export default function ProductPage() {
   return (
     <div className="min-h-screen bg-custom-gray">
       {/* Static Header */}
-      <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
+      <header className="bg-custom-gray backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
         <div className="max-w-[1510px] mx-auto px-4 py-4 flex items-center justify-between">
           {/* Burger Menu */}
           <button
