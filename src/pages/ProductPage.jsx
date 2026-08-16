@@ -374,7 +374,7 @@ export default function ProductPage() {
       )}
 
       {/* Product Content */}
-      <div className="max-w-[1510px] mx-auto px-4 py-8">
+      <div className="max-w-[1480px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
           <div style={{ marginTop: '260px' }}>
