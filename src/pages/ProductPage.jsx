@@ -427,8 +427,8 @@ export default function ProductPage() {
               />
             </div>
             {images.length > 1 && (
-              <div className="flex items-center justify-between gap-2" style={{ marginLeft: '-15px' }}>
-                <div className="grid grid-cols-4 gap-2">
+              <div className="flex items-center justify-between gap-4" style={{ marginLeft: '-15px' }}>
+                <div className="grid grid-cols-4 gap-4">
                   {images.map((image, index) => (
                     <button
                       key={index}
@@ -440,23 +440,23 @@ export default function ProductPage() {
                       <img
                         src={image}
                         alt={`${car.name} ${index + 1}`}
-                        className="w-full h-12 object-cover"
+                        className="w-full h-24 object-cover"
                       />
                     </button>
                   ))}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-4">
                   <button
                     onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
                     className="hover:bg-gray-100 transition-colors flex items-center justify-center"
                   >
-                    <img src="/logo/vlevo.png" alt="Previous" className="w-12 h-12 object-contain" />
+                    <img src="/logo/vlevo.png" alt="Previous" className="w-24 h-24 object-contain" />
                   </button>
                   <button
                     onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
                     className="hover:bg-gray-100 transition-colors flex items-center justify-center"
                   >
-                    <img src="/logo/vpravo.png" alt="Next" className="w-12 h-12 object-contain" />
+                    <img src="/logo/vpravo.png" alt="Next" className="w-24 h-24 object-contain" />
                   </button>
                 </div>
               </div>
