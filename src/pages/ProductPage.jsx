@@ -411,7 +411,7 @@ export default function ProductPage() {
               />
               <h1
                 className="font-bold text-gray-900"
-                style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)', lineHeight: '1.2' }}
+                style={{ fontSize: '27px', lineHeight: '1.2' }}
               >
                 {car.brand} {car.name || car.model}
               </h1>
@@ -468,7 +468,7 @@ export default function ProductPage() {
             <p className="text-gray-400 text-sm mb-2">Цена</p>
             <p
               className="text-2xl font-bold text-gray-900 mb-6"
-              style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}
+              style={{ fontSize: '27px' }}
             >
               {car.price}
             </p>
@@ -486,7 +486,7 @@ export default function ProductPage() {
                   <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                     Мощность
                   </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}>
+                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
                     {car.power}
                   </span>
                 </div>
@@ -494,7 +494,7 @@ export default function ProductPage() {
                   <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                     Объем, л.
                   </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}>
+                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
                     {car.engineVolume}
                   </span>
                 </div>
@@ -502,7 +502,7 @@ export default function ProductPage() {
                   <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                     Тип двигателя
                   </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}>
+                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
                     {car.engineType}
                   </span>
                 </div>
