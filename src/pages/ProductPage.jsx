@@ -547,7 +547,7 @@ export default function ProductPage() {
 
             {/* Booking Button */}
             <button
-              className="flex items-center gap-2 bg-black text-white px-3 py-1 rounded font-medium hover:bg-red-600 transition-colors duration-300 mt-[30px]"
+              className="flex items-center gap-2 bg-black text-white px-3 py-1 rounded font-medium hover:bg-red-600 transition-colors duration-300 mt-[20px]"
               style={{ fontSize: '15px', width: 'fit-content' }}
             >
               Забронировать
