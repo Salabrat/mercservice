@@ -427,7 +427,7 @@ export default function ProductPage() {
               />
             </div>
             {images.length > 1 && (
-              <div className="flex items-center gap-2" style={{ marginLeft: '-15px' }}>
+              <div className="flex items-center justify-between gap-2" style={{ marginLeft: '-15px' }}>
                 <div className="grid grid-cols-4 gap-2">
                   {images.map((image, index) => (
                     <button
@@ -448,15 +448,19 @@ export default function ProductPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
-                    className="bg-white rounded-lg p-2 hover:bg-gray-100 transition-colors"
+                    className="bg-white rounded-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
                   >
-                    <img src="/images/vlevo.png" alt="Previous" className="w-6 h-6 object-contain" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                      <path d="m15 18-6-6 6-6"/>
+                    </svg>
                   </button>
                   <button
                     onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
-                    className="bg-white rounded-lg p-2 hover:bg-gray-100 transition-colors"
+                    className="bg-white rounded-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
                   >
-                    <img src="/images/vpravo.png" alt="Next" className="w-6 h-6 object-contain" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                      <path d="m9 18 6-6-6-6"/>
+                    </svg>
                   </button>
                 </div>
               </div>
