@@ -488,10 +488,7 @@ export default function ProductPage() {
                 <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}>
                   {car.power}
                 </span>
-              </div>
-
-              <div className="py-3">
-                <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                <span className="text-gray-400 block mt-2" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Объем, л.
                 </span>
                 <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}>
