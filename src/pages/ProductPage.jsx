@@ -507,42 +507,6 @@ export default function ProductPage() {
                   </span>
                 </div>
               </div>
-
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  Наличие
-                </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  {car.availability}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  Цвет кузова
-                </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  {car.bodyColor}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  Страна
-                </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  {car.country}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  Цвет салона
-                </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  {car.interiorColor}
-                </span>
-              </div>
             </div>
 
             {/* Booking Button */}
