@@ -376,6 +376,24 @@ export default function ProductPage() {
 
       {/* Product Content */}
       <div className="max-w-[1480px] mx-auto px-4 py-8">
+        {/* Breadcrumb Navigation */}
+        <div className="flex items-center gap-4 mb-8 pl-5">
+          <Link to="/catalog" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 mr-2">
+              <path d="m12 19-7-7 7-7"></path>
+              <path d="M19 12H5"></path>
+            </svg>
+            Назад
+          </Link>
+          <div className="flex items-center text-gray-600 text-sm">
+            <Link to="/catalog" className="text-gray-400 hover:text-gray-600 transition-colors">Каталог</Link>
+            <span className="mx-2 text-gray-400">/</span>
+            <Link to={`/catalog/${car.brand.toLowerCase()}`} className="text-gray-400 hover:text-gray-600 transition-colors">{car.brand}</Link>
+            <span className="mx-2 text-gray-400">/</span>
+            <span className="text-gray-900 font-medium">{car.name || car.model}</span>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
           <div style={{ marginTop: '110px' }}>
