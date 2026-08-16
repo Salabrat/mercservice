@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Header from '../components/Header'
 
 export default function ProductPage() {
@@ -8,6 +8,7 @@ export default function ProductPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(false)
+  const titleRef = useRef(null)
 
   useEffect(() => {
     // Scroll to top on mount
@@ -38,9 +39,8 @@ export default function ProductPage() {
   // Handle scroll to show/hide header
   useEffect(() => {
     const handleScroll = () => {
-      const productTitle = document.querySelector('[data-component-name="ProductPage"] .flex.items-center')
-      if (productTitle) {
-        const titleTop = productTitle.getBoundingClientRect().top
+      if (titleRef.current) {
+        const titleTop = titleRef.current.getBoundingClientRect().top
         setIsHeaderVisible(titleTop <= 80)
       }
     }
@@ -319,7 +319,7 @@ export default function ProductPage() {
           {/* Images */}
           <div style={{ marginTop: '260px' }}>
             {/* Title with brand logo */}
-            <div className="flex items-center" style={{ marginLeft: '15px', marginBottom: '30px' }}>
+            <div ref={titleRef} className="flex items-center" style={{ marginLeft: '15px', marginBottom: '30px' }}>
               <img
                 src={car.brandLogo || `/logo/${car.brand.toLowerCase().substring(0, 4)}.png`}
                 alt={car.brand}
