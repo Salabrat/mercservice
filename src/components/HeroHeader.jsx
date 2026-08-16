@@ -4,6 +4,7 @@ import { X, Phone, Youtube, Instagram, Send } from 'lucide-react'
 
 const HeroHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false)
 
   // Block scroll when menu is open
   useEffect(() => {
@@ -17,8 +18,21 @@ const HeroHeader = () => {
     }
   }, [isMenuOpen])
 
+  // Handle scroll to show/hide header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsHeaderVisible(window.scrollY > 100)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
+      {/* Static Header */}
       <header className="absolute top-0 left-0 right-0 z-30 px-6 py-4 bg-transparent">
         <div className="flex items-center justify-between">
           <button
@@ -66,6 +80,63 @@ const HeroHeader = () => {
           </button>
           <Link to="/" className="flex items-center">
             <img src="/images/MAINLOGO white.png" alt="MAINLOGO" className="h-12 object-contain" />
+          </Link>
+          <div className="w-12"></div>
+        </div>
+      </header>
+
+      {/* Slide-down Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 bg-custom-gray backdrop-blur-sm border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
+          isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 py-4">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 44 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="w-12 h-12">
+              <line
+                x1="4"
+                x2="23"
+                y1="6"
+                y2="6"
+                strokeWidth="2.5"
+                style={{
+                  transition: 'all 0.3s ease-in-out',
+                  transform: isMenuOpen ? 'translateY(6px) rotate(45deg)' : 'translateY(0) rotate(0deg)',
+                  transformOrigin: '4px 6px'
+                }}
+              />
+              <line
+                x1="4"
+                x2="35"
+                y1="12"
+                y2="12"
+                strokeWidth="1.8"
+                style={{
+                  transition: 'all 0.2s ease-in-out',
+                  transform: isMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
+                  transformOrigin: '4px 12px'
+                }}
+              />
+              <line
+                x1="4"
+                x2="23"
+                y1="18"
+                y2="18"
+                strokeWidth="2.5"
+                style={{
+                  transition: 'all 0.3s ease-in-out',
+                  transform: isMenuOpen ? 'translateY(-6px) rotate(-45deg)' : 'translateY(0) rotate(0deg)',
+                  transformOrigin: '4px 18px'
+                }}
+              />
+            </svg>
+          </button>
+          <Link to="/" className="flex items-center">
+            <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
           </Link>
           <div className="w-12"></div>
         </div>
