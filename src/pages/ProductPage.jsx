@@ -62,7 +62,7 @@ export default function ProductPage() {
   const images = car.images && car.images.length > 0 ? car.images : [car.image]
 
   return (
-    <div className="min-h-screen bg-custom-gray pt-20">
+    <div className="min-h-screen bg-custom-gray">
       {/* Fixed Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
