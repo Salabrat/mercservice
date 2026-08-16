@@ -41,7 +41,7 @@ export default function ProductPage() {
     const handleScroll = () => {
       if (titleRef.current) {
         const titleTop = titleRef.current.getBoundingClientRect().top
-        setIsHeaderVisible(titleTop <= 80)
+        setIsHeaderVisible(titleTop <= 180)
       }
     }
 
