@@ -9,6 +9,7 @@ export default function ProductPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(false)
   const titleRef = useRef(null)
+  const imageRef = useRef(null)
 
   useEffect(() => {
     // Scroll to top on mount
@@ -39,9 +40,9 @@ export default function ProductPage() {
   // Handle scroll to show/hide header
   useEffect(() => {
     const handleScroll = () => {
-      if (titleRef.current) {
-        const titleTop = titleRef.current.getBoundingClientRect().top
-        setIsHeaderVisible(titleTop <= 180)
+      if (imageRef.current) {
+        const imageTop = imageRef.current.getBoundingClientRect().top
+        setIsHeaderVisible(imageTop <= 80)
       }
     }
 
@@ -399,6 +400,7 @@ export default function ProductPage() {
 
             <div className="bg-white rounded-xl overflow-hidden mb-4">
               <img
+                ref={imageRef}
                 src={images[currentImageIndex]}
                 alt={car.name || car.model}
                 className="w-full object-cover"
