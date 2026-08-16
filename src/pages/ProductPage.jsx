@@ -481,30 +481,12 @@ export default function ProductPage() {
 
             {/* Specifications */}
             <div className="space-y-4 mb-6">
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  Год выпуска
-                </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  {car.year}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+              <div className="py-3">
+                <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Мощность
                 </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   {car.power}
-                </span>
-              </div>
-
-              <div className="flex justify-between py-3">
-                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  Объем двигателя
-                </span>
-                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                  {car.engineVolume}
                 </span>
               </div>
 
