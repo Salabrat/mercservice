@@ -448,13 +448,13 @@ export default function ProductPage() {
                 <div className="flex gap-4">
                   <button
                     onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
-                    className="hover:bg-gray-100 transition-colors flex items-center justify-center"
+                    className="flex items-center justify-center"
                   >
                     <img src="/logo/vlevo.png" alt="Previous" className="w-24 h-24 object-contain" />
                   </button>
                   <button
                     onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
-                    className="hover:bg-gray-100 transition-colors flex items-center justify-center"
+                    className="flex items-center justify-center"
                   >
                     <img src="/logo/vpravo.png" alt="Next" className="w-24 h-24 object-contain" />
                   </button>
