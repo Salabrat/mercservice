@@ -183,7 +183,7 @@ const BrandPage = ({ cars, brands }) => {
   return (
     <div className="min-h-screen bg-custom-gray">
       {/* Static Header */}
-      <header className="bg-custom-gray backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
+      <header className="bg-custom-gray backdrop-blur-sm shadow-sm">
         <div className="max-w-[1510px] mx-auto px-4 py-4 flex items-center justify-between">
           {/* Burger Menu */}
           <button
@@ -444,7 +444,7 @@ const BrandPage = ({ cars, brands }) => {
         </>
       )}
 
-      <div className="py-[50px]">
+      <div className="py-[30px]">
         <div className="flex items-center gap-4 mb-8 pl-5">
           <Link to="/catalog" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
             <ArrowLeft className="w-5 h-5 mr-2" />
