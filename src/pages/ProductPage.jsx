@@ -517,14 +517,6 @@ export default function ProductPage() {
               Забронировать
               <img src="/logo/strelka_clickauto.png" alt="arrow" className="object-contain" style={{ width: '15px', height: '30px', filter: 'brightness(0) invert(1)' }} />
             </button>
-
-            {/* Contact Button */}
-            <button
-              className="w-full bg-primary text-white py-4 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-              style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.25rem)' }}
-            >
-              Связаться с нами
-            </button>
           </div>
         </div>
       </div>
