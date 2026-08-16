@@ -64,7 +64,7 @@ export default function ProductPage() {
   return (
     <div className="min-h-screen bg-custom-gray">
       {/* Static Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
+      <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
         <div className="max-w-[1510px] mx-auto px-4 py-4 flex items-center justify-between">
           {/* Burger Menu */}
           <button
@@ -374,7 +374,7 @@ export default function ProductPage() {
       )}
 
       {/* Product Content */}
-      <div className="max-w-[1510px] mx-auto px-4 py-8" style={{ paddingTop: '100px' }}>
+      <div className="max-w-[1510px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
           <div style={{ marginTop: '260px' }}>
