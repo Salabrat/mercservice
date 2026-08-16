@@ -375,7 +375,7 @@ export default function ProductPage() {
       )}
 
       {/* Product Content */}
-      <div className="max-w-[1480px] mx-auto px-4 py-8">
+      <div>
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-4 mb-8 pl-5">
           <Link to="/catalog" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
@@ -394,7 +394,8 @@ export default function ProductPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="max-w-[1480px] mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
           <div style={{ marginTop: '110px' }}>
             {/* Title with brand logo */}
@@ -546,6 +547,7 @@ export default function ProductPage() {
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
