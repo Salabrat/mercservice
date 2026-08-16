@@ -427,22 +427,38 @@ export default function ProductPage() {
               />
             </div>
             {images.length > 1 && (
-              <div className="grid grid-cols-4 gap-2">
-                {images.map((image, index) => (
+              <div className="flex items-center gap-2" style={{ marginLeft: '-15px' }}>
+                <div className="grid grid-cols-4 gap-2">
+                  {images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`bg-white rounded-lg overflow-hidden transition-opacity ${
+                        index === currentImageIndex ? 'opacity-100 ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <img
+                        src={image}
+                        alt={`${car.name} ${index + 1}`}
+                        className="w-full h-12 object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <div className="flex gap-2">
                   <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`bg-white rounded-lg overflow-hidden transition-opacity ${
-                      index === currentImageIndex ? 'opacity-100 ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
-                    }`}
+                    onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
+                    className="bg-white rounded-lg p-2 hover:bg-gray-100 transition-colors"
                   >
-                    <img
-                      src={image}
-                      alt={`${car.name} ${index + 1}`}
-                      className="w-full h-20 object-cover"
-                    />
+                    <img src="/images/vlevo.png" alt="Previous" className="w-6 h-6 object-contain" />
                   </button>
-                ))}
+                  <button
+                    onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
+                    className="bg-white rounded-lg p-2 hover:bg-gray-100 transition-colors"
+                  >
+                    <img src="/images/vpravo.png" alt="Next" className="w-6 h-6 object-contain" />
+                  </button>
+                </div>
               </div>
             )}
           </div>
