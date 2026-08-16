@@ -63,7 +63,67 @@ export default function ProductPage() {
 
   return (
     <div className="min-h-screen bg-custom-gray">
-      {/* Fixed Header */}
+      {/* Static Header */}
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
+        <div className="max-w-[1510px] mx-auto px-4 py-4 flex items-center justify-between">
+          {/* Burger Menu */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 44 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="w-12 h-12">
+              <line
+                x1="4"
+                x2="23"
+                y1="6"
+                y2="6"
+                strokeWidth="2.5"
+                style={{
+                  transition: 'all 0.3s ease-in-out',
+                  transform: isMenuOpen ? 'translateY(6px) rotate(45deg)' : 'translateY(0) rotate(0deg)',
+                  transformOrigin: '4px 6px'
+                }}
+              />
+              <line
+                x1="4"
+                x2="35"
+                y1="12"
+                y2="12"
+                strokeWidth="1.8"
+                style={{
+                  transition: 'all 0.2s ease-in-out',
+                  transform: isMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
+                  transformOrigin: '4px 12px'
+                }}
+              />
+              <line
+                x1="4"
+                x2="23"
+                y1="18"
+                y2="18"
+                strokeWidth="2.5"
+                style={{
+                  transition: 'all 0.3s ease-in-out',
+                  transform: isMenuOpen ? 'translateY(-6px) rotate(-45deg)' : 'translateY(0) rotate(0deg)',
+                  transformOrigin: '4px 18px'
+                }}
+              />
+            </svg>
+          </button>
+
+          {/* Logo */}
+          <div className="flex-1 text-center">
+            <Link to="/" className="inline-block">
+              <img src="/images/MAINLOGO.png" alt="Main Logo" className="h-12 object-contain mx-auto" />
+            </Link>
+          </div>
+
+          {/* Spacer */}
+          <div className="w-12"></div>
+        </div>
+      </header>
+
+      {/* Slide-down Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
           isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
