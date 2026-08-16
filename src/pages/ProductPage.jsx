@@ -429,7 +429,7 @@ export default function ProductPage() {
           </div>
 
           {/* Product Info */}
-          <div className="p-6" style={{ marginTop: '286px', marginLeft: '5px' }}>
+          <div className="p-6" style={{ marginTop: '186px', marginLeft: '5px' }}>
             
             <p
               className="text-2xl font-bold text-gray-900 mb-6"
