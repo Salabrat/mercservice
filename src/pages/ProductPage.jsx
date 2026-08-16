@@ -481,7 +481,7 @@ export default function ProductPage() {
 
             {/* Specifications */}
             <div className="space-y-4 mb-6">
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Год выпуска
                 </span>
@@ -489,8 +489,8 @@ export default function ProductPage() {
                   {car.year}
                 </span>
               </div>
-              
-              <div className="flex justify-between py-3 border-b border-gray-100">
+
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Мощность
                 </span>
@@ -499,7 +499,7 @@ export default function ProductPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Объем двигателя
                 </span>
@@ -508,7 +508,7 @@ export default function ProductPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Тип двигателя
                 </span>
@@ -517,7 +517,7 @@ export default function ProductPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Наличие
                 </span>
@@ -526,7 +526,7 @@ export default function ProductPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Цвет кузова
                 </span>
@@ -535,7 +535,7 @@ export default function ProductPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Страна
                 </span>
@@ -544,7 +544,7 @@ export default function ProductPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between py-3 border-b border-gray-100">
+              <div className="flex justify-between py-3">
                 <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                   Цвет салона
                 </span>
