@@ -7,6 +7,7 @@ export default function ProductPage() {
   const [car, setCar] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false)
 
   useEffect(() => {
     // Scroll to top on mount
@@ -34,6 +35,22 @@ export default function ProductPage() {
     }
   }, [isMenuOpen])
 
+  // Handle scroll to show/hide header
+  useEffect(() => {
+    const handleScroll = () => {
+      const productTitle = document.querySelector('[data-component-name="ProductPage"] .flex.items-center')
+      if (productTitle) {
+        const titleTop = productTitle.getBoundingClientRect().top
+        setIsHeaderVisible(titleTop <= 80)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   if (!car) {
     return (
       <div className="min-h-screen bg-custom-gray flex items-center justify-center">
@@ -47,7 +64,11 @@ export default function ProductPage() {
   return (
     <div className="min-h-screen bg-custom-gray pt-20">
       {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
+          isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <div className="max-w-[1510px] mx-auto px-4 py-4 flex items-center justify-between">
           {/* Burger Menu */}
           <button
