@@ -548,10 +548,10 @@ export default function ProductPage() {
             {/* Booking Button */}
             <button
               className="flex items-center gap-2 bg-black text-white px-3 py-1 rounded font-medium hover:bg-red-600 transition-colors duration-300 mt-[30px]"
-              style={{ fontSize: '27px', width: 'fit-content' }}
+              style={{ fontSize: '15px', width: 'fit-content' }}
             >
               Забронировать
-              <img src="/logo/strelka_clickauto.png" alt="arrow" className="object-contain" style={{ width: '15px', height: '30px' }} />
+              <img src="/logo/strelka_clickauto.png" alt="arrow" className="object-contain" style={{ width: '15px', height: '30px', filter: 'brightness(0) invert(1)' }} />
             </button>
 
             {/* Contact Button */}
