@@ -397,7 +397,7 @@ export default function ProductPage() {
         <div className="max-w-[1480px] mx-auto px-4 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Images */}
-          <div style={{ marginTop: '110px' }}>
+          <div style={{ marginTop: '10px' }}>
             {/* Title with brand logo */}
             <div ref={titleRef} className="flex items-center" style={{ marginLeft: '15px', marginBottom: '30px' }}>
               <img
