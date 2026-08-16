@@ -399,7 +399,7 @@ export default function ProductPage() {
           {/* Images */}
           <div style={{ marginTop: '10px' }}>
             {/* Title with brand logo */}
-            <div ref={titleRef} className="flex items-center" style={{ marginLeft: '15px', marginBottom: '30px' }}>
+            <div ref={titleRef} className="flex items-center" style={{ marginLeft: '-15px', marginBottom: '30px' }}>
               <img
                 src={car.brandLogo || `/logo/${car.brand.toLowerCase().substring(0, 4)}.png`}
                 alt={car.brand}
