@@ -9,6 +9,7 @@ const PORT = 3002;
 const BRANDS_FILE = path.join(__dirname, 'data', 'brands.json');
 const CARS_FILE = path.join(__dirname, 'data', 'cars.json');
 const SITE_IMAGES_FILE = path.join(__dirname, 'data', 'site-images.json');
+const SITE_TEXT_FILE = path.join(__dirname, 'data', 'site-text.json');
 
 // Configure multer for image uploads
 const storage = multer.diskStorage({
@@ -65,6 +66,23 @@ if (!fs.existsSync(SITE_IMAGES_FILE)) {
     heroImage4: '/images/4.jpg'
   };
   fs.writeFileSync(SITE_IMAGES_FILE, JSON.stringify(defaultImages));
+}
+
+// Initialize site text file if it doesn't exist
+if (!fs.existsSync(SITE_TEXT_FILE)) {
+  const defaultText = {
+    heroTitle: 'Галерея современного',
+    heroSubtitle: 'автомобильного искусства',
+    collaborationTitle: 'Mercedes Service и «Времена года» объявляют о партнерстве',
+    collaborationSubtitle: 'Эксклюзивные условия для клиентов в рамках сотрудничества',
+    collaborationButton: 'Подробнее',
+    wideSelectionTitle: 'САМЫЙ ШИРОКИЙ И АКТУАЛЬНЫЙ ВЫБОР ЛУЧШИХ АВТОМОБИЛЕЙ В НАЛИЧИИ В РОССИИ ДЛЯ ПОПОЛНЕНИЯ ВАШЕЙ КОЛЛЕКЦИИ',
+    servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
+    findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
+    greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+    phoneNumber: '+7 931 105-07-08'
+  };
+  fs.writeFileSync(SITE_TEXT_FILE, JSON.stringify(defaultText));
 }
 
 // Helper functions to read/write brands
@@ -133,6 +151,37 @@ const writeSiteImages = (images) => {
     fs.writeFileSync(SITE_IMAGES_FILE, JSON.stringify(images, null, 2));
   } catch (error) {
     console.error('Error writing site images:', error);
+  }
+};
+
+// Helper functions to read/write site text
+const readSiteText = () => {
+  try {
+    const data = fs.readFileSync(SITE_TEXT_FILE, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading site text:', error);
+    const defaultText = {
+      heroTitle: 'Галерея современного',
+      heroSubtitle: 'автомобильного искусства',
+      collaborationTitle: 'Mercedes Service и «Времена года» объявляют о партнерстве',
+      collaborationSubtitle: 'Эксклюзивные условия для клиентов в рамках сотрудничества',
+      collaborationButton: 'Подробнее',
+      wideSelectionTitle: 'САМЫЙ ШИРОКИЙ И АКТУАЛЬНЫЙ ВЫБОР ЛУЧШИХ АВТОМОБИЛЕЙ В НАЛИЧИИ В РОССИИ ДЛЯ ПОПОЛНЕНИЯ ВАШЕЙ КОЛЛЕКЦИИ',
+      servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
+      findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
+      greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+      phoneNumber: '+7 931 105-07-08'
+    };
+    return defaultText;
+  }
+};
+
+const writeSiteText = (text) => {
+  try {
+    fs.writeFileSync(SITE_TEXT_FILE, JSON.stringify(text, null, 2));
+  } catch (error) {
+    console.error('Error writing site text:', error);
   }
 };
 
@@ -280,6 +329,32 @@ app.post('/api/site-images/upload', upload.single('image'), (req, res) => {
   } catch (error) {
     console.error('Error uploading image:', error);
     res.status(500).json({ error: 'Failed to upload image', details: error.message });
+  }
+});
+
+// Get site text
+app.get('/api/site-text', (req, res) => {
+  const text = readSiteText();
+  res.json(text);
+});
+
+// Update site text
+app.post('/api/site-text', (req, res) => {
+  try {
+    const textData = req.body;
+    
+    if (!textData) {
+      return res.status(400).json({ error: 'Text data is required' });
+    }
+
+    const currentText = readSiteText();
+    const updatedText = { ...currentText, ...textData };
+    writeSiteText(updatedText);
+
+    res.json(updatedText);
+  } catch (error) {
+    console.error('Error updating site text:', error);
+    res.status(500).json({ error: 'Failed to update site text', details: error.message });
   }
 });
 

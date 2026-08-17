@@ -1,0 +1,31 @@
+import { useState, useEffect } from 'react'
+
+const defaultTextContent = {
+  heroTitle: 'Галерея современного',
+  heroSubtitle: 'автомобильного искусства',
+  collaborationTitle: 'Mercedes Service и «Времена года» объявляют о партнерстве',
+  collaborationSubtitle: 'Эксклюзивные условия для клиентов в рамках сотрудничества',
+  collaborationButton: 'Подробнее',
+  wideSelectionTitle: 'САМЫЙ ШИРОКИЙ И АКТУАЛЬНЫЙ ВЫБОР ЛУЧШИХ АВТОМОБИЛЕЙ В НАЛИЧИИ В РОССИИ ДЛЯ ПОПОЛНЕНИЯ ВАШЕЙ КОЛЛЕКЦИИ',
+  servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
+  findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
+  greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+  phoneNumber: '+7 931 105-07-08'
+}
+
+export const useSiteText = () => {
+  const [textContent, setTextContent] = useState(defaultTextContent)
+
+  useEffect(() => {
+    fetch('http://localhost:3002/api/site-text')
+      .then(res => res.json())
+      .then(data => {
+        setTextContent(data)
+      })
+      .catch(err => {
+        console.error('Error loading text content:', err)
+      })
+  }, [])
+
+  return textContent
+}

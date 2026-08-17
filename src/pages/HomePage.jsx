@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Calendar, Phone } from 'lucide-react'
 import HeroHeader from '../components/HeroHeader'
 import { useImagePaths } from '../hooks/useImagePaths'
+import { useSiteText } from '../hooks/useSiteText'
 
 const HomePage = ({ brands }) => {
   const imagePaths = useImagePaths()
+  const textContent = useSiteText()
   const [currentImage, setCurrentImage] = useState(0)
   const [brandScroll, setBrandScroll] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -94,9 +96,9 @@ const HomePage = ({ brands }) => {
 
         <div className="relative z-10 text-left max-w-4xl">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 tracking-tight">
-            Галерея современного
+            {textContent.heroTitle}
             <br />
-            <span className="font-semibold">автомобильного искусства</span>
+            <span className="font-semibold">{textContent.heroSubtitle}</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-200 mb-12 max-w-2xl">
@@ -142,18 +144,18 @@ const HomePage = ({ brands }) => {
                 <span className="text-sm text-white font-medium">Коллаборация · до 1 сентября</span>
               </div>
               <h1 className="text-2xl md:text-3xl font-semibold text-white mb-2">
-                Mercedes Service и «Времена года» объявляют о партнерстве
+                {textContent.collaborationTitle}
               </h1>
               <p className="text-gray-200 mb-4 max-w-xl">
-                Эксклюзивные условия для клиентов в рамках сотрудничества
+                {textContent.collaborationSubtitle}
               </p>
-              <Link 
-                to="/catalog"
+              <a 
+                href="/catalog"
                 className="inline-flex items-center bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap"
               >
-                Подробнее
+                {textContent.collaborationButton}
                 <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -168,7 +170,7 @@ const HomePage = ({ brands }) => {
           </div>
           <div className="flex-1 text-right">
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
-              САМЫЙ ШИРОКИЙ И АКТУАЛЬНЫЙ ВЫБОР ЛУЧШИХ АВТОМОБИЛЕЙ В НАЛИЧИИ В РОССИИ ДЛЯ ПОПОЛНЕНИЯ ВАШЕЙ КОЛЛЕКЦИИ
+              {textContent.wideSelectionTitle}
             </h2>
             <Link to="/catalog" className="inline-flex items-center bg-black text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-6">
               Галерея автомобилей
@@ -228,7 +230,7 @@ const HomePage = ({ brands }) => {
       <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-custom-gray gap-5">
         <div className="md:w-1/2 flex flex-col justify-center pl-5">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-relaxed">
-            ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ
+            {textContent.servicesTitle}
           </h2>
           <Link
             to="/services"
@@ -267,7 +269,7 @@ const HomePage = ({ brands }) => {
           </div>
           <div className="md:w-1/2 flex flex-col justify-center text-right pr-5">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 mb-8 leading-relaxed">
-              НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ
+              {textContent.findAnyTitle}
             </h2>
             <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg w-fit ml-auto">
               Предзаказ
@@ -290,11 +292,7 @@ const HomePage = ({ brands }) => {
           <div className="absolute inset-0 flex items-center justify-end p-10">
             <div className="max-w-md text-left">
               <h2 className="text-lg md:text-xl lg:text-2xl font-light text-white mb-6 leading-tight">
-                GREATS — это больше, чем продажа машин,
-                мы фанаты автомобилей и всего, что с ними
-                связано. Поможем не просто подобрать самое
-                лучшее на рынке, но и подарить вам новые
-                уникальные эмоции.
+                {textContent.greatsDescription}
               </h2>
               <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
                 GREATS blog
@@ -325,7 +323,7 @@ const HomePage = ({ brands }) => {
               className="inline-flex items-center border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors"
             >
               <Phone className="w-5 h-5 mr-2" />
-              +7 931 105-07-08
+              {textContent.phoneNumber}
             </a>
           </div>
         </div>

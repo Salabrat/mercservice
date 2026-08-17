@@ -18,6 +18,18 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     heroImage3: '/images/3.jpg',
     heroImage4: '/images/4.jpg'
   })
+  const [textContent, setTextContent] = useState({
+    heroTitle: 'Галерея современного',
+    heroSubtitle: 'автомобильного искусства',
+    collaborationTitle: 'Mercedes Service и «Времена года» объявляют о партнерстве',
+    collaborationSubtitle: 'Эксклюзивные условия для клиентов в рамках сотрудничества',
+    collaborationButton: 'Подробнее',
+    wideSelectionTitle: 'САМЫЙ ШИРОКИЙ И АКТУАЛЬНЫЙ ВЫБОР ЛУЧШИХ АВТОМОБИЛЕЙ В НАЛИЧИИ В РОССИИ ДЛЯ ПОПОЛНЕНИЯ ВАШЕЙ КОЛЛЕКЦИИ',
+    servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
+    findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
+    greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+    phoneNumber: '+7 931 105-07-08'
+  })
   const [carFormData, setCarFormData] = useState({
     brand: '',
     name: '',
@@ -47,6 +59,18 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
       })
       .catch(err => {
         console.error('Error loading image paths:', err)
+      })
+  }, [])
+
+  // Load text content from server on mount
+  useEffect(() => {
+    fetch('http://localhost:3002/api/site-text')
+      .then(res => res.json())
+      .then(data => {
+        setTextContent(data)
+      })
+      .catch(err => {
+        console.error('Error loading text content:', err)
       })
   }, [])
 
@@ -80,6 +104,24 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
         console.error('Error uploading image:', err)
         alert('Ошибка при загрузке изображения')
       }
+    }
+  }
+
+  const handleTextUpdate = async (key, value) => {
+    try {
+      const updatedText = { ...textContent, [key]: value }
+      const updateRes = await fetch('http://localhost:3002/api/site-text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ [key]: value })
+      })
+      const updateData = await updateRes.json()
+      setTextContent(updateData)
+    } catch (err) {
+      console.error('Error updating text:', err)
+      alert('Ошибка при обновлении текста')
     }
   }
 
@@ -476,6 +518,121 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                         className="hidden"
                       />
                     </label>
+                  </div>
+                </div>
+
+                {/* Text Content Editing */}
+                <div className="space-y-6 mt-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Редактирование текста</h3>
+                  
+                  {/* Hero Title */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Заголовок главной страницы (первая строка)</h4>
+                    <input
+                      type="text"
+                      value={textContent.heroTitle}
+                      onChange={(e) => handleTextUpdate('heroTitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
+                  </div>
+
+                  {/* Hero Subtitle */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Заголовок главной страницы (вторая строка)</h4>
+                    <input
+                      type="text"
+                      value={textContent.heroSubtitle}
+                      onChange={(e) => handleTextUpdate('heroSubtitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
+                  </div>
+
+                  {/* Collaboration Title */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Заголовок коллаборации</h4>
+                    <input
+                      type="text"
+                      value={textContent.collaborationTitle}
+                      onChange={(e) => handleTextUpdate('collaborationTitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
+                  </div>
+
+                  {/* Collaboration Subtitle */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Подзаголовок коллаборации</h4>
+                    <input
+                      type="text"
+                      value={textContent.collaborationSubtitle}
+                      onChange={(e) => handleTextUpdate('collaborationSubtitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
+                  </div>
+
+                  {/* Collaboration Button */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Текст кнопки коллаборации</h4>
+                    <input
+                      type="text"
+                      value={textContent.collaborationButton}
+                      onChange={(e) => handleTextUpdate('collaborationButton', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
+                  </div>
+
+                  {/* Wide Selection Title */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Заголовок «Широкий выбор»</h4>
+                    <textarea
+                      value={textContent.wideSelectionTitle}
+                      onChange={(e) => handleTextUpdate('wideSelectionTitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                      rows={2}
+                    />
+                  </div>
+
+                  {/* Services Title */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Заголовок «Услуги»</h4>
+                    <textarea
+                      value={textContent.servicesTitle}
+                      onChange={(e) => handleTextUpdate('servicesTitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                      rows={2}
+                    />
+                  </div>
+
+                  {/* Find Any Title */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Заголовок «Найдем любой автомобиль»</h4>
+                    <textarea
+                      value={textContent.findAnyTitle}
+                      onChange={(e) => handleTextUpdate('findAnyTitle', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                      rows={2}
+                    />
+                  </div>
+
+                  {/* GREATS Description */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Описание GREATS</h4>
+                    <textarea
+                      value={textContent.greatsDescription}
+                      onChange={(e) => handleTextUpdate('greatsDescription', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                      rows={3}
+                    />
+                  </div>
+
+                  {/* Phone Number */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Номер телефона</h4>
+                    <input
+                      type="text"
+                      value={textContent.phoneNumber}
+                      onChange={(e) => handleTextUpdate('phoneNumber', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
                   </div>
                 </div>
 
