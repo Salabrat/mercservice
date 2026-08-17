@@ -33,7 +33,7 @@ const HeroHeader = () => {
   return (
     <>
       {/* Static Header */}
-      <header className="absolute top-0 left-0 right-0 z-30 px-6 py-4 bg-transparent">
+      <header className="absolute top-0 left-0 right-0 z-30 px-6 py-4 bg-custom-gray/20 backdrop-blur-md">
         <div className="flex items-center justify-between">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -87,7 +87,7 @@ const HeroHeader = () => {
 
       {/* Slide-down Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-custom-gray backdrop-blur-sm border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-custom-gray/20 backdrop-blur-md border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
           isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
