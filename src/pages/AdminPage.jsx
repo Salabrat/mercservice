@@ -296,7 +296,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                     <img 
                       src={imagePaths.menuImage} 
                       alt="Menu Image" 
-                      className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                     />
                   </div>
                   <div className="flex items-center gap-4">
@@ -324,7 +324,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.homeImage1} 
                         alt="Home Image 1" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -346,7 +346,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.homeImage2} 
                         alt="Home Image 2" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -368,7 +368,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.homeImage3} 
                         alt="Home Image 3" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -390,7 +390,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.homeImage4} 
                         alt="Home Image 4" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -412,7 +412,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.homeImage5} 
                         alt="Home Image 5" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -439,7 +439,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.heroImage1} 
                         alt="Hero Image 1" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -461,7 +461,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.heroImage2} 
                         alt="Hero Image 2" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -483,7 +483,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.heroImage3} 
                         alt="Hero Image 3" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
@@ -505,7 +505,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       <img 
                         src={imagePaths.heroImage4} 
                         alt="Hero Image 4" 
-                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
                       />
                     </div>
                     <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
