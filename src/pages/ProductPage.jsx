@@ -519,7 +519,12 @@ export default function ProductPage() {
             </button>
 
             {/* Black Line */}
-            <div className="border-b border-black mt-[30px] mr-[20px]"></div>
+            <div className="border-b-2 border-black mt-[30px] mr-[20px]"></div>
+
+            {/* Характеристики */}
+            <p className="mt-[30px] text-gray-900 font-medium" style={{ fontSize: '15px' }}>
+              Характеристики
+            </p>
           </div>
         </div>
       </div>
