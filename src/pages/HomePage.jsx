@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Calendar, Phone } from 'lucide-react'
 import HeroHeader from '../components/HeroHeader'
+import { useImagePaths } from '../hooks/useImagePaths'
 
 const HomePage = ({ brands }) => {
+  const imagePaths = useImagePaths()
   const [currentImage, setCurrentImage] = useState(0)
   const [brandScroll, setBrandScroll] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -161,8 +163,8 @@ const HomePage = ({ brands }) => {
       <section className="bg-custom-gray" style={{ paddingTop: '30px', paddingBottom: '30px' }}>
         <div className="pl-5 pr-5 flex flex-col lg:flex-row items-center gap-8">
           <div className="flex-1 flex flex-col sm:flex-row gap-4">
-            <img src="/images/7.jpg" alt="Luxury car collection" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
-            <img src="/images/8.jpg" alt="Luxury car exterior" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
+            <img src={imagePaths.homeImage2} alt="Luxury car collection" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
+            <img src={imagePaths.homeImage1} alt="Luxury car exterior" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
           </div>
           <div className="flex-1 text-right">
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
@@ -237,7 +239,7 @@ const HomePage = ({ brands }) => {
         </div>
         <div className="md:w-1/2 py-[30px] pr-5">
           <img 
-            src="/images/9.jpg" 
+            src={imagePaths.homeImage3} 
             alt="Car dealership with luxury cars" 
             className="w-full h-full object-cover"
           />
@@ -250,7 +252,7 @@ const HomePage = ({ brands }) => {
       <section className="flex flex-col md:flex-row items-stretch py-[70px] bg-custom-gray">
         <div className="md:w-1/3 p-4 pl-5">
           <img 
-            src="/images/11.jpg" 
+            src={imagePaths.homeImage5} 
             alt="Ferrari car" 
             className="w-full h-auto object-cover rounded-lg"
           />
@@ -258,7 +260,7 @@ const HomePage = ({ brands }) => {
         <div className="md:w-2/3 flex flex-col md:flex-row items-stretch gap-5">
           <div className="md:w-1/2 p-4 pl-5">
             <img 
-              src="/images/10.jpg" 
+              src={imagePaths.homeImage4} 
               alt="Car wheel" 
               className="w-full max-h-[400px] object-cover rounded-lg"
             />

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ChevronDown, X, SlidersHorizontal, Youtube, Instagram, Send, Phone } from 'lucide-react'
+import { useImagePaths } from '../hooks/useImagePaths'
 
 const CatalogPage = ({ cars, brands }) => {
+  const imagePaths = useImagePaths()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(false)
   const [brandScroll, setBrandScroll] = useState(0)
@@ -422,7 +424,7 @@ const CatalogPage = ({ cars, brands }) => {
 
               {/* Right side - Image and SALIKS block */}
               <div className="hidden md:flex flex-col w-1/2 mr-5">
-                <img src="/images/13.jpg" alt="Menu Image" className="w-full h-auto object-contain mb-[30px]" />
+                <img src={imagePaths.menuImage} alt="Menu Image" className="w-full h-auto object-contain mb-[30px]" />
                 {/* SALIKS X BRABUS Block */}
                 <div className="flex flex-col items-start space-y-[30px] pl-5">
                   <span className="text-white text-lg font-medium">SALIKS X BRABUS</span>

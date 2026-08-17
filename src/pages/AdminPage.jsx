@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Plus, Image, Type, Car, Settings, Camera, Edit2, Trash2 } from 'lucide-react'
+import { ArrowLeft, Plus, Image, Type, Car, Settings, Camera, Edit2, Trash2, Upload } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const AdminPage = ({ onAddCar, onAddBrand }) => {
   const { user } = useAuth()
   const [activeSection, setActiveSection] = useState('appearance')
+  const [imagePaths, setImagePaths] = useState({
+    menuImage: '/images/13.jpg',
+    homeImage1: '/images/8.jpg',
+    homeImage2: '/images/7.jpg',
+    homeImage3: '/images/9.jpg',
+    homeImage4: '/images/10.jpg',
+    homeImage5: '/images/11.jpg'
+  })
   const [carFormData, setCarFormData] = useState({
     brand: '',
     name: '',
@@ -25,6 +33,29 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     name: '',
     logo: null
   })
+
+  // Load image paths from localStorage on mount
+  useEffect(() => {
+    const savedPaths = localStorage.getItem('siteImagePaths')
+    if (savedPaths) {
+      setImagePaths(JSON.parse(savedPaths))
+    }
+  }, [])
+
+  // Save image paths to localStorage when they change
+  useEffect(() => {
+    localStorage.setItem('siteImagePaths', JSON.stringify(imagePaths))
+  }, [imagePaths])
+
+  const handleImageUpload = (key, file) => {
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        setImagePaths({ ...imagePaths, [key]: event.target.result })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   const handleCarSubmit = (e) => {
     e.preventDefault()
@@ -189,10 +220,150 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
             {activeSection === 'appearance' && (
               <div className="bg-white rounded-xl p-8 shadow-sm">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Изменение внешнего вида сайта</h2>
-                <div className="text-center py-12">
-                  <Camera className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-500">Раздел в разработке...</p>
-                  <p className="text-gray-400 text-sm mt-2">Здесь будет возможность изменять фото и текст на сайте</p>
+                
+                {/* Menu Image */}
+                <div className="mb-8 p-6 border border-gray-200 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Фото в меню (13.jpg)</h3>
+                  <div className="mb-4">
+                    <img 
+                      src={imagePaths.menuImage} 
+                      alt="Menu Image" 
+                      className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                    />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('menuImage', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                {/* HomePage Images */}
+                <div className="space-y-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Фото на главной странице</h3>
+                  
+                  {/* Image 1 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото 1 (8.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.homeImage1} 
+                        alt="Home Image 1" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('homeImage1', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Image 2 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото 2 (7.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.homeImage2} 
+                        alt="Home Image 2" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('homeImage2', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Image 3 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото 3 (9.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.homeImage3} 
+                        alt="Home Image 3" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('homeImage3', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Image 4 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото 4 (10.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.homeImage4} 
+                        alt="Home Image 4" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('homeImage4', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Image 5 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото 5 (11.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.homeImage5} 
+                        alt="Home Image 5" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('homeImage5', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    <strong>Примечание:</strong> Изображения сохраняются локально в браузере. При очистке кэша браузера изображения сбросятся до значений по умолчанию.
+                  </p>
                 </div>
               </div>
             )}
