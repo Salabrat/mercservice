@@ -9,6 +9,8 @@ export default function ProductPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(false)
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const titleRef = useRef(null)
   const imageRef = useRef(null)
 
@@ -525,6 +527,7 @@ export default function ProductPage() {
 
             {/* Booking Button */}
             <button
+              onClick={() => setIsBookingModalOpen(true)}
               className="flex items-center gap-2 bg-black text-white px-3 py-1 rounded font-medium hover:bg-red-600 transition-colors duration-300 mt-[30px]"
               style={{ fontSize: '15px', width: 'fit-content' }}
             >
@@ -652,6 +655,75 @@ export default function ProductPage() {
           ))}
         </div>
       </div>
+
+      {/* Booking Modal */}
+      {isBookingModalOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setIsBookingModalOpen(false)} />
+          <div className="relative bg-white rounded-lg shadow-xl" style={{ width: '640px', height: '580px' }}>
+            <button
+              onClick={() => setIsBookingModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl"
+            >
+              ×
+            </button>
+            <div className="p-8 h-full flex flex-col">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ textAlign: 'left' }}>
+                Забронируйте автомобиль
+              </h2>
+              <p className="text-gray-600 mb-8" style={{ textAlign: 'left' }}>
+                введите контактные данные, и очень скоро мы с вами свяжемся
+              </p>
+              <form className="flex-1 flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); setIsBookingModalOpen(false); }}>
+                <div>
+                  <label className="block text-gray-700 mb-2" style={{ textAlign: 'left' }}>
+                    Имя
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    placeholder="Введите ваше имя"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 mb-2" style={{ textAlign: 'left' }}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    placeholder="Введите ваш email"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 mb-2" style={{ textAlign: 'left' }}>
+                    Телефон
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    placeholder="Введите ваш телефон"
+                  />
+                </div>
+                <div className="mt-auto">
+                  <button
+                    type="submit"
+                    className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-red-600 transition-colors"
+                  >
+                    Отправить заявку
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   )
