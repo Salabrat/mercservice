@@ -522,7 +522,7 @@ export default function ProductPage() {
             <div className="border-b-2 border-black mt-[30px] mr-[20px]"></div>
 
             {/* Характеристики */}
-            <p className="mt-[30px] text-gray-900 font-medium" style={{ fontSize: '15px' }}>
+            <p className="mt-[30px] text-gray-900 font-medium" style={{ fontSize: '27px' }}>
               Характеристики
             </p>
           </div>
