@@ -676,39 +676,30 @@ export default function ProductPage() {
               </p>
               <form className="flex-1 flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); setIsBookingModalOpen(false); }}>
                 <div>
-                  <label className="block text-gray-700 mb-2" style={{ textAlign: 'left' }}>
-                    Имя
-                  </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
-                    placeholder="Введите ваше имя"
+                    className="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black"
+                    placeholder="Имя"
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 mb-2" style={{ textAlign: 'left' }}>
-                    Email
-                  </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
-                    placeholder="Введите ваш email"
+                    className="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black"
+                    placeholder="Email"
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 mb-2" style={{ textAlign: 'left' }}>
-                    Телефон
-                  </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
-                    placeholder="Введите ваш телефон"
+                    className="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black"
+                    placeholder="Телефон"
                   />
                 </div>
                 <div className="mt-auto">
