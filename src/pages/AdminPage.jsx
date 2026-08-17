@@ -12,7 +12,11 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     homeImage2: '/images/7.jpg',
     homeImage3: '/images/9.jpg',
     homeImage4: '/images/10.jpg',
-    homeImage5: '/images/11.jpg'
+    homeImage5: '/images/11.jpg',
+    heroImage1: '/images/1.jpg',
+    heroImage2: '/images/2.jpg',
+    heroImage3: '/images/3.jpg',
+    heroImage4: '/images/4.jpg'
   })
   const [carFormData, setCarFormData] = useState({
     brand: '',
@@ -376,6 +380,99 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                         type="file"
                         accept="image/*"
                         onChange={(e) => handleImageUpload('homeImage5', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                {/* Hero Slider Images */}
+                <div className="space-y-6 mt-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Фото слайдера на главной странице</h3>
+                  
+                  {/* Hero Image 1 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото слайдера 1 (1.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.heroImage1} 
+                        alt="Hero Image 1" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('heroImage1', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Hero Image 2 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото слайдера 2 (2.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.heroImage2} 
+                        alt="Hero Image 2" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('heroImage2', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Hero Image 3 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото слайдера 3 (3.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.heroImage3} 
+                        alt="Hero Image 3" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('heroImage3', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* Hero Image 4 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото слайдера 4 (4.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.heroImage4} 
+                        alt="Hero Image 4" 
+                        className="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('heroImage4', e.target.files[0])}
                         className="hidden"
                       />
                     </label>

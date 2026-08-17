@@ -12,10 +12,10 @@ const HomePage = ({ brands }) => {
   const [canScrollRight, setCanScrollRight] = useState(true)
   
   const images = [
-    '/images/1.jpg',
-    '/images/2.jpg',
-    '/images/3.jpg',
-    '/images/4.jpg'
+    imagePaths.heroImage1,
+    imagePaths.heroImage2,
+    imagePaths.heroImage3,
+    imagePaths.heroImage4
   ]
 
   const nextImage = () => {
