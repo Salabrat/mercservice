@@ -13,14 +13,14 @@ export const useImagePaths = () => {
   const [imagePaths, setImagePaths] = useState(defaultImagePaths)
 
   useEffect(() => {
-    const savedPaths = localStorage.getItem('siteImagePaths')
-    if (savedPaths) {
-      try {
-        setImagePaths(JSON.parse(savedPaths))
-      } catch (e) {
-        console.error('Error parsing saved image paths:', e)
-      }
-    }
+    fetch('http://localhost:3002/api/site-images')
+      .then(res => res.json())
+      .then(data => {
+        setImagePaths(data)
+      })
+      .catch(err => {
+        console.error('Error loading image paths:', err)
+      })
   }, [])
 
   return imagePaths

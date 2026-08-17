@@ -34,26 +34,48 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     logo: null
   })
 
-  // Load image paths from localStorage on mount
+  // Load image paths from server on mount
   useEffect(() => {
-    const savedPaths = localStorage.getItem('siteImagePaths')
-    if (savedPaths) {
-      setImagePaths(JSON.parse(savedPaths))
-    }
+    fetch('http://localhost:3002/api/site-images')
+      .then(res => res.json())
+      .then(data => {
+        setImagePaths(data)
+      })
+      .catch(err => {
+        console.error('Error loading image paths:', err)
+      })
   }, [])
 
-  // Save image paths to localStorage when they change
-  useEffect(() => {
-    localStorage.setItem('siteImagePaths', JSON.stringify(imagePaths))
-  }, [imagePaths])
-
-  const handleImageUpload = (key, file) => {
+  const handleImageUpload = async (key, file) => {
     if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader()
-      reader.onload = (event) => {
-        setImagePaths({ ...imagePaths, [key]: event.target.result })
+      const formData = new FormData()
+      formData.append('image', file)
+
+      try {
+        // Upload image to server
+        const uploadRes = await fetch('http://localhost:3002/api/site-images/upload', {
+          method: 'POST',
+          body: formData
+        })
+        const uploadData = await uploadRes.json()
+
+        if (uploadData.imageUrl) {
+          // Update image paths on server
+          const updatedPaths = { ...imagePaths, [key]: uploadData.imageUrl }
+          const updateRes = await fetch('http://localhost:3002/api/site-images', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ [key]: uploadData.imageUrl })
+          })
+          const updateData = await updateRes.json()
+          setImagePaths(updateData)
+        }
+      } catch (err) {
+        console.error('Error uploading image:', err)
+        alert('Ошибка при загрузке изображения')
       }
-      reader.readAsDataURL(file)
     }
   }
 
@@ -362,7 +384,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
                 <div className="mt-8 p-4 bg-gray-50 rounded-lg">
                   <p className="text-sm text-gray-600">
-                    <strong>Примечание:</strong> Изображения сохраняются локально в браузере. При очистке кэша браузера изображения сбросятся до значений по умолчанию.
+                    <strong>Примечание:</strong> Изображения сохраняются на сервере и становятся фотографиями по умолчанию для всех пользователей.
                   </p>
                 </div>
               </div>
