@@ -43,7 +43,12 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     interiorColor: '',
     year: '',
     description: '',
-    images: []
+    images: [],
+    drive: 'Полный',
+    owners: '',
+    mileage: '',
+    accident: 'Не было',
+    transmission: 'Автомат'
   })
   const [brandData, setBrandData] = useState({
     name: '',
@@ -785,6 +790,74 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                         required
                       />
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Привод</label>
+                      <select
+                        value={carFormData.drive}
+                        onChange={(e) => setCarFormData({...carFormData, drive: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        required
+                      >
+                        <option value="Полный">Полный</option>
+                        <option value="Передний">Передний</option>
+                        <option value="Задний">Задний</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">КПП</label>
+                      <select
+                        value={carFormData.transmission}
+                        onChange={(e) => setCarFormData({...carFormData, transmission: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        required
+                      >
+                        <option value="Автомат">Автомат</option>
+                        <option value="Механика">Механика</option>
+                        <option value="Робот">Робот</option>
+                        <option value="DSG">DSG</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Кол-во владельцев</label>
+                      <input
+                        type="number"
+                        value={carFormData.owners}
+                        onChange={(e) => setCarFormData({...carFormData, owners: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Пробег (км)</label>
+                      <input
+                        type="number"
+                        value={carFormData.mileage}
+                        onChange={(e) => setCarFormData({...carFormData, mileage: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                        placeholder="50000"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">ДТП</label>
+                    <select
+                      value={carFormData.accident}
+                      onChange={(e) => setCarFormData({...carFormData, accident: e.target.value})}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                      required
+                    >
+                      <option value="Не было">Не было</option>
+                      <option value="Было">Было</option>
+                    </select>
                   </div>
 
                   <div>
