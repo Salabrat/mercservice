@@ -527,7 +527,7 @@ export default function ProductPage() {
             </p>
 
             {/* Detailed Specifications */}
-            <div className="mt-[30px] flex gap-[40px]">
+            <div className="mt-[30px] flex gap-[30px]">
               {/* Left Column */}
               <div className="space-y-4">
                 <div>
@@ -547,44 +547,44 @@ export default function ProductPage() {
                     {car.owners || 'Не указано'}
                   </span>
                 </div>
-              </div>
 
-              {/* Right Column */}
-              <div className="space-y-4">
-                <div className="flex justify-between py-2">
-                  <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Пробег
-                  </span>
-                  <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.mileage || 'Не указано'}
-                  </span>
-                </div>
-
-                <div className="flex justify-between py-2">
-                  <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    ДТП
-                  </span>
-                  <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.accident || 'Не указано'}
-                  </span>
-                </div>
-
-                <div className="flex justify-between py-2">
-                  <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    КПП
-                  </span>
-                  <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.transmission || 'Не указано'}
-                  </span>
-                </div>
-
-                <div className="py-2">
+                <div>
                   <span className="text-gray-400 block mb-2" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                     Описание авто
                   </span>
                   <p className="text-gray-900" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
                     {car.description || 'Не указано'}
                   </p>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-4">
+                <div>
+                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                    Пробег
+                  </span>
+                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                    {car.mileage || 'Не указано'}
+                  </span>
+                </div>
+
+                <div>
+                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                    ДТП
+                  </span>
+                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                    {car.accident || 'Не указано'}
+                  </span>
+                </div>
+
+                <div>
+                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                    КПП
+                  </span>
+                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                    {car.transmission || 'Не указано'}
+                  </span>
                 </div>
               </div>
             </div>
