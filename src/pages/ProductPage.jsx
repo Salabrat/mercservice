@@ -667,7 +667,7 @@ export default function ProductPage() {
             >
               ×
             </button>
-            <div className="p-8 h-full flex flex-col">
+            <div className="p-8 h-full flex flex-col rounded-none">
               <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ textAlign: 'left' }}>
                 Забронируйте автомобиль
               </h2>
@@ -680,7 +680,7 @@ export default function ProductPage() {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black"
+                    className="w-full px-4 py-3 border-b-2 border-black focus:outline-none text-center"
                     placeholder="Имя"
                   />
                 </div>
@@ -689,7 +689,7 @@ export default function ProductPage() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black"
+                    className="w-full px-4 py-3 border-b-2 border-black focus:outline-none text-center"
                     placeholder="Email"
                   />
                 </div>
@@ -698,15 +698,12 @@ export default function ProductPage() {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black"
-                    placeholder="Телефон"
+                    className="w-full px-4 py-3 border-b-2 border-black focus:outline-none text-center"
+                    placeholder="Ru +7(xxx)xxx-xx-xx"
                   />
                 </div>
                 <div className="mt-auto">
-                  <button
-                    type="submit"
-                    className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-red-600 transition-colors"
-                  >
+                  <button type="submit" className="w-full bg-black text-white py-3 font-medium hover:bg-red-600 transition-colors rounded-none">
                     Отправить заявку
                   </button>
                 </div>
@@ -715,7 +712,7 @@ export default function ProductPage() {
           </div>
         </div>
       )}
-      </div>
+
     </div>
   )
 }
