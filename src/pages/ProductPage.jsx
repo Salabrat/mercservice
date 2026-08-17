@@ -5,6 +5,7 @@ import Header from '../components/Header'
 export default function ProductPage() {
   const { id } = useParams()
   const [car, setCar] = useState(null)
+  const [randomCars, setRandomCars] = useState([])
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(false)
@@ -21,6 +22,11 @@ export default function ProductPage() {
       .then(data => {
         const foundCar = data.find(c => c.id === parseInt(id))
         setCar(foundCar)
+
+        // Get random cars (excluding current car)
+        const otherCars = data.filter(c => c.id !== parseInt(id))
+        const shuffled = otherCars.sort(() => 0.5 - Math.random())
+        setRandomCars(shuffled.slice(0, 3))
       })
       .catch(err => console.error('Error fetching car:', err))
   }, [id])
@@ -589,6 +595,53 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Вам могут понравиться */}
+      <div className="mt-[30px] max-w-[1480px] mx-auto px-4 py-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 pl-5">Вам могут понравиться</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pl-5 pr-5">
+          {randomCars.map(randomCar => (
+            <Link key={randomCar.id} to={`/product/${randomCar.id}`} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative flex flex-col text-decoration-none color-inherit">
+              <img 
+                src={randomCar.images && randomCar.images[0] ? randomCar.images[0] : randomCar.image} 
+                alt={randomCar.name || randomCar.model} 
+                className="w-full object-cover"
+                style={{ height: 'clamp(17.5rem, 16.4916rem + 5.04202vw, 21.25rem)' }}
+              />
+              <div style={{ padding: 'clamp(15px, 2vw, 30px)' }}>
+                <h3 
+                  className="font-bold text-gray-900 mb-0.5"
+                  style={{ fontSize: 'clamp(1.25rem, 1.08193rem + 0.840336vw, 1.875rem)', lineHeight: '1.2' }}
+                >
+                  {randomCar.brand}
+                </h3>
+                <p 
+                  className="text-gray-700 mb-2"
+                  style={{ fontSize: 'clamp(1.25rem, 1.08193rem + 0.840336vw, 1.875rem)', lineHeight: '1.2' }}
+                >
+                  {randomCar.name || randomCar.model}
+                </p>
+                <div className="flex justify-between items-start" style={{ marginTop: '20px' }}>
+                  <div>
+                    <p 
+                      className="text-gray-400 mb-0.5"
+                      style={{ fontSize: 'clamp(0.875rem, 0.7563rem + 0.59497vw, 1.25rem)' }}
+                    >
+                      Цена
+                    </p>
+                    <p 
+                      className="text-gray-900 font-bold"
+                      style={{ fontSize: 'clamp(1.5rem, 1.3rem + 1vw, 2.5rem)' }}
+                    >
+                      {randomCar.price}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
       </div>
