@@ -33,7 +33,7 @@ const HeroHeader = () => {
   return (
     <>
       {/* Static Header */}
-      <header className="absolute top-0 left-0 right-0 z-30 px-6 py-4 bg-custom-gray/20 backdrop-blur-md">
+      <header className="absolute top-0 left-0 right-0 z-30 px-6 py-4 bg-transparent">
         <div className="flex items-center justify-between">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
