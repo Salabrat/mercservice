@@ -6,6 +6,7 @@ const CatalogPage = ({ cars, brands }) => {
   const [brandScroll, setBrandScroll] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false)
   
   // Sorting state
   const [sortOpen, setSortOpen] = useState(false)
@@ -56,6 +57,24 @@ const CatalogPage = ({ cars, brands }) => {
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [])
+
+  // Scroll effect for header visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const brandsSection = document.getElementById('catalog-brands-container')
+      if (brandsSection) {
+        const rect = brandsSection.getBoundingClientRect()
+        if (rect.top <= 0) {
+          setIsHeaderVisible(true)
+        } else {
+          setIsHeaderVisible(false)
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
@@ -149,6 +168,25 @@ const CatalogPage = ({ cars, brands }) => {
 
   return (
     <div className="min-h-screen bg-custom-gray py-20">
+      {/* Slide-down Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 bg-custom-gray/80 backdrop-blur-xl border-b border-gray-200/50 shadow-sm transition-transform duration-700 ${
+          isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="max-w-[1510px] mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Link to="/" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Назад
+            </Link>
+            <div className="flex items-center text-gray-600 text-sm">
+              <span className="text-gray-900 font-medium">Каталог</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
       <div>
         <div className="flex items-center gap-4 mb-8 pl-5">
           <Link to="/" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
