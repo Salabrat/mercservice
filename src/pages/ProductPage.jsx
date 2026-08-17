@@ -525,6 +525,63 @@ export default function ProductPage() {
             <p className="mt-[30px] text-gray-900 font-medium" style={{ fontSize: '27px' }}>
               Характеристики
             </p>
+
+            {/* Detailed Specifications */}
+            <div className="mt-[30px] space-y-4">
+              <div className="flex justify-between py-2">
+                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  Год выпуска
+                </span>
+                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  {car.year || 'Не указано'}
+                </span>
+              </div>
+
+              <div className="flex justify-between py-2">
+                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  Владельцев
+                </span>
+                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  {car.owners || 'Не указано'}
+                </span>
+              </div>
+
+              <div className="flex justify-between py-2">
+                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  Пробег
+                </span>
+                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  {car.mileage || 'Не указано'}
+                </span>
+              </div>
+
+              <div className="flex justify-between py-2">
+                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  ДТП
+                </span>
+                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  {car.accident || 'Не указано'}
+                </span>
+              </div>
+
+              <div className="flex justify-between py-2">
+                <span className="text-gray-400" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  КПП
+                </span>
+                <span className="text-gray-900 font-medium" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  {car.transmission || 'Не указано'}
+                </span>
+              </div>
+
+              <div className="py-2">
+                <span className="text-gray-400 block mb-2" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  Описание авто
+                </span>
+                <p className="text-gray-900" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                  {car.description || 'Не указано'}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
