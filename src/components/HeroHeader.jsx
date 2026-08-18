@@ -11,19 +11,23 @@ const HeroHeader = () => {
   // Block scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
       document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = `${scrollbarWidth}px`
     } else {
       document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0'
     }
     return () => {
       document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0'
     }
   }, [isMenuOpen])
 
   // Handle scroll to show/hide header
   useEffect(() => {
     const handleScroll = () => {
-      setIsHeaderVisible(window.scrollY > 100)
+      setIsHeaderVisible(window.scrollY > window.innerHeight)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -89,7 +93,7 @@ const HeroHeader = () => {
 
       {/* Slide-down Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-custom-gray/20 backdrop-blur-md border-b border-gray-200/50 shadow-sm transition-transform duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-custom-gray/20 backdrop-blur-md transition-transform duration-1000 ${
           isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -174,7 +178,7 @@ const HeroHeader = () => {
 
             {/* Logo at top - centered across full menu */}
             <div className="flex justify-center pt-[18px] pb-8 px-8 max-w-[calc(100%-80px)] mx-auto">
-              <img src="/images/MAINLOGO.png" alt="MAINLOGO" className="h-12 object-contain" />
+              <img src="/images/MAINLOGO white.png" alt="MAINLOGO" className="h-12 object-contain" />
             </div>
 
             {/* Content area */}
@@ -203,18 +207,18 @@ const HeroHeader = () => {
                     КАТАЛОГ
                   </Link>
                   <Link
-                    to="/catalog"
+                    to="/about"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    УСЛУГИ
+                    О НАС
                   </Link>
                   <Link
                     to="/catalog"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    О НАС
+                    УСЛУГИ
                   </Link>
                   <Link
                     to="/catalog"

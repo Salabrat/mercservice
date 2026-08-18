@@ -139,10 +139,6 @@ const HomePage = ({ brands }) => {
           <div className="absolute inset-0 bg-gray-900/40"></div>
           <div className="absolute inset-0 flex items-center">
             <div className="p-5">
-              <div className="flex items-center gap-3 mb-4">
-                <Calendar className="w-6 h-6 text-white" />
-                <span className="text-sm text-white font-medium">Коллаборация · до 1 сентября</span>
-              </div>
               <h1 className="text-2xl md:text-3xl font-semibold text-white mb-2">
                 {textContent.collaborationTitle}
               </h1>

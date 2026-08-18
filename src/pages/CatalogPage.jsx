@@ -62,6 +62,36 @@ const CatalogPage = ({ cars, brands }) => {
     window.scrollTo(0, 0)
   }, [])
 
+  // Check scroll position on mount and when brands change
+  useEffect(() => {
+    const container = document.getElementById('catalog-brands-container')
+    const checkScroll = () => {
+      if (container) {
+        setCanScrollLeft(container.scrollLeft > 0)
+        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+      }
+    }
+
+    if (container) {
+      checkScroll()
+      container.addEventListener('scroll', checkScroll)
+      window.addEventListener('resize', checkScroll)
+      return () => {
+        container.removeEventListener('scroll', checkScroll)
+        window.removeEventListener('resize', checkScroll)
+      }
+    }
+  }, [brands])
+
+  // Additional check on mount to ensure scroll buttons work after navigation
+  useEffect(() => {
+    const container = document.getElementById('catalog-brands-container')
+    if (container) {
+      setCanScrollLeft(container.scrollLeft > 0)
+      setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+    }
+  }, [])
+
   // Block scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
@@ -85,26 +115,6 @@ const CatalogPage = ({ cars, brands }) => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-
-  useEffect(() => {
-    const container = document.getElementById('catalog-brands-container')
-    const checkScroll = () => {
-      if (container) {
-        setCanScrollLeft(container.scrollLeft > 0)
-        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
-      }
-    }
-
-    if (container) {
-      checkScroll()
-      container.addEventListener('scroll', checkScroll)
-      window.addEventListener('resize', checkScroll)
-      return () => {
-        container.removeEventListener('scroll', checkScroll)
-        window.removeEventListener('resize', checkScroll)
-      }
-    }
-  }, [brands])
 
   // Sort cars
   const sortedCars = [...cars].sort((a, b) => {
@@ -239,7 +249,7 @@ const CatalogPage = ({ cars, brands }) => {
 
       {/* Slide-down Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-md border-b border-gray-200/50 shadow-sm transition-transform duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-md transition-transform duration-700 ${
           isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >

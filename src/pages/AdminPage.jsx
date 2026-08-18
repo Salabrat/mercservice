@@ -113,8 +113,11 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
   }
 
   const handleTextUpdate = async (key, value) => {
+    // Update local state immediately for smooth typing
+    setTextContent(prev => ({ ...prev, [key]: value }))
+    
+    // Send update to server in background
     try {
-      const updatedText = { ...textContent, [key]: value }
       const updateRes = await fetch('http://localhost:3002/api/site-text', {
         method: 'POST',
         headers: {
@@ -123,6 +126,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
         body: JSON.stringify({ [key]: value })
       })
       const updateData = await updateRes.json()
+      // Update state with server response to ensure consistency
       setTextContent(updateData)
     } catch (err) {
       console.error('Error updating text:', err)

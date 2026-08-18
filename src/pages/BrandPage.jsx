@@ -244,7 +244,7 @@ const BrandPage = ({ cars, brands }) => {
 
       {/* Slide-down Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 shadow-sm transition-transform duration-700 ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm transition-transform duration-700 ${
           isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >

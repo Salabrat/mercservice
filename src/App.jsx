@@ -8,6 +8,7 @@ import CatalogPage from './pages/CatalogPage'
 import ProductPage from './pages/ProductPage'
 import AdminPage from './pages/AdminPage'
 import BrandPage from './pages/BrandPage'
+import AboutPage from './pages/AboutPage'
 
 function AppContent() {
   const [cars, setCars] = useState([])
@@ -76,6 +77,7 @@ function AppContent() {
             <Route path="/catalog/:brand" element={<BrandPage cars={cars} brands={brands} />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/admin" element={<AdminPage onAddCar={handleAddCar} onAddBrand={handleAddBrand} />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
           <Footer />
         </div>
