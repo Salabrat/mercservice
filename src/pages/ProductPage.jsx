@@ -404,204 +404,206 @@ export default function ProductPage() {
 
         <div className="max-w-[1480px] mx-auto px-4 py-[2px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Images */}
-          <div style={{ marginTop: '10px' }}>
-            {/* Title with brand logo */}
-            <div ref={titleRef} className="flex items-center" style={{ marginLeft: '-15px', marginBottom: '30px' }}>
-              <img
-                src={car.brandLogo || `/logo/${car.brand.toLowerCase().substring(0, 4)}.png`}
-                alt={car.brand}
-                className="object-contain"
-                style={{ width: '94px', height: '94px', marginRight: '10px' }}
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                }}
-              />
-              <h1
-                className="font-bold text-gray-900"
-                style={{ fontSize: '27px', lineHeight: '1.2' }}
-              >
-                {car.brand} {car.name || car.model}
-              </h1>
-            </div>
+            {/* Images */}
+            <div style={{ marginTop: '10px' }}>
+              {/* Title with brand logo */}
+              <div ref={titleRef} className="flex items-center" style={{ marginLeft: '-15px', marginBottom: '30px' }}>
+                <img
+                  src={car.brandLogo || `/logo/${car.brand.toLowerCase().substring(0, 4)}.png`}
+                  alt={car.brand}
+                  className="object-contain"
+                  style={{ width: '94px', height: '94px', marginRight: '10px' }}
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                  }}
+                />
+                <h1
+                  className="font-bold text-gray-900"
+                  style={{ fontSize: '27px', lineHeight: '1.2' }}
+                >
+                  {car.brand} {car.name || car.model}
+                </h1>
+              </div>
 
-            <div className="bg-white rounded-xl overflow-hidden mb-4">
-              <img
-                ref={imageRef}
-                src={images[currentImageIndex]}
-                alt={car.name || car.model}
-                className="w-full object-cover"
-                style={{ height: 'clamp(400px, 30vw, 600px)' }}
-              />
-            </div>
-            {images.length > 1 && (
-              <div className="flex items-center justify-between gap-4" style={{ marginLeft: '-15px' }}>
-                <div className="grid grid-cols-4 gap-4">
-                  {images.map((image, index) => (
+              <div className="bg-white rounded-xl overflow-hidden mb-4">
+                <img
+                  ref={imageRef}
+                  src={images[currentImageIndex]}
+                  alt={car.name || car.model}
+                  className="w-full object-cover"
+                  style={{ height: 'clamp(400px, 30vw, 600px)' }}
+                />
+              </div>
+
+              {images.length > 1 && (
+                <div className="flex items-center justify-between gap-4" style={{ marginLeft: '-15px' }}>
+                  <div className="grid grid-cols-4 gap-4">
+                    {images.map((image, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`bg-white rounded-lg overflow-hidden transition-opacity ${
+                          index === currentImageIndex ? 'opacity-100 ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
+                        }`}
+                      >
+                        <img
+                          src={image}
+                          alt={`${car.name} ${index + 1}`}
+                          className="w-full h-24 object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
                     <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`bg-white rounded-lg overflow-hidden transition-opacity ${
-                        index === currentImageIndex ? 'opacity-100 ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
-                      }`}
+                      onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
+                      className="flex items-center justify-center"
                     >
-                      <img
-                        src={image}
-                        alt={`${car.name} ${index + 1}`}
-                        className="w-full h-24 object-cover"
-                      />
+                      <img src="/logo/vlevo.png" alt="Previous" className="w-24 h-24 object-contain" />
                     </button>
-                  ))}
+                    <button
+                      onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
+                      className="flex items-center justify-center"
+                    >
+                      <img src="/logo/vpravo.png" alt="Next" className="w-24 h-24 object-contain" />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
-                    className="flex items-center justify-center"
-                  >
-                    <img src="/logo/vlevo.png" alt="Previous" className="w-24 h-24 object-contain" />
-                  </button>
-                  <button
-                    onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
-                    className="flex items-center justify-center"
-                  >
-                    <img src="/logo/vpravo.png" alt="Next" className="w-24 h-24 object-contain" />
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Product Info */}
-          <div className="p-6" style={{ marginTop: '0px', marginLeft: '5px' }}>
-            <p className="text-gray-400 text-sm mb-2">Цена</p>
-            <p
-              className="text-2xl font-bold text-gray-900 mb-6"
-              style={{ fontSize: '27px' }}
-            >
-              {car.price}
-            </p>
-
-            {car.description && (
-              <p className="text-gray-600 mb-6" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem)' }}>
-                {car.description}
-              </p>
-            )}
-
-            {/* Specifications */}
-            <div className="space-y-[30px] mb-6">
-              <div className="flex gap-[30px] py-3">
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Мощность
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
-                    {car.power}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Объем, л.
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
-                    {car.engineVolume}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Тип двигателя
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
-                    {car.engineType}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Привод
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
-                    {car.drivetrain || 'Не указано'}
-                  </span>
-                </div>
-              </div>
+              )}
             </div>
 
-            {/* Booking Button */}
-            <button
-              onClick={() => setIsBookingModalOpen(true)}
-              className="flex items-center gap-2 bg-black text-white px-3 py-1 rounded font-medium hover:bg-red-600 transition-colors duration-300 mt-[30px]"
-              style={{ fontSize: '15px', width: 'fit-content' }}
-            >
-              Забронировать
-              <img src="/logo/strelka_clickauto.png" alt="arrow" className="object-contain" style={{ width: '15px', height: '30px', filter: 'brightness(0) invert(1)' }} />
-            </button>
+            {/* Product Info */}
+            <div className="p-6" style={{ marginTop: '0px', marginLeft: '5px' }}>
+              <p className="text-gray-400 text-sm mb-2">Цена</p>
+              <p
+                className="text-2xl font-bold text-gray-900 mb-6"
+                style={{ fontSize: '27px' }}
+              >
+                {car.price}
+              </p>
 
-            {/* Black Line */}
-            <div className="border-b-2 border-black mt-[30px] mr-[20px]"></div>
+              {car.description && (
+                <p className="text-gray-600 mb-6" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1.125rem)' }}>
+                  {car.description}
+                </p>
+              )}
 
-            {/* Характеристики */}
-            <p className="mt-[30px] text-gray-900 font-medium" style={{ fontSize: '27px' }}>
-              Характеристики
-            </p>
-
-            {/* Detailed Specifications */}
-            <div className="mt-[30px] flex gap-[30px]">
-              {/* Left Column */}
-              <div className="space-y-4">
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Год выпуска
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.year || 'Не указано'}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Владельцев
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.owners || 'Не указано'}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-gray-400 block mb-2" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Описание авто
-                  </span>
-                  <p className="text-gray-900" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.description || 'Не указано'}
-                  </p>
+              {/* Specifications */}
+              <div className="space-y-[30px] mb-6">
+                <div className="flex gap-[30px] py-3">
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Мощность
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
+                      {car.power}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Объем, л.
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
+                      {car.engineVolume}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Тип двигателя
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
+                      {car.engineType}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Привод
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: '27px' }}>
+                      {car.drivetrain || 'Не указано'}
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* Right Column */}
-              <div className="space-y-4">
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    Пробег
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.mileage || 'Не указано'}
-                  </span>
+              {/* Booking Button */}
+              <button
+                onClick={() => setIsBookingModalOpen(true)}
+                className="flex items-center gap-2 bg-black text-white px-3 py-1 rounded font-medium hover:bg-red-600 transition-colors duration-300 mt-[30px]"
+                style={{ fontSize: '15px', width: 'fit-content' }}
+              >
+                Забронировать
+                <img src="/logo/strelka_clickauto.png" alt="arrow" className="object-contain" style={{ width: '15px', height: '30px', filter: 'brightness(0) invert(1)' }} />
+              </button>
+
+              {/* Black Line */}
+              <div className="border-b-2 border-black mt-[30px] mr-[20px]"></div>
+
+              {/* Характеристики */}
+              <p className="mt-[30px] text-gray-900 font-medium" style={{ fontSize: '27px' }}>
+                Характеристики
+              </p>
+
+              {/* Detailed Specifications */}
+              <div className="mt-[30px] flex gap-[30px]">
+                {/* Left Column */}
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Год выпуска
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      {car.year || 'Не указано'}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Владельцев
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      {car.owners || 'Не указано'}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-gray-400 block mb-2" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Описание авто
+                    </span>
+                    <p className="text-gray-900" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      {car.description || 'Не указано'}
+                    </p>
+                  </div>
                 </div>
 
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    ДТП
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.accident || 'Не указано'}
-                  </span>
-                </div>
+                {/* Right Column */}
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      Пробег
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      {car.mileage || 'Не указано'}
+                    </span>
+                  </div>
 
-                <div>
-                  <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    КПП
-                  </span>
-                  <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
-                    {car.transmission || 'Не указано'}
-                  </span>
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      ДТП
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      {car.accident || 'Не указано'}
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="text-gray-400 block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      КПП
+                    </span>
+                    <span className="text-gray-900 font-medium block" style={{ fontSize: 'clamp(0.875rem, 0.8rem + 0.4vw, 1rem)' }}>
+                      {car.transmission || 'Не указано'}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

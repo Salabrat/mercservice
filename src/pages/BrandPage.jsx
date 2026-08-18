@@ -458,7 +458,7 @@ const BrandPage = ({ cars, brands }) => {
         </div>
 
         {/* Brand Carousel */}
-        <div className="relative pl-5 pr-5 mb-8">
+        <div className="relative pl-5 pr-5 py-[2px]">
           <div
             id="brand-page-brands-container"
             className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"

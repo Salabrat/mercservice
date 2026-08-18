@@ -439,7 +439,7 @@ const CatalogPage = ({ cars, brands }) => {
         </>
       )}
 
-      <div>
+      <div className="py-[30px]">
         <div className="flex items-center gap-4 mb-8 pl-5">
           <Link to="/" className="inline-flex items-center justify-center bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors text-sm font-medium">
             <ArrowLeft className="w-5 h-5 mr-2" />
@@ -451,7 +451,7 @@ const CatalogPage = ({ cars, brands }) => {
         </div>
 
         {/* Brand Carousel */}
-        <div className="relative pl-5 pr-5 mb-8">
+        <div className="relative pl-5 pr-5 py-[2px]">
           <div
             id="catalog-brands-container"
             className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
