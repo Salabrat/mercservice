@@ -12,6 +12,7 @@ const HomePage = ({ brands }) => {
   const [brandScroll, setBrandScroll] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const [visibleSections, setVisibleSections] = useState({})
   
   const images = [
     imagePaths.heroImage1,
@@ -19,6 +20,51 @@ const HomePage = ({ brands }) => {
     imagePaths.heroImage3,
     imagePaths.heroImage4
   ]
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setVisibleSections(prev => ({
+            ...prev,
+            [entry.target.id]: true
+          }))
+        }
+      })
+    }, observerOptions)
+
+    // Observe all sections with animation IDs
+    const sections = [
+      'hero-content',
+      'collaboration-content',
+      'wide-selection-content',
+      'services-title',
+      'preorder-title',
+      'greats-title'
+    ]
+
+    sections.forEach(id => {
+      const element = document.getElementById(id)
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    return () => {
+      sections.forEach(id => {
+        const element = document.getElementById(id)
+        if (element) {
+          observer.unobserve(element)
+        }
+      })
+    }
+  }, [])
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % images.length)
@@ -94,7 +140,14 @@ const HomePage = ({ brands }) => {
           ))}
         </div>
 
-        <div className="relative z-10 text-left max-w-4xl">
+        <div 
+          id="hero-content"
+          className="relative z-10 text-left max-w-4xl transition-all duration-700 ease-out"
+          style={{
+            opacity: visibleSections['hero-content'] ? 1 : 0,
+            transform: visibleSections['hero-content'] ? 'translateY(0)' : 'translateY(20px)'
+          }}
+        >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 tracking-tight">
             {textContent.heroTitle}
             <br />
@@ -138,7 +191,14 @@ const HomePage = ({ brands }) => {
           />
           <div className="absolute inset-0 bg-gray-900/40"></div>
           <div className="absolute inset-0 flex items-center">
-            <div className="p-5">
+            <div 
+              id="collaboration-content"
+              className="p-5 transition-all duration-700 ease-out"
+              style={{
+                opacity: visibleSections['collaboration-content'] ? 1 : 0,
+                transform: visibleSections['collaboration-content'] ? 'translateY(0)' : 'translateY(20px)'
+              }}
+            >
               <h1 className="text-2xl md:text-3xl font-semibold text-white mb-2">
                 {textContent.collaborationTitle}
               </h1>
@@ -164,7 +224,14 @@ const HomePage = ({ brands }) => {
             <img src={imagePaths.homeImage2} alt="Luxury car collection" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
             <img src={imagePaths.homeImage1} alt="Luxury car exterior" className="w-full sm:w-1/2 h-auto object-cover rounded-lg shadow-lg" />
           </div>
-          <div className="flex-1 text-right">
+          <div 
+            id="wide-selection-content"
+            className="flex-1 text-right transition-all duration-700 ease-out"
+            style={{
+              opacity: visibleSections['wide-selection-content'] ? 1 : 0,
+              transform: visibleSections['wide-selection-content'] ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">
               {textContent.wideSelectionTitle}
             </h2>
@@ -225,7 +292,14 @@ const HomePage = ({ brands }) => {
       {/* Services Section */}
       <section className="flex flex-col md:flex-row items-stretch py-[30px] bg-custom-gray gap-5">
         <div className="md:w-1/2 flex flex-col justify-center pl-5">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-relaxed">
+          <h2 
+            id="services-title"
+            className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-relaxed transition-all duration-700 ease-out"
+            style={{
+              opacity: visibleSections['services-title'] ? 1 : 0,
+              transform: visibleSections['services-title'] ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
             {textContent.servicesTitle}
           </h2>
           <Link
@@ -264,7 +338,14 @@ const HomePage = ({ brands }) => {
             />
           </div>
           <div className="md:w-1/2 flex flex-col justify-center text-right pr-5">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 mb-8 leading-relaxed">
+            <h2 
+              id="preorder-title"
+              className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-900 mb-8 leading-relaxed transition-all duration-700 ease-out"
+              style={{
+                opacity: visibleSections['preorder-title'] ? 1 : 0,
+                transform: visibleSections['preorder-title'] ? 'translateY(0)' : 'translateY(20px)'
+              }}
+            >
               {textContent.findAnyTitle}
             </h2>
             <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg w-fit ml-auto">
@@ -287,7 +368,14 @@ const HomePage = ({ brands }) => {
           <div className="absolute inset-0 bg-gray-900/40"></div>
           <div className="absolute inset-0 flex items-center justify-end p-10">
             <div className="max-w-md text-left">
-              <h2 className="text-lg md:text-xl lg:text-2xl font-light text-white mb-6 leading-tight">
+              <h2 
+                id="greats-title"
+                className="text-lg md:text-xl lg:text-2xl font-light text-white mb-6 leading-tight transition-all duration-700 ease-out"
+                style={{
+                  opacity: visibleSections['greats-title'] ? 1 : 0,
+                  transform: visibleSections['greats-title'] ? 'translateY(0)' : 'translateY(20px)'
+                }}
+              >
                 {textContent.greatsDescription}
               </h2>
               <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
