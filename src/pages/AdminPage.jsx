@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Plus, Image, Type, Car, Settings, Camera, Edit2, Trash2, Upload } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 const AdminPage = ({ onAddCar, onAddBrand }) => {
   const { user } = useAuth()
@@ -16,7 +18,10 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     heroImage1: '/images/1.jpg',
     heroImage2: '/images/2.jpg',
     heroImage3: '/images/3.jpg',
-    heroImage4: '/images/4.jpg'
+    heroImage4: '/images/4.jpg',
+    aboutHeaderImage: '/images/vverhonas.jpg',
+    aboutImage1: '/images/onas1.jpg',
+    aboutImage2: '/images/onas2.jpg'
   })
   const [textContent, setTextContent] = useState({
     heroTitle: 'Галерея современного',
@@ -28,7 +33,10 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
     findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
     greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
-    phoneNumber: '+7 931 105-07-08'
+    phoneNumber: '+7 931 105-07-08',
+    aboutParagraph1: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+    aboutParagraph2: 'Мы верим, что каждый автомобиль — это произведение искусства, заслуживающее особого внимания и заботы.',
+    aboutParagraph3: 'Наша миссия — сделать процесс покупки автомобиля максимально комфортным и приятным для каждого клиента.'
   })
   const [carFormData, setCarFormData] = useState({
     brand: '',
@@ -528,6 +536,72 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       />
                     </label>
                   </div>
+
+                  {/* About Page Header Image */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото заголовка страницы О нас (vverhonas.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.aboutHeaderImage} 
+                        alt="About Header" 
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('aboutHeaderImage', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* About Page Image 1 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото О нас 1 (onas1.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.aboutImage1} 
+                        alt="About Image 1" 
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('aboutImage1', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+
+                  {/* About Page Image 2 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото О нас 2 (onas2.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.aboutImage2} 
+                        alt="About Image 2" 
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('aboutImage2', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 {/* Text Content Editing */}
@@ -641,6 +715,63 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       value={textContent.phoneNumber}
                       onChange={(e) => handleTextUpdate('phoneNumber', e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                    />
+                  </div>
+
+                  {/* About Page Paragraph 1 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">О нас - Абзац 1</h4>
+                    <ReactQuill
+                      value={textContent.aboutParagraph1}
+                      onChange={(value) => handleTextUpdate('aboutParagraph1', value)}
+                      modules={{
+                        toolbar: [
+                          [{ 'header': [1, 2, false] }],
+                          ['bold', 'italic', 'underline'],
+                          [{ 'align': [] }],
+                          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                          ['clean']
+                        ]
+                      }}
+                      className="bg-white"
+                    />
+                  </div>
+
+                  {/* About Page Paragraph 2 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">О нас - Абзац 2</h4>
+                    <ReactQuill
+                      value={textContent.aboutParagraph2}
+                      onChange={(value) => handleTextUpdate('aboutParagraph2', value)}
+                      modules={{
+                        toolbar: [
+                          [{ 'header': [1, 2, false] }],
+                          ['bold', 'italic', 'underline'],
+                          [{ 'align': [] }],
+                          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                          ['clean']
+                        ]
+                      }}
+                      className="bg-white"
+                    />
+                  </div>
+
+                  {/* About Page Paragraph 3 */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">О нас - Абзац 3</h4>
+                    <ReactQuill
+                      value={textContent.aboutParagraph3}
+                      onChange={(value) => handleTextUpdate('aboutParagraph3', value)}
+                      modules={{
+                        toolbar: [
+                          [{ 'header': [1, 2, false] }],
+                          ['bold', 'italic', 'underline'],
+                          [{ 'align': [] }],
+                          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                          ['clean']
+                        ]
+                      }}
+                      className="bg-white"
                     />
                   </div>
                 </div>

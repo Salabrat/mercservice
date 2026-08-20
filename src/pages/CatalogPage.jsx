@@ -87,20 +87,39 @@ const CatalogPage = ({ cars, brands }) => {
   useEffect(() => {
     const container = document.getElementById('catalog-brands-container')
     if (container) {
-      setCanScrollLeft(container.scrollLeft > 0)
-      setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+      // Use multiple checks with delays to ensure accurate scroll position
+      const checkScrollPosition = () => {
+        setCanScrollLeft(container.scrollLeft > 0)
+        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+      }
+      
+      // Check immediately
+      checkScrollPosition()
+      
+      // Check again after a short delay to ensure DOM is fully rendered
+      const timeout1 = setTimeout(checkScrollPosition, 100)
+      const timeout2 = setTimeout(checkScrollPosition, 300)
+      
+      return () => {
+        clearTimeout(timeout1)
+        clearTimeout(timeout2)
+      }
     }
   }, [])
 
   // Block scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
       document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = `${scrollbarWidth}px`
     } else {
       document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0'
     }
     return () => {
       document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0'
     }
   }, [isMenuOpen])
 
@@ -377,7 +396,7 @@ const CatalogPage = ({ cars, brands }) => {
                     УСЛУГИ
                   </Link>
                   <Link
-                    to="/catalog"
+                    to="/about"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
