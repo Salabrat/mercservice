@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import HeroHeader from '../components/HeroHeader'
 
 const AboutPage = () => {
@@ -55,13 +56,23 @@ const AboutPage = () => {
         <div className="absolute inset-0 bg-gray-900/40"></div>
       </section>
 
+      {/* Back Button */}
+      <div className="px-[30px] mt-[15px]">
+        <Link 
+          to="/" 
+          className="inline-flex items-center text-[#161718] hover:text-gray-600 transition-colors"
+        >
+          Назад
+        </Link>
+      </div>
+
       {/* Content Section */}
-      <section className="px-[30px] py-[clamp(3.125rem,6.25rem,6.25rem)] max-w-[1510px] mx-auto">
+      <section className="px-[30px] py-[clamp(3.125rem,6.25rem,6.25rem)] max-w-[1510px] mx-auto bg-gray-50">
         <div className="flex flex-col md:flex-row gap-[70px]">
           {/* Left Column - Title */}
           <div className="about__title md:w-1/4">
             <h1 className="text-[2.5rem] font-light text-[#161718] tracking-tight">
-              О проекте
+              О нас
             </h1>
           </div>
           

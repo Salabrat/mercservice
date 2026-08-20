@@ -214,7 +214,7 @@ const HeroHeader = () => {
                     О НАС
                   </Link>
                   <Link
-                    to="/catalog"
+                    to="/services"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -228,7 +228,7 @@ const HeroHeader = () => {
                     БЛОГ
                   </Link>
                   <Link
-                    to="/catalog"
+                    to="/contacts"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >

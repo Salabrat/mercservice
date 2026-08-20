@@ -30,12 +30,10 @@ const HomePage = ({ brands }) => {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setVisibleSections(prev => ({
-            ...prev,
-            [entry.target.id]: true
-          }))
-        }
+        setVisibleSections(prev => ({
+          ...prev,
+          [entry.target.id]: entry.isIntersecting
+        }))
       })
     }, observerOptions)
 
@@ -107,6 +105,7 @@ const HomePage = ({ brands }) => {
     }
     
     if (container) {
+      // Initial check
       checkScroll()
       container.addEventListener('scroll', checkScroll)
       window.addEventListener('resize', checkScroll)
@@ -115,7 +114,7 @@ const HomePage = ({ brands }) => {
         window.removeEventListener('resize', checkScroll)
       }
     }
-  }, [brands])
+  }, [brands, currentImage])
 
   return (
     <div className="min-h-screen bg-custom-gray">
@@ -378,9 +377,9 @@ const HomePage = ({ brands }) => {
               >
                 {textContent.greatsDescription}
               </h2>
-              <button className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
+              <Link to="/blog" className="inline-flex items-center justify-center bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
                 GREATS blog
-              </button>
+              </Link>
             </div>
           </div>
         </div>

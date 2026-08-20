@@ -36,7 +36,12 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     phoneNumber: '+7 931 105-07-08',
     aboutParagraph1: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
     aboutParagraph2: 'Мы верим, что каждый автомобиль — это произведение искусства, заслуживающее особого внимания и заботы.',
-    aboutParagraph3: 'Наша миссия — сделать процесс покупки автомобиля максимально комфортным и приятным для каждого клиента.'
+    aboutParagraph3: 'Наша миссия — сделать процесс покупки автомобиля максимально комфортным и приятным для каждого клиента.',
+    contactSocialYoutube: '#',
+    contactSocialTelegram: '#',
+    contactSocialInstagram: '#',
+    contactAggregatorAutoRu: '#',
+    contactAggregatorAvito: '#'
   })
   const [carFormData, setCarFormData] = useState({
     brand: '',
@@ -602,6 +607,52 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       />
                     </label>
                   </div>
+
+                  {/* Contact Page Header Image */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-3">Фото заголовка страницы Контакты (vverhkontakty.jpg)</h4>
+                    <div className="mb-4">
+                      <img 
+                        src={imagePaths.contactHeaderImage} 
+                        alt="Contact Header" 
+                        className="w-full max-w-[150px] h-auto object-cover rounded-lg border border-gray-200"
+                      />
+                    </div>
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('contactHeaderImage', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                {/* Services Page Header Image */}
+                <div className="p-6 border border-gray-200 rounded-lg">
+                  <h4 className="text-md font-medium text-gray-700 mb-4">Заголовочное изображение страницы Услуги</h4>
+                  <div className="flex items-center gap-4 mb-4">
+                    {imagePaths.servicesHeaderImage && (
+                      <img 
+                        src={imagePaths.servicesHeaderImage} 
+                        alt="Services Header" 
+                        className="w-20 h-20 object-cover rounded"
+                      />
+                    )}
+                    <label className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+                      <Upload className="w-4 h-4" />
+                      Загрузить фото
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload('servicesHeaderImage', e.target.files[0])}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 {/* Text Content Editing */}
@@ -773,6 +824,70 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
                       }}
                       className="bg-white"
                     />
+                  </div>
+
+                  {/* Contact Page Social Media Links */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-4">Социальные сети (Контакты)</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-600 mb-2">YouTube ссылка</label>
+                        <input
+                          type="text"
+                          value={textContent.contactSocialYoutube}
+                          onChange={(e) => handleTextUpdate('contactSocialYoutube', e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                          placeholder="#"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-600 mb-2">Telegram ссылка</label>
+                        <input
+                          type="text"
+                          value={textContent.contactSocialTelegram}
+                          onChange={(e) => handleTextUpdate('contactSocialTelegram', e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                          placeholder="#"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-600 mb-2">Instagram ссылка</label>
+                        <input
+                          type="text"
+                          value={textContent.contactSocialInstagram}
+                          onChange={(e) => handleTextUpdate('contactSocialInstagram', e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                          placeholder="#"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Contact Page Aggregator Links */}
+                  <div className="p-6 border border-gray-200 rounded-lg">
+                    <h4 className="text-md font-medium text-gray-700 mb-4">Агрегаторы (Контакты)</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-600 mb-2">Auto.ru ссылка</label>
+                        <input
+                          type="text"
+                          value={textContent.contactAggregatorAutoRu}
+                          onChange={(e) => handleTextUpdate('contactAggregatorAutoRu', e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                          placeholder="#"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-600 mb-2">Avito ссылка</label>
+                        <input
+                          type="text"
+                          value={textContent.contactAggregatorAvito}
+                          onChange={(e) => handleTextUpdate('contactAggregatorAvito', e.target.value)}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                          placeholder="#"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 

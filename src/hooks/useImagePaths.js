@@ -13,7 +13,9 @@ const defaultImagePaths = {
   heroImage4: '/images/4.jpg',
   aboutHeaderImage: '/images/vverhonas.jpg',
   aboutImage1: '/images/onas1.jpg',
-  aboutImage2: '/images/onas2.jpg'
+  aboutImage2: '/images/onas2.jpg',
+  contactHeaderImage: '/images/vverhkontakty.jpg',
+  servicesHeaderImage: '/images/vverhonas.jpg'
 }
 
 export const useImagePaths = () => {

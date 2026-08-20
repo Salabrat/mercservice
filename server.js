@@ -55,15 +55,20 @@ if (!fs.existsSync(CARS_FILE)) {
 if (!fs.existsSync(SITE_IMAGES_FILE)) {
   const defaultImages = {
     menuImage: '/images/13.jpg',
-    homeImage1: '/images/8.jpg',
-    homeImage2: '/images/7.jpg',
-    homeImage3: '/images/9.jpg',
-    homeImage4: '/images/10.jpg',
-    homeImage5: '/images/11.jpg',
-    heroImage1: '/images/1.jpg',
-    heroImage2: '/images/2.jpg',
-    heroImage3: '/images/3.jpg',
-    heroImage4: '/images/4.jpg'
+    homeImage8: '/images/8.jpg',
+    homeImage7: '/images/7.jpg',
+    homeImage9: '/images/9.jpg',
+    homeImage10: '/images/10.jpg',
+    homeImage11: '/images/11.jpg',
+    heroSlider1: '/images/1.jpg',
+    heroSlider2: '/images/2.jpg',
+    heroSlider3: '/images/3.jpg',
+    heroSlider4: '/images/4.jpg',
+    aboutHeaderImage: '/images/vverhonas.jpg',
+    aboutImage1: '/images/onas1.jpg',
+    aboutImage2: '/images/onas2.jpg',
+    contactHeaderImage: '/images/vverhkontakty.jpg',
+    servicesHeaderImage: '/images/vverhonas.jpg'
   };
   fs.writeFileSync(SITE_IMAGES_FILE, JSON.stringify(defaultImages));
 }
@@ -80,7 +85,23 @@ if (!fs.existsSync(SITE_TEXT_FILE)) {
     servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
     findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
     greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
-    phoneNumber: '+7 931 105-07-08'
+    phoneNumber: '+7 931 105-07-08',
+    aboutParagraph1: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+    aboutParagraph2: 'Мы верим, что каждый автомобиль — это произведение искусства, заслуживающее особого внимания и заботы.',
+    aboutParagraph3: 'Наша миссия — сделать процесс покупки автомобиля максимально комфортным и приятным для каждого клиента.',
+    contactPhone1: '+7 499 877 53 79',
+    contactPhone2: '+7 499 229 40 39',
+    contactPhone3: '+7 499 229 72 72',
+    contactAddress1: 'г. Москва, Бережковская наб., 38, стр. 2',
+    contactAddress2: 'Московская область, городской округ Истра, деревня Захарово, Заречная улица, 45А, стр. 11',
+    contactAddress3: 'г. Москва, 1-й Красногвардейский пр., 22, стр. 1',
+    contactEmail: 'welcome@greats.gallery',
+    contactWorkingHours: 'Пн. — вс. 9:00–21:00',
+    contactSocialYoutube: '#',
+    contactSocialTelegram: '#',
+    contactSocialInstagram: '#',
+    contactAggregatorAutoRu: '#',
+    contactAggregatorAvito: '#'
   };
   fs.writeFileSync(SITE_TEXT_FILE, JSON.stringify(defaultText));
 }
@@ -140,7 +161,12 @@ const readSiteImages = () => {
       heroImage1: '/images/1.jpg',
       heroImage2: '/images/2.jpg',
       heroImage3: '/images/3.jpg',
-      heroImage4: '/images/4.jpg'
+      heroImage4: '/images/4.jpg',
+      aboutHeaderImage: '/images/vverhonas.jpg',
+      aboutImage1: '/images/onas1.jpg',
+      aboutImage2: '/images/onas2.jpg',
+      contactHeaderImage: '/images/vverhkontakty.jpg',
+      servicesHeaderImage: '/images/vverhonas.jpg'
     };
     return defaultImages;
   }
@@ -171,7 +197,23 @@ const readSiteText = () => {
       servicesTitle: 'ВОЗЬМЕМ ВСЕ ЗАБОТЫ ОБ АВТОМОБИЛЕ НА СЕБЯ ВО ВРЕМЯ ПОКУПКИ И ДАЖЕ ПОСЛЕ',
       findAnyTitle: 'НАЙДЕМ ЛЮБОЙ АВТОМОБИЛЬ ДЛЯ ВАШЕЙ КОЛЛЕКЦИИ — ОТ РЕДКИХ ВИНТАЖНЫХ ЛОТОВ ДО НОВЕЙШИХ МОДЕЛЕЙ В ОСОБЕННОЙ КОМПЛЕКТАЦИИ',
       greatsDescription: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
-      phoneNumber: '+7 931 105-07-08'
+      phoneNumber: '+7 931 105-07-08',
+      aboutParagraph1: 'GREATS — это больше, чем продажа машин, мы фанаты автомобилей и всего, что с ними связано. Поможем не просто подобрать самое лучшее на рынке, но и подарить вам новые уникальные эмоции.',
+      aboutParagraph2: 'Мы верим, что каждый автомобиль — это произведение искусства, заслуживающее особого внимания и заботы.',
+      aboutParagraph3: 'Наша миссия — сделать процесс покупки автомобиля максимально комфортным и приятным для каждого клиента.',
+      contactPhone1: '+7 499 877 53 79',
+      contactPhone2: '+7 499 229 40 39',
+      contactPhone3: '+7 499 229 72 72',
+      contactAddress1: 'г. Москва, Бережковская наб., 38, стр. 2',
+      contactAddress2: 'Московская область, городской округ Истра, деревня Захарово, Заречная улица, 45А, стр. 11',
+      contactAddress3: 'г. Москва, 1-й Красногвардейский пр., 22, стр. 1',
+      contactEmail: 'welcome@greats.gallery',
+      contactWorkingHours: 'Пн. — вс. 9:00–21:00',
+      contactSocialYoutube: '#',
+      contactSocialTelegram: '#',
+      contactSocialInstagram: '#',
+      contactAggregatorAutoRu: '#',
+      contactAggregatorAvito: '#'
     };
     return defaultText;
   }

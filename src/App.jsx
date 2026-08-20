@@ -9,6 +9,9 @@ import ProductPage from './pages/ProductPage'
 import AdminPage from './pages/AdminPage'
 import BrandPage from './pages/BrandPage'
 import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
+import BlogPage from './pages/BlogPage'
+import ServicesPage from './pages/ServicesPage'
 
 function AppContent() {
   const [cars, setCars] = useState([])
@@ -78,6 +81,9 @@ function AppContent() {
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/admin" element={<AdminPage onAddCar={handleAddCar} onAddBrand={handleAddBrand} />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/contacts" element={<ContactPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/services" element={<ServicesPage />} />
           </Routes>
           <Footer />
         </div>
