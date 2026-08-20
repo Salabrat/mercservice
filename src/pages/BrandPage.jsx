@@ -105,6 +105,30 @@ const BrandPage = ({ cars, brands }) => {
       }
     }
   }, [brands])
+
+  // Additional check on mount to ensure scroll buttons work after navigation
+  useEffect(() => {
+    const container = document.getElementById('brand-page-brands-container')
+    if (container) {
+      // Use multiple checks with delays to ensure accurate scroll position
+      const checkScrollPosition = () => {
+        setCanScrollLeft(container.scrollLeft > 0)
+        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+      }
+      
+      // Check immediately
+      checkScrollPosition()
+      
+      // Check again after a short delay to ensure DOM is fully rendered
+      const timeout1 = setTimeout(checkScrollPosition, 100)
+      const timeout2 = setTimeout(checkScrollPosition, 300)
+      
+      return () => {
+        clearTimeout(timeout1)
+        clearTimeout(timeout2)
+      }
+    }
+  }, [])
   
   // Filter cars by brand (case-insensitive)
   const brandCars = cars.filter(car => 

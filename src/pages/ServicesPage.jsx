@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import HeroHeader from '../components/HeroHeader'
 import { useImagePaths } from '../hooks/useImagePaths'
@@ -8,6 +8,10 @@ const ServicesPage = () => {
   const imagePaths = useImagePaths()
   const textContent = useSiteText()
   const [openService, setOpenService] = useState(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const services = [
     {
@@ -63,7 +67,7 @@ const ServicesPage = () => {
       <div className="max-w-7xl mx-auto px-5 mt-4">
         <Link 
           to="/" 
-          className="inline-block text-[#161718] hover:text-gray-600 transition-colors underline"
+          className="inline-flex items-center text-[#161718] hover:text-gray-600 transition-colors"
         >
           Назад
         </Link>
@@ -104,7 +108,7 @@ const ServicesPage = () => {
                     {String(service.id).padStart(2, '0')} {service.title}
                   </span>
                   <svg
-                    className={`w-5 h-5 transition-transform duration-300 ${
+                    className={`w-5 h-5 transition-transform duration-500 ease-in-out ${
                       openService === service.id ? 'rotate-45' : ''
                     }`}
                     fill="none"
@@ -119,19 +123,17 @@ const ServicesPage = () => {
                     />
                   </svg>
                 </button>
-                {openService === service.id && (
-                  <div 
-                    className="px-6 py-5 bg-gray-50 overflow-hidden transition-all duration-300 ease-in-out"
-                    style={{
-                      maxHeight: openService === service.id ? '500px' : '0',
-                      opacity: openService === service.id ? '1' : '0'
-                    }}
-                  >
-                    <p className="text-gray-700 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                )}
+                <div 
+                  className="px-6 py-5 overflow-hidden transition-all duration-500 ease-in-out"
+                  style={{
+                    maxHeight: openService === service.id ? '500px' : '0',
+                    opacity: openService === service.id ? '1' : '0'
+                  }}
+                >
+                  <p className="text-gray-700 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
                 <div 
                   className="h-[2px] bg-black transition-all duration-300 ease-in-out mt-[10px]"
                   style={{

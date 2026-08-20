@@ -389,7 +389,7 @@ const CatalogPage = ({ cars, brands }) => {
                     КАТАЛОГ
                   </Link>
                   <Link
-                    to="/catalog"
+                    to="/services"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -410,7 +410,7 @@ const CatalogPage = ({ cars, brands }) => {
                     БЛОГ
                   </Link>
                   <Link
-                    to="/catalog"
+                    to="/contacts"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
