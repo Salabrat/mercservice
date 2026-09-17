@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { API_BASE_URL } from '../config'
 
 const defaultImagePaths = {
   menuImage: '/images/13.jpg',
@@ -22,7 +23,7 @@ export const useImagePaths = () => {
   const [imagePaths, setImagePaths] = useState(defaultImagePaths)
 
   useEffect(() => {
-    fetch('http://localhost:3002/api/site-images')
+    fetch(`${API_BASE_URL}/api/site-images`)
       .then(res => res.json())
       .then(data => {
         setImagePaths(data)

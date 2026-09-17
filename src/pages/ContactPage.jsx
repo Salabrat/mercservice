@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import HeroHeader from '../components/HeroHeader'
+import { API_BASE_URL } from '../config'
 
 const ContactPage = () => {
   const [imagePaths, setImagePaths] = useState({
@@ -26,7 +27,7 @@ const ContactPage = () => {
     window.scrollTo(0, 0)
     
     // Fetch image paths
-    fetch('http://localhost:3002/api/site-images')
+    fetch(`${API_BASE_URL}/api/site-images`)
       .then(res => res.json())
       .then(data => {
         setImagePaths({
@@ -36,7 +37,7 @@ const ContactPage = () => {
       .catch(err => console.error('Error loading images:', err))
 
     // Fetch text content
-    fetch('http://localhost:3002/api/site-text')
+    fetch(`${API_BASE_URL}/api/site-text`)
       .then(res => res.json())
       .then(data => {
         setTextContent({

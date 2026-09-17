@@ -400,6 +400,18 @@ app.post('/api/site-text', (req, res) => {
   }
 });
 
+// SPA fallback: в production отдаём собранный фронтенд (dist) для
+// клиентских маршрутов (/catalog, /product/:id и т.д.)
+const distDir = path.join(__dirname, 'dist');
+if (fs.existsSync(distDir)) {
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api/')) {
+      return res.sendFile(path.join(distDir, 'index.html'));
+    }
+    next();
+  });
+}
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

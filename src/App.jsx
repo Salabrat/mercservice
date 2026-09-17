@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { API_BASE_URL } from './config'
 import Footer from './components/Footer'
 import AdminLoginModal from './components/AdminLoginModal'
 import HomePage from './pages/HomePage'
@@ -21,7 +22,7 @@ function AppContent() {
 
   // Fetch brands from API on mount
   useEffect(() => {
-    fetch('http://localhost:3002/api/brands')
+    fetch(`${API_BASE_URL}/api/brands`)
       .then(res => res.json())
       .then(data => setBrands(data))
       .catch(err => console.error('Error fetching brands:', err))
@@ -29,7 +30,7 @@ function AppContent() {
 
   // Fetch cars from API on mount
   useEffect(() => {
-    fetch('http://localhost:3002/api/cars')
+    fetch(`${API_BASE_URL}/api/cars`)
       .then(res => res.json())
       .then(data => setCars(data))
       .catch(err => console.error('Error fetching cars:', err))
@@ -56,7 +57,7 @@ function AppContent() {
   }
 
   const handleAddBrand = (newBrand) => {
-    fetch('http://localhost:3002/api/brands', {
+    fetch(`${API_BASE_URL}/api/brands`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

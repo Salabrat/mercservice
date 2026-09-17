@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import HeroHeader from '../components/HeroHeader'
+import { API_BASE_URL } from '../config'
 
 const AboutPage = () => {
   const [textContent, setTextContent] = useState({
@@ -18,7 +19,7 @@ const AboutPage = () => {
     window.scrollTo(0, 0)
     
     // Fetch text content
-    fetch('http://localhost:3002/api/site-text')
+    fetch(`${API_BASE_URL}/api/site-text`)
       .then(res => res.json())
       .then(data => {
         setTextContent({
@@ -30,7 +31,7 @@ const AboutPage = () => {
       .catch(err => console.error('Error loading text:', err))
 
     // Fetch image paths
-    fetch('http://localhost:3002/api/site-images')
+    fetch(`${API_BASE_URL}/api/site-images`)
       .then(res => res.json())
       .then(data => {
         setImagePaths({

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, ChevronDown, X, SlidersHorizontal, Youtube, Instagram, Send, Phone } from 'lucide-react'
+import { enableCarouselWheel } from '../utils/horizontalScroll'
 
 const BrandPage = ({ cars, brands }) => {
   const { brand } = useParams()
@@ -70,7 +71,7 @@ const BrandPage = ({ cars, brands }) => {
       if (logoItems.length > 0) {
         const firstLogo = logoItems[0]
         const logoWidth = firstLogo.offsetWidth
-        const gap = 48 // gap-12 = 48px
+        const gap = parseInt(window.getComputedStyle(container).columnGap, 10) || 48
         const scrollAmount = logoWidth + gap
         if (direction === 'left') {
           container.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
@@ -90,8 +91,12 @@ const BrandPage = ({ cars, brands }) => {
     const container = document.getElementById('brand-page-brands-container')
     const checkScroll = () => {
       if (container) {
-        setCanScrollLeft(container.scrollLeft > 0)
-        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+        // padding-right резервирует место под стрелки; вычитаем его,
+        // чтобы правая стрелка гасла именно в конце прокрутки логотипов
+        const paddingRight = parseFloat(window.getComputedStyle(container).paddingRight) || 0
+        const maxScroll = container.scrollWidth - container.clientWidth - paddingRight
+        setCanScrollLeft(container.scrollLeft > 1)
+        setCanScrollRight(container.scrollLeft < maxScroll - 1)
       }
     }
 
@@ -106,14 +111,22 @@ const BrandPage = ({ cars, brands }) => {
     }
   }, [brands])
 
+  // Redirect wheel/touch scrolling of the brand carousel to horizontal only,
+  // so the page doesn't jitter vertically while browsing the logos
+  useEffect(() => {
+    return enableCarouselWheel(document.getElementById('brand-page-brands-container'))
+  }, [])
+
   // Additional check on mount to ensure scroll buttons work after navigation
   useEffect(() => {
     const container = document.getElementById('brand-page-brands-container')
     if (container) {
       // Use multiple checks with delays to ensure accurate scroll position
       const checkScrollPosition = () => {
-        setCanScrollLeft(container.scrollLeft > 0)
-        setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth)
+        const paddingRight = parseFloat(window.getComputedStyle(container).paddingRight) || 0
+        const maxScroll = container.scrollWidth - container.clientWidth - paddingRight
+        setCanScrollLeft(container.scrollLeft > 1)
+        setCanScrollRight(container.scrollLeft < maxScroll - 1)
       }
       
       // Check immediately
@@ -407,13 +420,6 @@ const BrandPage = ({ cars, brands }) => {
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    БЛОГ
-                  </Link>
-                  <Link
-                    to="/catalog"
-                    className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
                     КОНТАКТЫ
                   </Link>
                 </div>
@@ -482,18 +488,18 @@ const BrandPage = ({ cars, brands }) => {
         </div>
 
         {/* Brand Carousel */}
-        <div className="relative pl-5 pr-5 py-[2px]">
+        <div className="relative pl-0 pr-0 md:pl-5 md:pr-5 py-[2px]">
           <div
             id="brand-page-brands-container"
-            className="flex gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-72"
+            className="flex gap-6 md:gap-12 overflow-x-auto scrollbar-hide scroll-smooth pr-[120px] md:pr-72"
           >
             {brands.map((brand, index) => (
               <Link key={brand.id || index} to={`/catalog/${brand.name.toLowerCase()}`} className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
-                <img src={brand.logo} alt={brand.name} className="h-28 w-auto object-contain" />
+                <img src={brand.logo} alt={brand.name} className="h-brand-logo md:h-28 w-auto object-contain" />
               </Link>
             ))}
           </div>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-4 pr-4 py-4 z-10">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 bg-custom-gray pl-2 pr-2 py-3 md:pl-4 md:pr-4 md:py-4 z-10">
             <button
               onClick={() => scrollBrands('left')}
               className="flex items-center justify-center"
@@ -502,8 +508,8 @@ const BrandPage = ({ cars, brands }) => {
               <img
                 src="/logo/vlevo.png"
                 alt="влево"
-                className="w-24 h-16 transition-opacity"
-                style={{ opacity: canScrollLeft ? 1 : 0.3 }}
+                className="w-12 h-8 md:w-24 md:h-16 transition-opacity"
+                style={{ opacity: canScrollLeft ? 1 : 0.4, filter: canScrollLeft ? 'none' : 'grayscale(1)' }}
               />
             </button>
             <button
@@ -514,8 +520,8 @@ const BrandPage = ({ cars, brands }) => {
               <img
                 src="/logo/vpravo.png"
                 alt="вправо"
-                className="w-24 h-16 transition-opacity"
-                style={{ opacity: canScrollRight ? 1 : 0.3 }}
+                className="w-12 h-8 md:w-24 md:h-16 transition-opacity"
+                style={{ opacity: canScrollRight ? 1 : 0.4, filter: canScrollRight ? 'none' : 'grayscale(1)' }}
               />
             </button>
           </div>

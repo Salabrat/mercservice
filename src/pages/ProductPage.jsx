@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import Header from '../components/Header'
+import { API_BASE_URL } from '../config'
+import { enableCarouselWheel } from '../utils/horizontalScroll'
 
 export default function ProductPage() {
   const { id } = useParams()
@@ -13,13 +15,14 @@ export default function ProductPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const titleRef = useRef(null)
   const imageRef = useRef(null)
+  const thumbStripRef = useRef(null)
 
   useEffect(() => {
     // Scroll to top on mount
     window.scrollTo(0, 0)
 
     // Fetch car data from server
-    fetch('http://localhost:3002/api/cars')
+    fetch(`${API_BASE_URL}/api/cars`)
       .then(res => res.json())
       .then(data => {
         const foundCar = data.find(c => c.id === parseInt(id))
@@ -32,6 +35,26 @@ export default function ProductPage() {
       })
       .catch(err => console.error('Error fetching car:', err))
   }, [id])
+
+  // Auto-scroll thumbnail strip so the active photo stays in view
+  useEffect(() => {
+    const strip = thumbStripRef.current
+    if (!strip) return
+    const active = strip.children[currentImageIndex]
+    if (active) {
+      const activeLeft = active.getBoundingClientRect().left - strip.getBoundingClientRect().left + strip.scrollLeft
+      strip.scrollTo({
+        left: activeLeft - (strip.clientWidth - active.offsetWidth) / 2,
+        behavior: 'smooth'
+      })
+    }
+  }, [currentImageIndex, car])
+
+  // Redirect wheel/touch scrolling of the thumbnail strip to horizontal only,
+  // so the page doesn't jitter vertically while flipping through photos
+  useEffect(() => {
+    return enableCarouselWheel(thumbStripRef.current)
+  }, [car])
 
   // Block scroll when menu is open
   useEffect(() => {
@@ -436,8 +459,12 @@ export default function ProductPage() {
               </div>
 
               {images.length > 1 && (
-                <div className="flex items-center justify-between gap-4" style={{ marginLeft: '-15px' }}>
-                  <div className="grid grid-cols-4 gap-4">
+                <div className="flex items-stretch gap-4" style={{ marginLeft: '-15px' }}>
+                  {/* Thumbnails: 3 visible at a time, scrollable */}
+                  <div
+                    ref={thumbStripRef}
+                    className="grid grid-flow-col auto-cols-[calc((100%-32px)/3)] gap-4 overflow-x-auto scrollbar-hide scroll-smooth flex-1 min-w-0"
+                  >
                     {images.map((image, index) => (
                       <button
                         key={index}
@@ -454,18 +481,31 @@ export default function ProductPage() {
                       </button>
                     ))}
                   </div>
-                  <div className="flex gap-4">
+                  {/* Arrows take the place of the 4th thumbnail, natural size */}
+                  <div className="flex flex-shrink-0 items-center justify-center gap-2">
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
+                      onClick={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : 0))}
                       className="flex items-center justify-center"
+                      disabled={currentImageIndex === 0}
                     >
-                      <img src="/logo/vlevo.png" alt="Previous" className="w-24 h-24 object-contain" />
+                      <img
+                        src="/logo/vlevo.png"
+                        alt="Previous"
+                        className="w-12 h-8 md:w-24 md:h-16 transition-opacity"
+                        style={{ opacity: currentImageIndex === 0 ? 0.4 : 1, filter: currentImageIndex === 0 ? 'grayscale(1)' : 'none' }}
+                      />
                     </button>
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
+                      onClick={() => setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : images.length - 1))}
                       className="flex items-center justify-center"
+                      disabled={currentImageIndex === images.length - 1}
                     >
-                      <img src="/logo/vpravo.png" alt="Next" className="w-24 h-24 object-contain" />
+                      <img
+                        src="/logo/vpravo.png"
+                        alt="Next"
+                        className="w-12 h-8 md:w-24 md:h-16 transition-opacity"
+                        style={{ opacity: currentImageIndex === images.length - 1 ? 0.4 : 1, filter: currentImageIndex === images.length - 1 ? 'grayscale(1)' : 'none' }}
+                      />
                     </button>
                   </div>
                 </div>

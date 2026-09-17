@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { API_BASE_URL } from '../config'
 
 const defaultTextContent = {
   heroTitle: 'Галерея современного',
@@ -17,7 +18,7 @@ export const useSiteText = () => {
   const [textContent, setTextContent] = useState(defaultTextContent)
 
   useEffect(() => {
-    fetch('http://localhost:3002/api/site-text')
+    fetch(`${API_BASE_URL}/api/site-text`)
       .then(res => res.json())
       .then(data => {
         setTextContent(data)

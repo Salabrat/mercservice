@@ -221,13 +221,6 @@ const HeroHeader = () => {
                     УСЛУГИ
                   </Link>
                   <Link
-                    to="/catalog"
-                    className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    БЛОГ
-                  </Link>
-                  <Link
                     to="/contacts"
                     className="text-4xl font-medium text-white hover:text-gray-300 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
@@ -275,9 +268,9 @@ const HeroHeader = () => {
                 {/* SALIKS X BRABUS Block */}
                 <div className="flex flex-col items-start space-y-[30px] pl-5">
                   <span className="text-white text-lg font-medium">SALIKS X BRABUS</span>
-                  <button className="px-6 py-2 border border-white text-white text-lg font-medium hover:bg-white hover:text-gray-900 transition-colors">
+                  <Link to="/catalog" className="px-6 py-2 border border-white text-white text-lg font-medium hover:bg-white hover:text-gray-900 transition-colors">
                     Смотреть
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

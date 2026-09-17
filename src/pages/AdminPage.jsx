@@ -4,6 +4,7 @@ import { ArrowLeft, Plus, Image, Type, Car, Settings, Camera, Edit2, Trash2, Upl
 import { useAuth } from '../context/AuthContext'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { API_BASE_URL } from '../config'
 
 const AdminPage = ({ onAddCar, onAddBrand }) => {
   const { user } = useAuth()
@@ -70,7 +71,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
   // Load image paths from server on mount
   useEffect(() => {
-    fetch('http://localhost:3002/api/site-images')
+    fetch(`${API_BASE_URL}/api/site-images`)
       .then(res => res.json())
       .then(data => {
         setImagePaths(data)
@@ -82,7 +83,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
   // Load text content from server on mount
   useEffect(() => {
-    fetch('http://localhost:3002/api/site-text')
+    fetch(`${API_BASE_URL}/api/site-text`)
       .then(res => res.json())
       .then(data => {
         setTextContent(data)
@@ -99,7 +100,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
 
       try {
         // Upload image to server
-        const uploadRes = await fetch('http://localhost:3002/api/site-images/upload', {
+        const uploadRes = await fetch(`${API_BASE_URL}/api/site-images/upload`, {
           method: 'POST',
           body: formData
         })
@@ -108,7 +109,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
         if (uploadData.imageUrl) {
           // Update image paths on server
           const updatedPaths = { ...imagePaths, [key]: uploadData.imageUrl }
-          const updateRes = await fetch('http://localhost:3002/api/site-images', {
+          const updateRes = await fetch(`${API_BASE_URL}/api/site-images`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -131,7 +132,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
     
     // Send update to server in background
     try {
-      const updateRes = await fetch('http://localhost:3002/api/site-text', {
+      const updateRes = await fetch(`${API_BASE_URL}/api/site-text`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -161,7 +162,7 @@ const AdminPage = ({ onAddCar, onAddBrand }) => {
       imagesCount: carData.images ? carData.images.length : 0
     })
     
-    fetch('http://localhost:3002/api/cars', {
+    fetch(`${API_BASE_URL}/api/cars`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
